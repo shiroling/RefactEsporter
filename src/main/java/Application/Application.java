@@ -7,7 +7,15 @@ import java.util.List;
 
 public class Application {
 
-    private static int idLog;
+    private static User user;
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        Application.user = user;
+    }
 
     public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {
         if(!isValidNom(nomTounoi)) {
@@ -33,8 +41,7 @@ public class Application {
         }
     }
 
-    public static void setConnexionState(ConnexionState connexionState) {
-    }
+
 
     public static void afficherBtnConnexionAccueil() {
     }
@@ -54,7 +61,10 @@ public class Application {
     public static int getIdArbitreFromLogs(String username, String password) {
     }
 
-    public static void setIdLog(int idLog) {
-        Application.idLog = idLog;
+
+    public static int getIdManagerFromLogs(String username, String password) {
+    }
+
+    public static int getIdGerantFromLogs(String username, String password) {
     }
 }

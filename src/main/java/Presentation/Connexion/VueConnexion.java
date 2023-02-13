@@ -41,7 +41,7 @@ public class VueConnexion extends JDialog {
      * Create the dialog.
      */
     public VueConnexion(ConnexionState connexionVisee) {
-        ControleurConnexion controleurConnexion = new ControleurConnexion(connexionVisee, this);
+        ControleurConnexion controleurConnexion = new ControleurConnexion(this);
         setType(Type.POPUP);
         setResizable(false);
         setModal(true);

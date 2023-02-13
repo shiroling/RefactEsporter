@@ -1,5 +1,5 @@
 package Application;
 
 public enum ConnexionState {
-    NON_CONNECTE, GESTIONNAIRE, MANAGER, ARBITRE,NON_CONNU;
+    NON_CONNECTE, GESTIONNAIRE, MANAGER, ARBITRE, INCONNU;
 }
