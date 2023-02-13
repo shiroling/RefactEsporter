@@ -1,17 +1,10 @@
 package Presentation.FormCreerTournoi;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import Application.Mois;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 public class VueFormCreerTournoi extends JDialog {
     private final JPanel contentPanel = new JPanel();
     private JTextField textFieldNom;
@@ -296,7 +289,7 @@ public class VueFormCreerTournoi extends JDialog {
                 PanelChampsSaisie.add(panel);
                 {
                     comboJeux = new JComboBox<String>();
-                    comboJeux.setModel(new DefaultComboBoxModel<String>(model.Jeu.toStrings()));
+                    comboJeux.setModel(new DefaultComboBoxModel<String>(Modele.Jeu.toStrings()));
                     panel.add(comboJeux);
                 }
             }
