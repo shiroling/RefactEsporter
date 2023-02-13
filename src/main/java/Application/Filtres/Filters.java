@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import Application.Portee;
-import Model.*;
+import Modele.*;
 import commun.Portee;
 
 public class Filters {

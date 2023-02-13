@@ -1,6 +1,6 @@
 package Application;
 
-import AncienModel.Jeu;
+import NouveauModele.Jeu;
 
 import java.util.Date;
 import java.util.List;

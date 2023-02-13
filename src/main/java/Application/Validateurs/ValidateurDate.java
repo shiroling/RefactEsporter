@@ -11,5 +11,4 @@ public class ValidateurDate implements Validateur{
         return false;
     }
 
-    public
 }
