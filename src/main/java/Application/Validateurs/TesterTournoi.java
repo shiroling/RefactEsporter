@@ -1,6 +1,6 @@
 package Application.Validateurs;
 
-public class TesterTournoi implements Tester {
+public class TesterTournoi  {
     public
 
 

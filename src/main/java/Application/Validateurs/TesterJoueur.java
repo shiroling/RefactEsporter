@@ -1,6 +1,6 @@
 package Application.Validateurs;
 
-public class TesterJoueur implements Tester {
+public class TesterJoueur  {
     @Override
     public boolean isValid() {
         return false;

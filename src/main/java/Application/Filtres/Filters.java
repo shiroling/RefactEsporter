@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 import Application.Portee;
 import Modele.*;
-
 import static Modele.BDPredicats.*;
 import static Modele.BDPredicats.estTournoiDePortee;
 import static Modele.BDPredicats.estTournoiSurJeu;
+
 
 public class Filters {
 	// Tournoi
