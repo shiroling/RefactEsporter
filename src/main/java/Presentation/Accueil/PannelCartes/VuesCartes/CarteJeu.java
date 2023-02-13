@@ -1,4 +1,6 @@
-package Presentation.Accueil.PannelCartes;
+package Presentation.Accueil.PannelCartes.VuesCartes;
+
+import Presentation.Accueil.PannelCartes.VuesCartes.Carte;
 
 public class CarteJeu extends Carte {
     @Override
@@ -6,4 +8,5 @@ public class CarteJeu extends Carte {
         // TODO
         return null;
     }
+
 }

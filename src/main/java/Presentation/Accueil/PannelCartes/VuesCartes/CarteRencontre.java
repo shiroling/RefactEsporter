@@ -1,4 +1,6 @@
-package Presentation.Accueil.PannelCartes;
+package Presentation.Accueil.PannelCartes.VuesCartes;
+
+import Presentation.Accueil.PannelCartes.VuesCartes.Carte;
 
 public class CarteRencontre extends Carte {
     public CarteRencontre() {
@@ -9,4 +11,5 @@ public class CarteRencontre extends Carte {
         // TODO
         return null;
     }
+
 }
