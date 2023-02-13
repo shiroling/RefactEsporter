@@ -1,4 +1,4 @@
-package Application.Validateurs;
+package Application.Validateurs.Tournoi;
 
 public class TesterTournoi  {
     public
