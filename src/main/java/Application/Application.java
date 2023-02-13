@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Application {
 
+    private int idLog;
+
     public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {
         if(!isValidNom(nomTounoi)) {
             throw new IllegalArgumentException("Le nom donné au tournoi est déjà pris");
@@ -30,5 +32,24 @@ public class Application {
             insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j, idGerant);
         }
     }
+
+    public static void setConnexionState(ConnexionState connexionState) {
+    }
+
+    public static void afficherBtnConnexionAccueil() {
+    }
+
+    public static boolean isArbitre(String username, String password) {
+    }
+
+    public static boolean isManager(String username, String password) {
+    }
+
+    public static boolean isGestionnaire(String username, String password) {
+    }
+
+    public static void cacherBtnConnexionAccueil() {
+    }
+
 
 }
