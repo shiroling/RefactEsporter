@@ -1,47 +1,75 @@
 package Model;
 
-import javax.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(name = "Jeu")
-public class Jeu {
+public class Jeu extends BDEntity implements Comparable<Jeu> {
+	private String nom;
+	private String pathLogo;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Jeu")
-    @SequenceGenerator(name = "Seq_Jeu", sequenceName = "Seq_Jeu", allocationSize = 1)
-    @Column(name = "Id_Jeu")
-    private int idJeu;
+	public Jeu(int id) {
+		super(id);
+	}
+	
+	public void init() {
+		BDinit.init(this);
+	}
 
-    @Column(name = "Nom_jeu", nullable = false, unique = true)
-    private String nomJeu;
 
-    @Column(name = "PATH_LOGO", nullable = false)
-    private String logo;
+	public int getId() {
+		return super.getId();
+	}
 
-    public static Jeu getJeuFromName(String toString) {
-    }
+	public String getNom() {
+		if (this.nom == null) {
+			this.init();
+		}
+		return nom;
+	}
+	
+	public String getPathLogo() {
+		return this.pathLogo;
+	}
 
-    public int getIdJeu() {
-        return idJeu;
-    }
+	protected void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public void setIdJeu(int idJeu) {
-        this.idJeu = idJeu;
-    }
+	protected void setPathLogo(String pathLogo) {
+		this.pathLogo = pathLogo;
+	}
 
-    public String getNomJeu() {
-        return nomJeu;
-    }
+	public static String[] toStrings(List<Jeu> jeux) {
+		String[] nomJeux = new String[jeux.size()];
+		for(int i = 0; i < jeux.size() ; i++) {
+			nomJeux[i] = jeux.get(i).toString();
+		}
+		return nomJeux;
+	}
+	
+	public static String[] toStrings() {
+		List<Jeu> jeux = BDSelect.getListeJeux();
+		String[] nomJeux = new String[jeux.size()];
+		for(int i = 0; i < jeux.size() ; i++) {
+			nomJeux[i] = jeux.get(i).toString();
+		}
+		return nomJeux;
+	}
 
-    public void setNomJeu(String nomJeu) {
-        this.nomJeu = nomJeu;
-    }
+	@Override
+	public String toString() {
+		return this.getNom();
+	}
+	
+	public static Jeu getJeuFromName(String name) {
+		return new Jeu(BDSelect.getIdJeu(name));
+	}
 
-    public String getLogo() {
-        return logo;
-    }
+	@Override
+	public int compareTo(Jeu o) {
+		if (this.getNom().compareTo("Overwatch 2") == 0) {
+			return 1;
+		}
+		return 0;
+	}
 
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
 }

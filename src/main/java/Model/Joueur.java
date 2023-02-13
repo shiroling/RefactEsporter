@@ -1,78 +1,109 @@
 package Model;
 
-import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "Joueur")
-public class Joueur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Joueur")
-    @SequenceGenerator(name = "Seq_Joueur", sequenceName = "Seq_Joueur", allocationSize = 1)
-    @Column(name = "Id_Joueur")
-    private int idJoueur;
-
-    @Column(name = "Nom", nullable = false)
+public class Joueur extends BDEntity {
     private String nom;
-
-    @Column(name = "Prenom", nullable = false)
     private String prenom;
-
-    @Column(name = "Date_De_Naissance", nullable = false)
-    private Date dateDeNaissance;
-
-    @Column(name = "Pseudo", nullable = false)
+    private Date naissance;
     private String pseudo;
+    private int idEquipe;
+    
+    public Joueur(int id) {
+		super(id);
+		this.idEquipe = -1;
+	}
 
-    @ManyToOne
-    @JoinColumn(name = "Id_Equipe", referencedColumnName = "Id_Equipe", nullable = false)
-    private Equipe equipe;
+	public void init() {
+		BDinit.init(this);
+	}
 
-    public int getIdJoueur() {
-        return idJoueur;
-    }
-
-    public void setIdJoueur(int idJoueur) {
-        this.idJoueur = idJoueur;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public int getId() {
+		return super.getId();
+	}
+  
+	public Date getNaissance() {
+		if(this.naissance == null) {
+			this.init();
+		}
+		return naissance;
+	}
+	
+	public int getIdEquipe() {
+		if(this.idEquipe == -1) {
+			this.init();
+		}
+		return idEquipe;
+	}
+	
+	public String getNom() {
+		if(this.nom == null) {
+			this.init();
+		}
+		return nom;
     }
 
     public String getPrenom() {
-        return prenom;
+    	if(this.prenom == null) {
+			this.init();
+		}
+		return prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public Date getDateNaissance() {
+    	if(this.naissance == null) {
+			this.init();
+		}
+		return naissance;
     }
-
-    public Date getDateDeNaissance() {
-        return dateDeNaissance;
-    }
-
-    public void setDateDeNaissance(Date dateDeNaissance) {
-        this.dateDeNaissance = dateDeNaissance;
-    }
-
+	
     public String getPseudo() {
-        return pseudo;
+    	if (this.pseudo == null) {
+    		this.init();			
+		}
+    	return pseudo;
     }
+    
+	protected void setNaissance(Date naissance) {
+		this.naissance = naissance;
+	}
+	
+	protected void setIdEquipe(int idEquipe) {
+		this.idEquipe = idEquipe;
+	}
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
+	protected void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	protected void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	
+	protected void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+	
+	public Equipe getEquipe() {
+		return new Equipe(this.getIdEquipe());
+	}
 
-    public Equipe getEquipe() {
-        return equipe;
+	public static String[] toStrings(List<Joueur> l) {
+		String[] result = new String[l.size()];
+		for (int i = 0; i < l.size(); i++) {
+			result[i] = l.get(i).toString();
+		}
+		return result;
+	}
+	
+    @Override 
+    public String toString() {
+    	return "[" + this.getPseudo() +"] " + this.getNom() + " " + this.getPrenom() + " --- " + this.getDateNaissance().toString(); 
     }
+    
+	public static Joueur getJoueurFromPseudo(String pseudo) {
+		return new Joueur(BDSelect.getIdJoueurFromPseudo(pseudo));
+	}
 
-    public void setEquipe(Equipe equipe) {
-        this.equipe = equipe;
-    }
 }

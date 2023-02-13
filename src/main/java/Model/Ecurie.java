@@ -1,54 +1,70 @@
 package Model;
 
-import javax.persistence.*;
-@Entity
-@Table(name = "Ecurie")
-public class Ecurie {
+import java.util.List;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Ecurie")
-    @SequenceGenerator(name = "Seq_Ecurie", sequenceName = "Seq_Ecurie", allocationSize = 1)
-    @Column(name = "Id_Ecurie")
-    private int idEcurie;
+public class Ecurie extends BDEntity {
+	private String nom;
+	private String nomManager;
 
-    @Column(name = "Nom_Ecurie", nullable = false, unique = true)
-    private String nomEcurie;
+	public Ecurie(int id) {
+		super(id);
+	}
+	
+	public void init() {
+		BDinit.init(this);
+	}
 
-    @Column(name = "Nom_Manager", nullable = false)
-    private String nomManager;
+	public int getId() {
+		return super.getId();
+	}
 
-    @Column(name = "mdp_Manager", nullable = false)
-    private String mdpManager;
+	public String getNom() {
+		if(this.nom == null) {
+			this.init();
+		}
+		return nom;
+	}
 
-    public int getIdEcurie() {
-        return idEcurie;
-    }
+	public String getNomManager() {
+		if(this.nomManager == null) {
+			this.init();
+		}
+		return nomManager;
+	}
 
-    public void setIdEcurie(int idEcurie) {
-        this.idEcurie = idEcurie;
-    }
+	protected void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public String getNomEcurie() {
-        return nomEcurie;
-    }
+	protected void setMdpManager(String mdpManager) {
+	}
 
-    public void setNomEcurie(String nomEcurie) {
-        this.nomEcurie = nomEcurie;
-    }
+	protected void setNomManager(String nomManager) {
+		this.nomManager = nomManager;
+	}
 
-    public String getNomManager() {
-        return nomManager;
-    }
+	public static String[] toStrings(List<Ecurie> l) {
+		if(l.size() == 0) {
+			return new String[] {"-- Aucun tournois dans la BD --"};
+		}
+		String[] result = new String[l.size()];
+		for (int i = 0; i < l.size(); i++) {
+			result[i] = l.get(i).toString();
+		}
+		return result;
+	}
+	
+	public List<Equipe> getListeEquipe(){
+		return BDSelect.getListeEquipesFromEcurie(getId());
+	}
 
-    public void setNomManager(String nomManager) {
-        this.nomManager = nomManager;
-    }
+	@Override
+	public String toString() {
+		return ""+ this.getNom() +" ("+this.getNomManager()+ ")";
+	}
+	
+	public static Ecurie getEcurieFromNom(String nomEcurie) {
+		return new Ecurie(BDSelect.getIdEcurieFromNom(nomEcurie));
+	}
 
-    public String getMdpManager() {
-        return mdpManager;
-    }
-
-    public void setMdpManager(String mdpManager) {
-        this.mdpManager = mdpManager;
-    }
 }

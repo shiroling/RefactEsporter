@@ -9,4 +9,5 @@ public class UsineCarte {
     private CarteRencontre rencontre = new CarteRencontre();
     private CarteTournoi tournoi = new CarteTournoi();
 
+
 }
