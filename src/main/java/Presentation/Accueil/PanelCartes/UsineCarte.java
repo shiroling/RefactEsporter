@@ -2,7 +2,7 @@ package Presentation.Accueil.PanelCartes;
 
 import Presentation.Accueil.PanelCartes.VuesCartes.*;
 
-public class CardFactory {
+public class UsineCarte {
     private CarteEcurie ecurie = new CarteEcurie();
     private CarteEquipe equipe = new CarteEquipe();
     private CarteJeu jeu = new CarteJeu();
