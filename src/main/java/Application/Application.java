@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Application {
 
-    private int idLog;
+    private static int idLog;
 
     public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {
         if(!isValidNom(nomTounoi)) {
@@ -51,5 +51,10 @@ public class Application {
     public static void cacherBtnConnexionAccueil() {
     }
 
+    public static int getIdArbitreFromLogs(String username, String password) {
+    }
 
+    public static void setIdLog(int idLog) {
+        Application.idLog = idLog;
+    }
 }
