@@ -6,7 +6,5 @@ public class CardFactory {
     private CarteJeu jeu = new CarteJeu();
     private CarteRencontre rencontre = new CarteRencontre();
     private CarteTournoi tournoi = new CarteTournoi();
-    public Carte getCarte() {
-
-    }
+    
 }
