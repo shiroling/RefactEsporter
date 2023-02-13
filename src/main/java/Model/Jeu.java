@@ -18,6 +18,9 @@ public class Jeu {
     @Column(name = "PATH_LOGO", nullable = false)
     private String logo;
 
+    public static Jeu getJeuFromName(String toString) {
+    }
+
     public int getIdJeu() {
         return idJeu;
     }

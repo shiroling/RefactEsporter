@@ -1,6 +1,6 @@
 package Application;
 
-import Modele.Jeu;
+import Model.Jeu;
 
 import java.util.Date;
 import java.util.List;

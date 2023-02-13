@@ -4,7 +4,7 @@ import Application.Application;
 import Application.Mois;
 import Application.Portee;
 import Application.PreDate;
-import Modele.Jeu;
+import Model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
