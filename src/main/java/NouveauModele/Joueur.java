@@ -1,4 +1,4 @@
-package Model;
+package NouveauModele;
 
 import javax.persistence.*;
 import java.util.Date;

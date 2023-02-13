@@ -4,7 +4,7 @@ import Application.Application;
 import Application.Mois;
 import Application.Portee;
 import Application.PreDate;
-import Model.Jeu;
+import NouveauModele.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import static Application.Application.insererTournoi;
 
 public class ControleurFormCreerTournoi implements ActionListener {
     private VueFormCreerTournoi vue;
