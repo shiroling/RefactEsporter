@@ -1,4 +1,4 @@
-package Application.Validateurs;
+package Application.Validateurs.Joueur;
 
 public class TesterJoueur  {
     @Override

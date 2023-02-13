@@ -1,6 +1,7 @@
 package Presentation.FormCreerTournoi;
 
 import Application.Mois;
+import Application.Validateurs.Date.PreDate;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -109,6 +110,19 @@ public class VueFormCreerTournoi extends JDialog {
     public String getSelectedValueComboMoiFinTournoi() {
         return Objects.requireNonNull(this.comboMoiFinTournoi.getSelectedItem()).toString();
     }
+
+    public PreDate getPreDateDebutTournois() {
+        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourDebutTournoi()));
+    }
+
+    public PreDate getPreDateFinTournoi() {
+        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourFinTournoi()));
+    }
+
+    public PreDate getPreDateFinInscriptions() {
+        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourFinInscription()));
+    }
+
 
     public VueFormCreerTournoi(int idGerant) {
         this.idGerant = idGerant;
@@ -330,4 +344,16 @@ public class VueFormCreerTournoi extends JDialog {
             }
         }
     }
+
+    public void setLabelOnDefault(JLabel cible, String texte) {
+        cible.setText(texte);
+        cible.setForeground(new Color(51, 51, 51));
+    }
+
+    public void setLabelOnWarning(JLabel cible, String texte) {
+        cible.setText(texte + " *");
+        cible.setForeground(new Color(255, 0, 0));
+    }
 }
+
+
