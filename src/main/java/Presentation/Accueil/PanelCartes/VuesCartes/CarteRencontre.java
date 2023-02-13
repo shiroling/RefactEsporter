@@ -1,6 +1,4 @@
-package Presentation.Accueil.PannelCartes.VuesCartes;
-
-import Presentation.Accueil.PannelCartes.VuesCartes.Carte;
+package Presentation.Accueil.PanelCartes.VuesCartes;
 
 public class CarteRencontre extends Carte {
     public CarteRencontre() {

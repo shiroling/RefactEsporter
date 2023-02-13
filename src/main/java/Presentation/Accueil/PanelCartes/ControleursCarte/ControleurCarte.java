@@ -1,4 +1,4 @@
-package Presentation.Accueil.PannelCartes.ControleursCarte;
+package Presentation.Accueil.PanelCartes.ControleursCarte;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

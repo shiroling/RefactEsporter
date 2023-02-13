@@ -1,6 +1,6 @@
-package Presentation.Accueil.PannelCartes;
+package Presentation.Accueil.PanelCartes;
 
-import Presentation.Accueil.PannelCartes.VuesCartes.*;
+import Presentation.Accueil.PanelCartes.VuesCartes.*;
 
 public class CardFactory {
     private CarteEcurie ecurie = new CarteEcurie();

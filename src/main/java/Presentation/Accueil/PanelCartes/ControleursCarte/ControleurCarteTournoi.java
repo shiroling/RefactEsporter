@@ -1,4 +1,4 @@
-package Presentation.Accueil.PannelCartes.ControleursCarte;
+package Presentation.Accueil.PanelCartes.ControleursCarte;
 
 public class ControleurCarteTournoi extends ControleurCarte{
     @Override
