@@ -7,46 +7,49 @@ import java.util.stream.Collectors;
 
 import Application.Portee;
 import Modele.*;
-import commun.Portee;
+
+import static Modele.BDPredicats.*;
+import static Modele.BDPredicats.estTournoiDePortee;
+import static Modele.BDPredicats.estTournoiSurJeu;
 
 public class Filters {
 	// Tournoi
 	// Avancement
-	public static Predicate<Tournoi> estTournoiEnCours = t -> BDPredicats.estTournoiEnCours(t.getId());
-	public static Predicate<Tournoi> estTournoiFini = t -> BDPredicats.estTournoiFini(t.getId());
-	public static Predicate<Tournoi> estTournoiAVenir = t -> BDPredicats.estTournoiAVenir(t.getId());
+	public static Predicate<Tournoi> estTournoiEnCours = t -> estTournoiEnCours(t.getId());
+	public static Predicate<Tournoi> estTournoiFini = t -> estTournoiFini(t.getId());
+	public static Predicate<Tournoi> estTournoiAVenir = t -> estTournoiAVenir(t.getId());
 	
 	// Inscriptions
-	public static Predicate<Tournoi> sontInscriptionsFinies = t -> BDPredicats.sontInscriptionsFinies(t.getId());
+	public static Predicate<Tournoi> sontInscriptionsFinies = t -> sontInscriptionsFinies(t.getId());
 	public static Predicate<Tournoi> sontInscriptionsEnCours = Filters.sontInscriptionsFinies.negate();
 	
 	// Multijoueurs
-	public static Predicate<Tournoi> estTournoiMulti = t -> BDPredicats.estTournoiMulti(t);
+	public static Predicate<Tournoi> estTournoiMulti = BDPredicats::estTournoiMulti;
 	public static Predicate<Tournoi> estTournoiJeuUnique = estTournoiMulti.negate();
 	
 	// Jeu
-	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> BDPredicats.estTournoiSurJeu(t.getId(), idJeu);
+	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> estTournoiSurJeu(t.getId(), idJeu);
 	
 	// Portée
-	public static BiPredicate<Tournoi, Portee> estTournoiDePortee = (t, p) -> BDPredicats.estTournoiDePortee(t.getId(), p);
+	public static BiPredicate<Tournoi, Portee> estTournoiDePortee = (t, p) -> estTournoiDePortee(t.getId(), p);
 	
 	
 	// Rencontre
 	// Avancement
-	public static Predicate<Rencontre> estRencontreFini = r -> BDPredicats.estRencontreFinie(r);
+	public static Predicate<Rencontre> estRencontreFini = BDPredicats::estRencontreFinie;
 	public static Predicate<Rencontre> estRencontreAVenir = estRencontreFini.negate();
 	
 	// Jeu / Jouée sur
-	public static BiPredicate<Rencontre, Integer> estRencontreSurJeu = (r, idJeu) -> BDPredicats.estMatchSurJeu(r, idJeu);
+	public static BiPredicate<Rencontre, Integer> estRencontreSurJeu = BDPredicats::estMatchSurJeu;
 	
 	// Tournoi
-	public static BiPredicate<Rencontre, Integer> estRencontreDansTournoi = (r, idTournoi) -> BDPredicats.estMatchTournoi(r, idTournoi);
+	public static BiPredicate<Rencontre, Integer> estRencontreDansTournoi = BDPredicats::estMatchTournoi;
 	
 	// Jouées par
-	public static BiPredicate<Rencontre, Integer> estRencontreAvecEquipe = (r, idEquipe)  -> BDPredicats.estMatchAvecEquipe(r, idEquipe);
+	public static BiPredicate<Rencontre, Integer> estRencontreAvecEquipe = BDPredicats::estMatchAvecEquipe;
 
 	// ne pas mettre dans l'IHM
-	public static BiPredicate<Rencontre, Integer> estRencontreDansPoule = (r, idPoule) -> BDPredicats.estMatchPoule(r, idPoule);
+	public static BiPredicate<Rencontre, Integer> estRencontreDansPoule = BDPredicats::estMatchPoule;
 	
 	
 	// Equipe

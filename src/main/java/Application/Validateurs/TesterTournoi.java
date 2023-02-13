@@ -1,8 +1,17 @@
 package Application.Validateurs;
 
-public class ValidateurJoueur implements Validateur{
+public class TesterTournoi implements Tester {
+    public
+
+
     @Override
     public boolean isValid() {
         return false;
+    }
+
+
+
+    public boolean areValidDates() {
+
     }
 }
