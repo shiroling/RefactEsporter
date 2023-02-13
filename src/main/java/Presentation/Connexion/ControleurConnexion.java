@@ -23,7 +23,6 @@ public class ControleurConnexion implements ActionListener {
         LineBorder border = new LineBorder(Color.RED);
         this.connexionVue.getTextFieldUsername().setBorder(border);
         this.connexionVue.getTextFieldPassword().setBorder(border);
-        Application.afficherBtnConnexionAccueil();
     }
 
 

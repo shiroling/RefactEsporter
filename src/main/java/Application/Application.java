@@ -15,6 +15,7 @@ public class Application {
 
     public static void setUser(User user) {
         Application.user = user;
+        //REFRESH ACCUEIL : accueil doit cacher btn Connexion
     }
 
     public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {

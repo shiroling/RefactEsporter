@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import Application.Portee;
 import Modele.*;
-import commun.Portee;
 
 public class Filters {
 	// Tournoi

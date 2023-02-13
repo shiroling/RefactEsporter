@@ -16,6 +16,11 @@ public class VueConnexion extends JDialog {
     private JTextField textFieldFocus2;
     private JTextField textFieldFocus1;
 
+    public static void main(String[] args) {
+        VueConnexion dialog = new VueConnexion();
+        dialog.setVisible(true);
+    }
+
 
     public JTextField getTextFieldUsername() {
         return textFieldUsername;
@@ -40,7 +45,7 @@ public class VueConnexion extends JDialog {
     /**
      * Create the dialog.
      */
-    public VueConnexion(ConnexionState connexionVisee) {
+    public VueConnexion() {
         ControleurConnexion controleurConnexion = new ControleurConnexion(this);
         setType(Type.POPUP);
         setResizable(false);
