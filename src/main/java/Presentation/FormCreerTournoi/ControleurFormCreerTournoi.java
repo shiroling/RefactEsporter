@@ -30,10 +30,10 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 this.jeux.add(Jeu.getJeuFromName(Objects.requireNonNull(this.vue.getComboJeux().getSelectedItem()).toString()));// Stockage du jeu selectionné
                 this.vue.getPanelJeuxAjoutes().setLayout(new GridLayout(this.jeux.size(), 1, 0, 0));
                 JLabel lblNomJeu = new JLabel(this.vue.getComboJeux().getSelectedItem().toString()); // Créer le label concernant le jeu selectionné dans le combo
-                this.vue.getPanelJeuxAjoutes().add(lblNomJeu);        // Ajout du label dans le pannel
-                this.vue.getPanelJeuxAjoutes().updateUI();        // Maj du panel
+                this.vue.getPanelJeuxAjoutes().add(lblNomJeu);              // Ajout du label dans le pannel
+                this.vue.getPanelJeuxAjoutes().updateUI();                  // Maj du panel
                 this.vue.getComboJeux().removeItem(this.vue.getComboJeux().getSelectedItem()); // Enleve le jeu du combo apres l'avoir ajouté
-                if (this.vue.getComboJeux().getItemCount() == 0) {        // Si il n'y a plus de jeu rendre invisible le bouton et le combo
+                if (this.vue.getComboJeux().getItemCount() == 0) {          // Si il n'y a plus de jeu rendre invisible le bouton et le combo
                     this.vue.getComboJeux().setVisible(false);
                     this.vue.getBtnAjouterJeux().setVisible(false);
                 }
