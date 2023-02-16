@@ -1,6 +1,7 @@
 package Presentation.FormCreerTournoi;
 
 import Application.Application;
+import Application.Exceptions.BadUserExecption;
 import Application.Modele.Portee;
 import Application.Testeurs.Date.PreDate;
 import Application.Testeurs.Date.TesteurDate;
@@ -133,11 +134,12 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 //  la vue deverait retourner les infos mais pas les insérer
                 if (testNom && testJeux && testDateDebut && testDatefin && testDateFinInsc && testChrono) {
                     //Verifie si le tournoi est multigaming ou non.
-                    if (this.jeux.size() == 1) {
-                        Application.insererTournoi(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), vue.getPreDateFinInscriptions().toDate(), vue.getPreDateDebutTournois().toDate(), vue.getPreDateFinTournoi().toDate(), this.jeux.get(0), this.vue.getIdGerant());
-                    } else {
-                        Application.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), vue.getPreDateFinInscriptions().toDate(), vue.getPreDateDebutTournois().toDate(), vue.getPreDateFinTournoi().toDate(), this.jeux, this.vue.getIdGerant());
+                    try {
+                        Application.insererTournoi(this.vue.getNomTournoi(), vue.getPortee(), vue.getPreDateFinInscriptions(), vue.getPreDateDebutTournois(), vue.getPreDateFinTournoi(), this.jeux);
+                    } catch (BadUserExecption ex) {
+                        throw new RuntimeException(ex);
                     }
+
                     this.vue.dispose();
                 }
             }
@@ -237,6 +239,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
         vue.setLabelOnDefault(vue.getLabelNom(), "Nom :");
         return true;
     }
+
 
     public boolean isEmptyNom() {
         return this.vue.getTextFieldNom().getText().compareTo("") == 0;

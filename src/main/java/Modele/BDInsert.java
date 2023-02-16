@@ -11,7 +11,7 @@ import Application.Modele.Portee;
 
 public class BDInsert {
 
-	protected static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) {
+	public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Tournoi values (Seq_Tournoi.nextVal, ?, ?, ?, ?, ?, ?, ?)");
@@ -28,7 +28,7 @@ public class BDInsert {
 		}
 	}
 	
-	protected static void insererPoule(int idTournoi, List<Equipe> listeEquipes) {
+	public static void insererPoule(int idTournoi, List<Equipe> listeEquipes) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 0, ?)");

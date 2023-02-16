@@ -1,6 +1,6 @@
 package Application.Testeurs.Date;
 
-import java.util.Date;
+import java.sql.Date;
 
 public record PreDate(int annee, int mois, int jour) {
 

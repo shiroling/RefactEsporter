@@ -1,6 +1,7 @@
 package Presentation.FormCreerTournoi;
 
 import Application.Modele.Mois;
+import Application.Modele.Portee;
 import Application.Testeurs.Date.PreDate;
 
 import javax.swing.*;
@@ -353,6 +354,14 @@ public class VueFormCreerTournoi extends JDialog {
     public void setLabelOnWarning(JLabel cible, String texte) {
         cible.setText(texte + " *");
         cible.setForeground(new Color(255, 0, 0));
+    }
+
+    protected String getNomTournoi() {
+        return this.getTextFieldNom().getText();
+    }
+
+    public Portee getPortee() {
+        return Portee.stringToPortee(this.getComboPortee().getSelectedItem().toString());
     }
 }
 

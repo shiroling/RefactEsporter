@@ -1,56 +1,33 @@
 package Application;
 
+import Application.Exceptions.BadUserExecption;
+import Application.Modele.ConnexionState;
 import Application.Modele.Portee;
-import Application.Modele.User;
+import Application.Testeurs.Date.PreDate;
+import Application.Testeurs.TesteurTournoi;
 import NouveauModele.Jeu;
 
 import java.util.Date;
 import java.util.List;
 
-import static Modele.Tournoi.isValidNom;
-
+import Modele.BDInsert;
 public class Application {
 
-    private static User user;
-
-    public static User getUser() {
-        return user;
-    }
-
-    public static void setUser(User user) {
-        Application.user = user;
-        //REFRESH ACCUEIL : accueil doit cacher btn Connexion
-    }
-
-    public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {
-        if(!isValidNom(nomTounoi)) {
-            throw new IllegalArgumentException("Le nom donné au tournoi est déjà pris");
+    public static void insererTournoi(String nomTounoi, Portee porteeTournoi, PreDate dateFinInscription, PreDate dateDebutTournoi, PreDate dateFinTournoi, List<Jeu> jeux) throws IllegalArgumentException, BadUserExecption {
+        if(UtilisateurCourant.getInstance().getEtatConnexion() != ConnexionState.GESTIONNAIRE) {
+            throw new BadUserExecption("L'utilisateur connecté n'est pas un gérant");
         }
-
-        if(!isValidDates(dateFinInscription, dateDebutTournoi, dateFinTournoi)) {
-            throw new IllegalArgumentException("Les dates données ne corélent pas");
+        try {
+            TesteurTournoi.isValid(nomTounoi, dateFinInscription, dateDebutTournoi, dateFinTournoi);
+        } catch (IllegalArgumentException e ) {
+            throw e;
         }
-        if(!isvalidGerant(idGerant)) {
-            throw new IllegalArgumentException("Le gérant"+ idGerant +" n'existe pas");
+        if (jeux.size() == 1) {
+            BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription.toDate(), dateDebutTournoi.toDate(), dateFinTournoi.toDate(), jeux.get(0).getIdJeu(), UtilisateurCourant.getInstance().getIdLog());
+        } else if (jeux.size() > 1) {
+            for (Jeu j: jeux) {
+                BDInsert.insererTournoi(nomTounoi + "-"+ j.getNomJeu(), porteeTournoi, dateFinInscription.toDate(), dateDebutTournoi.toDate(), dateFinTournoi.toDate(), j.getIdJeu(), UtilisateurCourant.getInstance().getIdLog());
+            }
         }
-
-        BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j.getId(), idGerant);
-
-        //FenMessage dialog = new FenMessage("Le tournoi '" + this.vue.getTextFieldNom().getText() + "' à bien été créé");
-        //dialog.setVisible(true);
-    }
-
-    public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, List<Jeu> jeux, int idGerant) {
-        for (Jeu j :jeux) {
-            insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j, idGerant);
-        }
-    }
-
-
-
-    public static void afficherBtnConnexionAccueil() {
-    }
-
-    public static void cacherBtnConnexionAccueil() {
     }
 }
