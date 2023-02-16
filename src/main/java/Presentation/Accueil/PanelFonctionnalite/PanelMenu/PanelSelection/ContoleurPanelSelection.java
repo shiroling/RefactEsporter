@@ -1,10 +1,9 @@
-package Presentation.Accueil.PanelMenu.PanelSelection;
+package Presentation.Accueil.PanelFonctionnalite.PanelMenu.PanelSelection;
 
 package controleur_ihm;
 
-import Presentation.Accueil.PanelMenu.Selection;
+import Presentation.Accueil.PanelFonctionnalite.PanelMenu.Selection;
 
-import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

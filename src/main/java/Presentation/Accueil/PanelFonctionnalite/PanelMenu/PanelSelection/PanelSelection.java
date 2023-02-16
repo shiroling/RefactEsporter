@@ -1,4 +1,4 @@
-package Presentation.Accueil.PanelMenu.PanelSelection;
+package Presentation.Accueil.PanelFonctionnalite.PanelMenu.PanelSelection;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import Presentation.Accueil.PanelMenu.Selection;
+import Presentation.Accueil.PanelFonctionnalite.PanelMenu.Selection;
 
 public class PanelSelection extends JPanel {
 

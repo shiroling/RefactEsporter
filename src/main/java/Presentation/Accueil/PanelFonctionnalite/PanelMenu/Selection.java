@@ -1,4 +1,4 @@
-package Presentation.Accueil.PanelMenu;
+package Presentation.Accueil.PanelFonctionnalite.PanelMenu;
 
 public enum Selection {
     TOURNOI("Tournois"), RENCONTRE("Matchs"), JEU("Jeux"), EQUIPE("Equipes"), ECURIE("Ecuries");
@@ -12,4 +12,5 @@ public enum Selection {
     public String getLabel() {
         return this.label;
     }
+
 }
