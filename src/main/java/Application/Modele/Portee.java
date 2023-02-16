@@ -1,4 +1,4 @@
-package Application;
+package Application.Modele;
 
 public enum Portee {
     LOCAL("Local"),

@@ -1,7 +1,7 @@
 package Presentation.FormCreerTournoi;
 
-import Application.Mois;
-import Application.Validateurs.Date.PreDate;
+import Application.Modele.Mois;
+import Application.Testeurs.Date.PreDate;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

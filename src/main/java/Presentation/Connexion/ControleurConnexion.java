@@ -1,15 +1,12 @@
 package Presentation.Connexion;
 
 import Application.Application;
-import Application.ConnexionState;
-import Application.User;
+import Application.Modele.User;
 
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static Application.Application.getIdArbitreFromLogs;
 
 public class ControleurConnexion implements ActionListener {
     private VueConnexion connexionVue;

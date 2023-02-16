@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import Application.Portee;
+import Application.Modele.Portee;
 
 public class BDinit {
 	public static void init(Ecurie e) {

@@ -1,8 +1,11 @@
-package Application;
+package Application.Modele;
+
+import Application.Application;
 
 public class User {
-    private int idLog;
-    private ConnexionState etatConnexion;
+    private final int
+            idLog;
+    private final ConnexionState etatConnexion;
 
     public User(String username, String password) {
         if(Application.isManager(username, password)){

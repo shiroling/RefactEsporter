@@ -1,6 +1,4 @@
-package Application.Validateurs.Date;
-
-import Application.Validateurs.Date.PreDate;
+package Application.Testeurs.Date;
 
 import java.util.Calendar;
 

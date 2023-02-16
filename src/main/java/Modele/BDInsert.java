@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import Application.Portee;
+import Application.Modele.Portee;
 
 public class BDInsert {
 

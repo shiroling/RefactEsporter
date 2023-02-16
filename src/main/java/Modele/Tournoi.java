@@ -3,7 +3,7 @@ package Modele;
 import java.sql.Date;
 import java.util.List;
 
-import Application.Portee;
+import Application.Modele.Portee;
 
 public class Tournoi extends BDEntity {
 	private String nom;
@@ -185,7 +185,7 @@ public class Tournoi extends BDEntity {
 		return !dateFinInscription.after(dateDebutTournoi) && !dateDebutTournoi.after(dateFinTournoi);
 	}
 
-	private static boolean isValidNom(String nomTounoi) {
+	public static boolean isValidNom(String nomTounoi) {
 		return !BDPredicats.existeNomTournoi(nomTounoi);
 	}
 	

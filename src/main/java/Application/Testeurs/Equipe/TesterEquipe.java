@@ -1,7 +1,6 @@
-package Application.Validateurs.Equipe;
+package Application.Testeurs.Equipe;
 
 public class TesterEquipe  {
-    @Override
     public boolean isValid() {
         return false;
     }

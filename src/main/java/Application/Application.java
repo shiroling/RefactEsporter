@@ -1,9 +1,13 @@
 package Application;
 
+import Application.Modele.Portee;
+import Application.Modele.User;
 import NouveauModele.Jeu;
 
 import java.util.Date;
 import java.util.List;
+
+import static Modele.Tournoi.isValidNom;
 
 public class Application {
 

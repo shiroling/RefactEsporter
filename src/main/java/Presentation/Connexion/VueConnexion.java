@@ -1,6 +1,5 @@
 package Presentation.Connexion;
 
-import Application.ConnexionState;
 import Presentation.Style.BtnStyle.BtnStyle;
 import Presentation.Style.PanelArrondi.PanelArrondi;
 import Presentation.Style.PanelDegrade.PanelDegrade;

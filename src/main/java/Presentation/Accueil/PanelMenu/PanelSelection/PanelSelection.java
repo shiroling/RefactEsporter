@@ -9,12 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import Presentation.Accueil.PanelMenu.Selection;
-
 public class PanelSelection extends JPanel {
 
     private JPanel panelLigneHover;
-    private Selection selection
     private ContoleurPanelSelection hover;
 
     public void setPannelLineOver(int i) {

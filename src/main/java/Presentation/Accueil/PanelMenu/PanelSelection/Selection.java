@@ -1,4 +1,4 @@
-package Presentation.Accueil.PanelMenu;
+package Presentation.Accueil.PanelMenu.PanelSelection;
 
 public enum Selection {
     TOURNOI("Tournois"), RENCONTRE("Matchs"), JEU("Jeux"), EQUIPE("Equipes"), ECURIE("Ecuries");

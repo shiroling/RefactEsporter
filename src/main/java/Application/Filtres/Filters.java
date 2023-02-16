@@ -5,7 +5,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import Application.Portee;
+import Application.Modele.Portee;
 import Modele.*;
 import static Modele.BDPredicats.*;
 import static Modele.BDPredicats.estTournoiDePortee;

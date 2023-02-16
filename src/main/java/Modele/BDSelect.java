@@ -102,7 +102,7 @@ public class BDSelect {
 		}
 	}
 
-	public static List<Rencontre> getListeRencontre() {
+	public static List<Rencontre> getListeRencontres() {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery("Select id_rencontre from rencontre");

@@ -1,9 +1,9 @@
 package Presentation.FormCreerTournoi;
 
 import Application.Application;
-import Application.Portee;
-import Application.Validateurs.Date.PreDate;
-import Application.Validateurs.Date.TesteurDate;
+import Application.Modele.Portee;
+import Application.Testeurs.Date.PreDate;
+import Application.Testeurs.Date.TesteurDate;
 import NouveauModele.Jeu;
 
 import javax.swing.*;
