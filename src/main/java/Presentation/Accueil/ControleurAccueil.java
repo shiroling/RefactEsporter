@@ -1,8 +1,8 @@
 package Presentation.Accueil;
 
 import Presentation.Accueil.PanelCartes.ControleurPanelCartes;
-import Presentation.Accueil.PanelConnexion.ControleurPanelConnexion;
-import Presentation.Accueil.PanelFiltres.ControleurPanelFiltres;
+import Presentation.Accueil.PanelFonctionnalite.PanelConnexion.ControleurPanelConnexion;
+import Presentation.Accueil.PanelFonctionnalite.PanelFiltres.ControleurPanelFiltres;
 import Presentation.Accueil.PanelMenu.ControleurPanelMenu;
 
 public class ControleurAccueil {

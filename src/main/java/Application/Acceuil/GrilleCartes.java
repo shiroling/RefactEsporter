@@ -5,6 +5,6 @@ import Presentation.Accueil.PanelMenu.PanelSelection.Selection;
 
 public class GrilleCartes {
     public static void updateTo(Selection select) {
-        ModeleGlobal.
+        return;
     }
 }
