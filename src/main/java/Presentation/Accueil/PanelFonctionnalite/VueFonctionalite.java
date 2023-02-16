@@ -11,8 +11,8 @@ public class VueFonctionalite extends JPanel {
 
     public VueFonctionalite(){
         this.setLayout(new BorderLayout(0, 0));
-        this.add(new VueMenu());
-        this.add(new VuePanelFiltres());
-        this.add(new VuePanelConnexion());
+        this.add(new VueMenu(),BorderLayout.NORTH);
+        this.add(new VuePanelFiltres(),BorderLayout.CENTER);
+        this.add(new VuePanelConnexion(),BorderLayout.SOUTH);
     }
 }
