@@ -1,8 +1,8 @@
 package Presentation.Accueil;
 
 
-import Presentation.Accueil.PanelConnexion.VuePanelConnexion;
-import Presentation.Accueil.PanelFiltres.VuePanelFiltres;
+import Presentation.Accueil.PanelFonctionnalite.PanelConnexion.VuePanelConnexion;
+import Presentation.Accueil.PanelFonctionnalite.PanelFiltres.VuePanelFiltres;
 import Presentation.Accueil.PanelFonctionnalite.PanelMenu.ControleurPanelMenu;
 
 public class VueAcceuil {
