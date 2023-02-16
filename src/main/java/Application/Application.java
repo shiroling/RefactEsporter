@@ -51,25 +51,6 @@ public class Application {
     public static void afficherBtnConnexionAccueil() {
     }
 
-    public static boolean isArbitre(String username, String password) {
-    }
-
-    public static boolean isManager(String username, String password) {
-    }
-
-    public static boolean isGestionnaire(String username, String password) {
-    }
-
     public static void cacherBtnConnexionAccueil() {
-    }
-
-    public static int getIdArbitreFromLogs(String username, String password) {
-    }
-
-
-    public static int getIdManagerFromLogs(String username, String password) {
-    }
-
-    public static int getIdGerantFromLogs(String username, String password) {
     }
 }

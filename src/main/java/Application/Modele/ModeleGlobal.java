@@ -2,17 +2,25 @@ package Application.Modele;
 
 import Modele.BDEntity;
 import Modele.BDSelect;
-import Presentation.Accueil.PanelMenu.PanelSelection.Selection;
+import Presentation.Accueil.PanelFonctionnalite.PanelSelection.Selection;
 
 import java.util.List;
 
 public class ModeleGlobal {
+    private static ModeleGlobal instance;
     private List<? extends BDEntity> listeGrilleCourante;
     private User utilisateurCourant;
 
-    public ModeleGlobal() {
+    private ModeleGlobal() {
         this.listeGrilleCourante = BDSelect.getListeTournois();
         this.utilisateurCourant = new User("x", "x");
+    }
+
+    public static ModeleGlobal getInstance() {
+        if (instance == null) {
+            instance = new ModeleGlobal();
+        }
+        return instance;
     }
 
     public List<? extends BDEntity> getListeGrilleCourante() {

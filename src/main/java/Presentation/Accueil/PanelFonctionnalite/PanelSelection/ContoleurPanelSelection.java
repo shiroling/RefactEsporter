@@ -1,4 +1,4 @@
-package Presentation.Accueil.PanelMenu.PanelSelection;
+package Presentation.Accueil.PanelFonctionnalite.PanelSelection;
 
 import Application.Acceuil.GrilleCartes;
 

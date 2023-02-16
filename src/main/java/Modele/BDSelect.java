@@ -559,17 +559,21 @@ public class BDSelect {
 		}
 	}
 	
-	public static int getIdGerantFromLogs(String nom, String mdp) {
+	public static int getIdGestionnaireFromLogs(String nom, String mdp) {
 	    try {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_GERANT FROM Gerant where nom = ? AND mdp = ?");
 			st.setString(1, nom);
 			st.setString(2, mdp);
 			ResultSet rs = st.executeQuery();
-	    	rs.next();
-	        int var = rs.getInt("ID_GERANT");
-			st.close();
-			return var;	        
-	    } catch (Exception e) {
+	    	if(rs.next()) {
+
+				int var = rs.getInt("ID_GERANT");
+				st.close();
+				return var;
+			}else {
+				return -1;
+			}
+		} catch (Exception e) {
 	        e.printStackTrace();
 	        return -1;
 	    }
@@ -581,11 +585,15 @@ public class BDSelect {
 			st.setString(1, nom);
 			st.setString(2, mdp);
 			ResultSet rs = st.executeQuery();
-	    	rs.next();
-	        int var = rs.getInt("ID_ARBITRE");
-			st.close();
-			return var;	        
-	    } catch (Exception e) {
+	    	if(rs.next()) {
+
+				int var = rs.getInt("ID_ARBITRE");
+				st.close();
+				return var;
+			}else {
+				return -1;
+			}
+		} catch (Exception e) {
 	        e.printStackTrace();
 	        return -1;
 	    }
@@ -597,11 +605,15 @@ public class BDSelect {
 			st.setString(1, nom);
 			st.setString(2, mdp);
 			ResultSet rs = st.executeQuery();
-	    	rs.next();
-	        int var = rs.getInt("ID_ECURIE");
-			st.close();
-			return var;	        
-	    } catch (Exception e) {
+	    	if (rs.next()) {
+
+				int var = rs.getInt("ID_ECURIE");
+				st.close();
+				return var;
+			}else {
+				return -1;
+			}
+		} catch (Exception e) {
 	        e.printStackTrace();
 	        return -1;
 	    }

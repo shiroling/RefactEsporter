@@ -1,4 +1,4 @@
-package Presentation.Accueil.PanelMenu.PanelSelection;
+package Presentation.Accueil.PanelFonctionnalite.PanelSelection;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;

@@ -1,7 +1,6 @@
 package Presentation.Accueil.PanelFonctionnalite;
 
 import Presentation.Accueil.PanelFonctionnalite.PanelConnexion.VuePanelConnexion;
-import Presentation.Accueil.PanelFonctionnalite.PanelFiltres.VuePanelFiltres;
 import Presentation.Accueil.PanelFonctionnalite.PanelMenu.VueMenu;
 
 import javax.swing.*;
