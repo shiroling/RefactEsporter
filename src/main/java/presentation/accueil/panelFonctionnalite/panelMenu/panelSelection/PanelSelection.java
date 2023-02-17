@@ -19,9 +19,6 @@ public class PanelSelection extends JPanel {
         this.getPanelLigneHover().repaint();
         this.revalidate();
     }
-
-
-
     public PanelSelection(Selection selection) {
         ContoleurPanelSelection hover = new ContoleurPanelSelection(this, selection);
 
@@ -43,19 +40,14 @@ public class PanelSelection extends JPanel {
         flowLayout.setHgap(10);
         flowLayout.setVgap(getHeight()/2 + 15);
         add(panelLbl, BorderLayout.CENTER);
-
         JLabel lblSelection = new JLabel(selection.getLabel());
         lblSelection.setHorizontalAlignment(SwingConstants.LEFT);
         panelLbl.add(lblSelection);
     }
-
     public JPanel getPanelLigneHover() {
         return this.panelLigneHover;
     }
-
     public ContoleurPanelSelection getHover() {
         return hover;
     }
-
-
 }

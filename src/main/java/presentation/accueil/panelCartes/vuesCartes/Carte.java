@@ -6,7 +6,7 @@ import java.awt.*;
 
 public abstract class Carte extends JPanel implements Cloneable  {
     public abstract Carte clone();
-
+    public abstract String getType();
     public Carte() {
         setBackground(Color.WHITE);
         setBorder(new EmptyBorder(0,0,0,0));
@@ -15,3 +15,4 @@ public abstract class Carte extends JPanel implements Cloneable  {
         setBackground(new Color(255,255,255));
     }
 }
+
