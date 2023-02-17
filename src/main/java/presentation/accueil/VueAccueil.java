@@ -9,6 +9,7 @@ import java.awt.*;
 public class VueAccueil extends JFrame {
 
     public VueAccueil(VueFonctionalite vueFonctionalite) {
+        this.setMinimumSize(new Dimension(1000,500));
         this.setTitle("REMA");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

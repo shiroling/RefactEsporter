@@ -5,7 +5,7 @@ import presentation.accueil.panelFonctionnalite.panelFiltres.VuePanelFiltres;
 import presentation.accueil.panelFonctionnalite.panelMenu.VueMenu;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 
 public class VueFonctionalite extends JPanel {
 
@@ -14,5 +14,6 @@ public class VueFonctionalite extends JPanel {
         this.add(new VueMenu(),BorderLayout.NORTH);
         this.add(new VuePanelFiltres(),BorderLayout.CENTER);
         this.add(new VuePanelConnexion(),BorderLayout.SOUTH);
+        this.setPreferredSize(new Dimension(300,15));
     }
 }

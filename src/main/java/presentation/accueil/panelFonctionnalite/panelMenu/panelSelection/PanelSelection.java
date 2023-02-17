@@ -1,8 +1,5 @@
 package presentation.accueil.panelFonctionnalite.panelMenu.panelSelection;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,6 +40,7 @@ public class PanelSelection extends JPanel {
         JLabel lblSelection = new JLabel(selection.getLabel());
         lblSelection.setHorizontalAlignment(SwingConstants.LEFT);
         panelLbl.add(lblSelection);
+
     }
     public JPanel getPanelLigneHover() {
         return this.panelLigneHover;

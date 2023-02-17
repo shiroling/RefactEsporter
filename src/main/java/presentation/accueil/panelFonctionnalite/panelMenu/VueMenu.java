@@ -28,6 +28,7 @@ public class VueMenu extends JPanel {
         this.add(selectJeu);
 
 
+
     }
 
 }
