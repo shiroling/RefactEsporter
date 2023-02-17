@@ -9,11 +9,9 @@ import java.util.List;
 public class ModeleGlobal {
     private static ModeleGlobal instance;
     private List<? extends BDEntity> listeGrilleCourante;
-    private User utilisateurCourant;
 
     private ModeleGlobal() {
         this.listeGrilleCourante = BDSelect.getListeTournois();
-        this.utilisateurCourant = new User("x", "x");
     }
 
     public static ModeleGlobal getInstance() {
@@ -35,13 +33,5 @@ public class ModeleGlobal {
             case RENCONTRE -> this.listeGrilleCourante = BDSelect.getListeRencontres();
             case TOURNOI -> this.listeGrilleCourante = BDSelect.getListeTournois();
         }
-    }
-
-    public User getUtilisateurCourant() {
-        return utilisateurCourant;
-    }
-
-    public void setUtilisateurCourant(User utilisateurCourant) {
-        this.utilisateurCourant = utilisateurCourant;
     }
 }
