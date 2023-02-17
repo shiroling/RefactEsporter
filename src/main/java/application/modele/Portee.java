@@ -20,6 +20,7 @@ public enum Portee {
             case "Local" -> Portee.LOCAL;
             case "National" -> Portee.NATIONAL;
             case "International" -> Portee.INTERNATIONAL;
+            default -> throw new IllegalArgumentException("Le String donné n'est pas une portee");
         };
     }
 

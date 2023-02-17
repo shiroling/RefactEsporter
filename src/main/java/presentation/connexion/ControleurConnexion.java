@@ -1,7 +1,6 @@
 package presentation.connexion;
 
-import application.Application;
-import application.modele.User;
+import application.UtilisateurCourant;
 
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -27,11 +26,7 @@ public class ControleurConnexion implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String username = this.connexionVue.getTextFieldUsername().getText();
         String password = String.valueOf(this.connexionVue.getTextFieldPassword().getPassword());
-        User user = new User(username, password);
-
-        if(user.existe()) {
-            Application.setUser(user);
-            Application.cacherBtnConnexionAccueil();
+        if(UtilisateurCourant.connexion(username, password)) {
             this.connexionVue.dispose();
         } else {
             procedureConnexionEchouee();
