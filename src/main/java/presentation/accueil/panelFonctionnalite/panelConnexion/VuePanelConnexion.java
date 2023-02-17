@@ -6,12 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VuePanelConnexion extends JPanel {
-    private final JPanel panelAdmin;
     private final ControleurPanelConnexion controleur = new ControleurPanelConnexion(this);
 
     public VuePanelConnexion() {
-        panelAdmin = new JPanel();
-        panelAdmin.setLayout(new GridLayout(3, 2, 0, 0));
+        this.setLayout(new GridLayout(3, 2, 0, 0));
 
         contruireLabelEtBtn("Manager : ", "créer equipe", "btnCreerEquipe");
         contruireLabelEtBtn("Gestionnaire : ", "créer tournoi", "btnCreerTournoi");
@@ -19,17 +17,18 @@ public class VuePanelConnexion extends JPanel {
     }
 
     private void contruireLabelEtBtn(String texteLabel, String texteBouton, String nomBouton) {
-        JLabel lblCreerEquipe = new JLabel(texteLabel);
-        lblCreerEquipe.setVisible(false);
-        this.panelAdmin.add(lblCreerEquipe );
+        JLabel lbl = new JLabel(texteLabel);
+        lbl.setVisible(true);
+        this.add(lbl );
 
-        BtnStyle btnCreerEquipe = new BtnStyle(BtnStyle.COLOR_BASE_BLEU, BtnStyle.COLOR_OVER_BLEU, BtnStyle.COLOR_CLIC_BLEU, 30);
-        btnCreerEquipe.setVisible(false);
-        btnCreerEquipe.setText(texteBouton);
-        btnCreerEquipe.setForeground(new Color(255, 255, 255));
-        btnCreerEquipe.setName(nomBouton);
-        btnCreerEquipe.addActionListener(this.controleur);
-        this.panelAdmin.add(btnCreerEquipe);
+        BtnStyle btn = new BtnStyle(BtnStyle.COLOR_BASE_BLEU, BtnStyle.COLOR_OVER_BLEU, BtnStyle.COLOR_CLIC_BLEU, 30);
+        btn.setVisible(true);
+        btn.setText(texteBouton);
+        btn.setForeground(new Color(255, 255, 255));
+        btn.setName(nomBouton);
+        btn.addActionListener(this.controleur);
+        this.add(btn);
+        System.out.println(btn.getName());
     }
 
     public static void main(String[] args) {
