@@ -1,6 +1,6 @@
-package presentation.accueil.panelCartes.controleursCarte;
+package presentation.Accueil.PanelCartes.ControleursCarte;
 
-import presentation.accueil.panelCartes.vuesCartes.Carte;
+import presentation.Accueil.PanelCartes.VuesCartes.Carte;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
