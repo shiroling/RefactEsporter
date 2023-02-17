@@ -1,10 +1,10 @@
-package presentation.Accueil;
+package presentation.accueil;
 
 
-import presentation.Accueil.PanelConnexion.VuePanelConnexion;
-import presentation.Accueil.PanelFiltres.VuePanelFiltres;
-import presentation.Accueil.PanelMenu.ControleurPanelMenu;
-import presentation.Connexion.VueConnexion;
+import presentation.accueil.PanelConnexion.VuePanelConnexion;
+import presentation.accueil.PanelFiltres.VuePanelFiltres;
+import presentation.accueil.PanelMenu.ControleurPanelMenu;
+import presentation.connexion.VueConnexion;
 
 public class VueAcceuil {
 
