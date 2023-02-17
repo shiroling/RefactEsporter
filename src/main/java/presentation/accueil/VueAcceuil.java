@@ -1,13 +1,14 @@
 package presentation.accueil;
 
 
-import presentation.accueil.panelFonctionnalite.panelConnexion.VuePanelConnexion;
-import presentation.accueil.panelFonctionnalite.panelFiltres.VuePanelFiltres;
-import presentation.accueil.panelFonctionnalite.panelMenu.VueMenu;
+import presentation.accueil.PanelConnexion.VuePanelConnexion;
+import presentation.accueil.PanelFiltres.VuePanelFiltres;
+import presentation.accueil.PanelMenu.ControleurPanelMenu;
+import presentation.connexion.VueConnexion;
 
 public class VueAcceuil {
 
-    public VueAcceuil(VuePanelConnexion vueConnexion, VuePanelFiltres vueFiltres, VueMenu vueMenu) {
+    public VueAcceuil(VuePanelConnexion vueConnexion, VuePanelFiltres vueFiltres, ControleurPanelMenu.VueMenuAccueil vueMenu) {
 
     }
 
