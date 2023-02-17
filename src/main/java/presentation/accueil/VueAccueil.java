@@ -1,7 +1,7 @@
 package presentation.accueil;
 
 
-import Presentation.Accueil.PanelFonctionnalite.VueFonctionalite;
+import presentation.accueil.panelFonctionnalite.VueFonctionalite;
 
 import javax.swing.*;
 import java.awt.*;
