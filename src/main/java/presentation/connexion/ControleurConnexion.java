@@ -1,6 +1,6 @@
 package presentation.connexion;
 
-import application.UtilisateurCourant;
+import application.donneesPersistantes.UtilisateurCourant;
 
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControleurConnexion implements ActionListener {
-    private VueConnexion connexionVue;
+    private final VueConnexion connexionVue;
 
     public ControleurConnexion(VueConnexion connexionVue) {
         super();
@@ -26,7 +26,7 @@ public class ControleurConnexion implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String username = this.connexionVue.getTextFieldUsername().getText();
         String password = String.valueOf(this.connexionVue.getTextFieldPassword().getPassword());
-        if(UtilisateurCourant.connexion(username, password)) {
+        if(UtilisateurCourant.tryConnect(username, password)) {
             this.connexionVue.dispose();
         } else {
             procedureConnexionEchouee();

@@ -1,16 +1,15 @@
-package application;
+package application.donneesPersistantes;
 
-import application.modele.ConnexionState;
 import modele.BDSelect;
 
 public class UtilisateurCourant {
     private static UtilisateurCourant utilisateurCourant;
     private int idLog;
-    private ConnexionState etatConnexion;
+    private ConnexionCourante etatConnexion;
 
     private UtilisateurCourant() {
         this.idLog = -1;
-        this.etatConnexion = ConnexionState.ANNONYME;
+        this.etatConnexion = ConnexionCourante.ANNONYME;
     }
 
     public static UtilisateurCourant getInstance() {
@@ -24,10 +23,10 @@ public class UtilisateurCourant {
         return idLog;
     }
 
-    public ConnexionState getEtatConnexion() {
+    public ConnexionCourante getEtatConnexion() {
         return etatConnexion;
     }
-    public static boolean connexion(String username, String password) {
+    public static boolean tryConnect(String username, String password) {
         if(UtilisateurCourant.tryConnectManager(username, password) || UtilisateurCourant.tryConnectGestionnaire( username, password) || UtilisateurCourant.tryConnectArbitre(username, password)) {
             return true;
         }
@@ -37,7 +36,7 @@ public class UtilisateurCourant {
 
     private void setAnnonymous() {
         this.idLog = -1;
-        this.etatConnexion = ConnexionState.ANNONYME;
+        this.etatConnexion = ConnexionCourante.ANNONYME;
     }
 
 
@@ -46,7 +45,7 @@ public class UtilisateurCourant {
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
-            that.etatConnexion = ConnexionState.MANAGER;
+            that.etatConnexion = ConnexionCourante.MANAGER;
             return true;
         }
         return false;
@@ -57,7 +56,7 @@ public class UtilisateurCourant {
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
-            that.etatConnexion = ConnexionState.GESTIONNAIRE;
+            that.etatConnexion = ConnexionCourante.GESTIONNAIRE;
             return true;
         }
         return false;
@@ -67,12 +66,22 @@ public class UtilisateurCourant {
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
-            that.etatConnexion = ConnexionState.ARBITRE;
+            that.etatConnexion = ConnexionCourante.ARBITRE;
             return true;
         }
         return false;
     }
+    public static ConnexionCourante switchConnexion() {
+        // le cas ou on est connecté, on déconnecte
+        if (utilisateurCourant.getEtatConnexion() != ConnexionCourante.ANNONYME) {
+            utilisateurCourant.setAnnonymous();
+            return ConnexionCourante.ANNONYME;
+        }
+        // le cas ou on est déconnecté, on se connecte
+        // TODO, je sais pas comment faire mais il faut envoyer la fenétre de connexion !
 
+        return utilisateurCourant.getEtatConnexion();
+    }
     public static void deconnexion() {
         utilisateurCourant.setAnnonymous();
     }

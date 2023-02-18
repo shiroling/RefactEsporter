@@ -1,4 +1,4 @@
-package application.modele;
+package application.donneesPersistantes;
 
 import modele.BDEntity;
 import modele.BDSelect;

@@ -26,9 +26,13 @@ public class VueLabelBouton extends JPanel {
         panel.add(bouton);
     }
 
-    public void setTexts(String texteLabel, String texteBouton, String nomBouton) {
+    public void setTexts(String texteLabel, String texteBouton) {
         this.label.setText(texteLabel);
         this.bouton.setText(texteBouton);
-        this.bouton.setName(nomBouton);
+    }
+
+    @Override
+    public void setVisible(boolean aFlag) {
+        this.setVisible(aFlag);
     }
 }

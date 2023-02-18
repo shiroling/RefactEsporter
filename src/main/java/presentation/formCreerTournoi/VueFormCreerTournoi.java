@@ -1,7 +1,7 @@
 package presentation.formCreerTournoi;
 
-import application.modele.Mois;
-import application.modele.Portee;
+import application.donneesPersistantes.Mois;
+import application.donneesPersistantes.Portee;
 import application.testeurs.date.PreDate;
 
 import javax.swing.*;

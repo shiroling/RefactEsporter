@@ -1,6 +1,6 @@
 package presentation.formCreerTournoi;
 
-import application.Application;
+import application.FonctionsUtilisateurs;
 import application.exceptions.BadUserExecption;
 import application.testeurs.date.PreDate;
 import application.testeurs.date.TesteurDate;
@@ -134,7 +134,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 if (testNom && testJeux && testDateDebut && testDatefin && testDateFinInsc && testChrono) {
                     //Verifie si le tournoi est multigaming ou non.
                     try {
-                        Application.insererTournoi(this.vue.getNomTournoi(), vue.getPortee(), vue.getPreDateFinInscriptions(), vue.getPreDateDebutTournois(), vue.getPreDateFinTournoi(), this.jeux);
+                        FonctionsUtilisateurs.insererTournoi(this.vue.getNomTournoi(), vue.getPortee(), vue.getPreDateFinInscriptions(), vue.getPreDateDebutTournois(), vue.getPreDateFinTournoi(), this.jeux);
                     } catch (BadUserExecption ex) {
                         throw new RuntimeException(ex);
                     }

@@ -3,7 +3,7 @@ package modele;
 import java.sql.Date;
 import java.util.List;
 
-import application.modele.Portee;
+import application.donneesPersistantes.Portee;
 
 public class Tournoi extends BDEntity {
 	private String nom;

@@ -1,4 +1,4 @@
-package application.modele;
+package application.donneesPersistantes;
 
 public enum Portee {
     LOCAL("Local"),

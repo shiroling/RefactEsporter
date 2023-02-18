@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
-import application.modele.Portee;
+import application.donneesPersistantes.Portee;
 
 public class BDPredicats {
 

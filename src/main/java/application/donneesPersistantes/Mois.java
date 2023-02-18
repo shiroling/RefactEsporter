@@ -1,4 +1,4 @@
-package application.modele;
+package application.donneesPersistantes;
 
 public enum Mois {
     JANVIER("Janvier", 0), FEVRIER("Février", 1), MARS("Mars", 2), AVRIL("Avril", 3), MAI("Mai", 4), JUIN("Juin", 5), JUILLET("Juillet", 6), AOUT("Août", 7), SEPTMBRE("Septembre", 8), OCTOBRE("Octobre", 9), NOVEMBRE("Novembre", 10), DECEMBRE("Décembre", 11);
