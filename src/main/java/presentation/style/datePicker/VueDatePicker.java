@@ -81,10 +81,4 @@ public class VueDatePicker extends JPanel {
     }
 
 
-    public static void main(String[] args) {
-        JFrame frame =  new JFrame();
-        frame.add(new VueDatePicker(true));
-        frame.setVisible(true);
-    }
-
 }
