@@ -7,7 +7,7 @@ public class VuePanelFiltres extends JPanel {
     public VuePanelFiltres(){
 
     }
-
+    /*
     public void setFiltreTournois(){
         ControleurPanelFiltres itemListner = new ControleurPanelFiltres(this);
         {
@@ -365,16 +365,17 @@ public class VuePanelFiltres extends JPanel {
 			JCheckBox trierClassement = new JCheckBox();
 			trierClassement.addChangeListener(ctrlChackBox);
 			panelCheckBoxClassement.add(trierClassement);
-			*/
+
 
         }
         this.updateUI();
-    }
-    
+     */
 
+/*
+    }
     public void setPanelVide() {
         this.getLblTitreFiltre().setVisible(false);;
         this.removeAll();
     }
-
+*/
 }
