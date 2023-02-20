@@ -13,7 +13,7 @@ public class VueFonctionalite extends JPanel {
         this.setLayout(new BorderLayout(0, 0));
         this.add(new VueMenu(),BorderLayout.NORTH);
         this.add(new VuePanelFiltres(),BorderLayout.CENTER);
-        this.add(new VuePanelConnexion(),BorderLayout.CENTER);
+        this.add(new VuePanelConnexion(),BorderLayout.SOUTH);
         this.setPreferredSize(new Dimension(300,15));
 
     }
