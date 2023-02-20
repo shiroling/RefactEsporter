@@ -69,12 +69,17 @@ public class VueDatePicker extends JPanel {
         if (source.getForeground() != new Color(255, 0, 0)) {
             source.setForeground(new Color(255, 0, 0));
         }
+        source.updateUI();
+        this.updateUI();
+
     }
 
     public void setOnDefault(JComboBox<String> source) {
         if (source.getForeground() != new Color(0, 0, 0)) {
             source.setForeground(new Color(0, 0, 0));
         }
+        source.updateUI();
+        this.updateUI();
     }
     public JComboBox<String> getComboJour() {
         return this.comboJour;

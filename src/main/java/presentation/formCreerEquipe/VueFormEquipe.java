@@ -1,7 +1,6 @@
 package presentation.formCreerEquipe;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,10 +29,12 @@ public class VueFormEquipe extends JDialog {
         contentPanel.add(labelTitre);
 
         JPanel panelNom = new JPanel();
+        panelNom.setLayout(new GridLayout(0,2,0,0));
         contentPanel.add(panelNom);
         JLabel lblNomEquipe =new JLabel("Nom : ");
         panelNom.add(lblNomEquipe);
         textFieldNomEquipe = new JTextField();
+        textFieldNomEquipe.setMinimumSize(new Dimension(200,0));
         panelNom.add(textFieldNomEquipe);
 
         JPanel panelJeu = new JPanel();
@@ -79,6 +80,10 @@ public class VueFormEquipe extends JDialog {
         return comboJeux;
     }
 
+    public void setJoueur(int i, String pseudo) {
+        (this.joueurs.get(i)).setJoueur(i, pseudo);
+    }
+
     public static void main(String[] args) {
         try {
             VueFormEquipe dialog = new VueFormEquipe();
@@ -89,4 +94,7 @@ public class VueFormEquipe extends JDialog {
         }
     }
 
+    public void setJoueurVide(int i) {
+        (this.joueurs.get(i)).setVide();
+    }
 }

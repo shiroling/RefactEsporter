@@ -1,5 +1,6 @@
 package presentation.formCreerEquipe;
 
+import presentation.formJoueur.ControleurFormJoueur;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;
@@ -23,17 +24,17 @@ public class VueJoueur extends JPanel {
         this.add(nomJoueur);
 
         actionJoueur =  new JButton();
-        actionJoueur.setName("actionJoueur");
+        actionJoueur.setName("actionJoueur"+index);
         actionJoueur.addActionListener(controleur);
         this.add(actionJoueur);
         setVide();
     }
     public void setVide() {
-        this.nomJoueur.setText("Joueur : Vide");
+        this.nomJoueur.setText("Joueur " + index + ": Vide");
         this.actionJoueur.setText("Créer");
     }
-    public void setJoueur(String nomJoueur) {
-        this.nomJoueur.setText(nomJoueur);
+    public void setJoueur(int i, String pseudo) {
+        this.nomJoueur.setText("Joueur "+ i + " : " +  pseudo);
         this.nomJoueur.setForeground(ElementCommun.getWarningColor());
         this.actionJoueur.setText("Supprimer");
     }
