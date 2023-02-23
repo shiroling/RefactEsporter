@@ -1,5 +1,7 @@
 package presentation.formCreerEquipe;
 
+import presentation.style.JTextFieldLimit;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +22,8 @@ public class VueFormEquipe extends JDialog {
 
     public VueFormEquipe() {
         ControleurFormEquipe controleur = new ControleurFormEquipe(this);
-
+        this.setMinimumSize(new Dimension(400,400));
+        this.setLayout(new FlowLayout(1,1000,1));
         setTitle("Nouvelle equipe");
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -30,12 +33,14 @@ public class VueFormEquipe extends JDialog {
 
         JPanel panelNom = new JPanel();
         panelNom.setLayout(new GridLayout(0,2,0,0));
-        contentPanel.add(panelNom);
+
         JLabel lblNomEquipe =new JLabel("Nom : ");
         panelNom.add(lblNomEquipe);
         textFieldNomEquipe = new JTextField();
         textFieldNomEquipe.setMinimumSize(new Dimension(200,0));
+        textFieldNomEquipe.setDocument(new JTextFieldLimit(10));
         panelNom.add(textFieldNomEquipe);
+        contentPanel.add(panelNom);
 
         JPanel panelJeu = new JPanel();
         contentPanel.add(panelJeu);
