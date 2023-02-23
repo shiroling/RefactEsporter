@@ -1,10 +1,7 @@
-package application;
+package application.services;
 
-import application.donneesPersistantes.Portee;
 import nouveauModele.Tournoi;
 import nouveauModele.TournoiRepository;
-
-import java.sql.Date;
 
 //singleton
 // préssente les Sf de l'application à présentation
