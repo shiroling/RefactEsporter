@@ -1,7 +1,7 @@
-package presentation.PopupInscrireEquipe.FormInscrireEquipe.PanelEquipePourInscription;
+package presentation.PopupInscrireEquipe.PanelEquipePourInscription;
 
 import modele.Equipe;
-import presentation.PopupInscrireEquipe.FormInscrireEquipe.PopupInscrireEquipe;
+import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,12 +11,12 @@ import java.awt.*;
 public class PanelEquipePourInscription extends JPanel {
 
     private Equipe equipe;
+    private PopupInscrireEquipe parent;
 
-
-    public PanelEquipePourInscription(Equipe equipe, PopupInscrireEquipe vue) {
+    public PanelEquipePourInscription(Equipe equipe, PopupInscrireEquipe parent) {
         this.equipe=equipe;
 
-        ControleurPanelEquipePourInscription hover = new ControleurPanelEquipePourInscription(this, vue);
+        ControleurPanelEquipePourInscription hover = new ControleurPanelEquipePourInscription(this, parent);
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 8));
         setBackground(Color.WHITE);

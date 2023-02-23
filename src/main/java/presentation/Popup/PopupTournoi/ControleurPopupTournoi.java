@@ -1,9 +1,11 @@
 package presentation.Popup.PopupTournoi;
 
+import application.Application;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.Ecurie;
-import presentation.PopupInscrireEquipe.FormInscrireEquipe.PopupInscrireEquipe;
+import modele.Equipe;
+import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
 import presentation.connexion.VueConnexion;
 
 import javax.swing.*;
@@ -29,9 +31,8 @@ public class ControleurPopupTournoi implements ActionListener {
                     VueConnexion fenetreConnnexion = new VueConnexion();
                 }
                 if (UtilisateurCourant.getInstance().getEtatConnexion() == ConnexionCourante.MANAGER) {
-                    PopupInscrireEquipe dialog = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()));
-                    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                    dialog.setVisible(true);
+                    Application.procedureInitierInscrireEquipe(vue.getTournoi());
+                    this.vue.dispose();
                 }
                 break;
             case "voirRencontres" :

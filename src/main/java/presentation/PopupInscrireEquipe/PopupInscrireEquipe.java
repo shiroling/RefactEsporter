@@ -1,9 +1,9 @@
-package presentation.PopupInscrireEquipe.FormInscrireEquipe;
+package presentation.PopupInscrireEquipe;
 
 import modele.Ecurie;
 import modele.Equipe;
 import modele.Tournoi;
-import presentation.PopupInscrireEquipe.FormInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
+import presentation.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,8 +47,9 @@ public class PopupInscrireEquipe extends JDialog {
     /**
      * Create the dialog.
      */
-    public PopupInscrireEquipe(Ecurie ecurie) {
+    public PopupInscrireEquipe(Ecurie ecurie, Tournoi tournoi) {
         this.ecurie = ecurie;
+        this.tournoi = tournoi;
 
         ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
 

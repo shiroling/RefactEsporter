@@ -1,8 +1,12 @@
-package presentation.PopupInscrireEquipe.FormInscrireEquipe;
+package presentation.PopupInscrireEquipe;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 import application.Application;
+import presentation.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
 
 import javax.swing.JButton;
 
@@ -24,16 +28,14 @@ public class ControleurPopupInscrireEquipe implements ActionListener {
         switch (btn.getName()) {
             case "Inscrire":
                 if (this.vue.getEquipeSelectionee() != null) {
-                    this.vue.getTournoi().inscrireEquipe(this.vue.getEquipeSelectionee());
-                    //FenMessage dialog = new FenMessage("L'equipe '" + this.vue.getEquipeSelectionee().getNom() + "' à été inscrite au tournoi '" + this.vue.getTournoi().getNom() + "'.");
-                    //dialog.setVisible(true);
-                    Application.actualiserPopupTournoi();
+                    Application.procedureInscrireEquipe(this.vue.getEquipeSelectionee(), this.vue.getTournoi());
                     this.vue.dispose();
                 } else {
                     this.vue.getLblAucuneEquipeSelectionee().setVisible(true);
                 }
                 break;
             case "Annuler":
+                Application.afficherPopupTournoi(this.vue.getTournoi());
                 this.vue.dispose();
                 break;
         }
