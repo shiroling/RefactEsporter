@@ -1,7 +1,7 @@
 package presentation.accueil.panelFonctionnalite.panelMenu;
 
 import presentation.accueil.panelFonctionnalite.panelMenu.panelSelection.PanelSelection;
-import presentation.accueil.panelFonctionnalite.panelMenu.panelSelection.Selection;
+import application.donneesPersistantes.Selection;
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,6 +1,6 @@
 package application.acceuil;
 
-import presentation.accueil.panelFonctionnalite.panelMenu.panelSelection.Selection;
+import application.donneesPersistantes.Selection;
 
 public class GrilleCartes {
     public static void updateTo(Selection select) {

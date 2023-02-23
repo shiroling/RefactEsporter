@@ -1,6 +1,7 @@
 package presentation.accueil.panelFonctionnalite.panelMenu.panelSelection;
 
 import application.acceuil.GrilleCartes;
+import application.donneesPersistantes.Selection;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

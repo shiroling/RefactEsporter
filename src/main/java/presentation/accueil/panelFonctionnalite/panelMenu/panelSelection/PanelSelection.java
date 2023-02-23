@@ -1,4 +1,6 @@
 package presentation.accueil.panelFonctionnalite.panelMenu.panelSelection;
+import application.donneesPersistantes.Selection;
+
 import java.awt.*;
 
 import javax.swing.JLabel;

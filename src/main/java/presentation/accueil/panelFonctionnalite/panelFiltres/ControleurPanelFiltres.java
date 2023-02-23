@@ -1,8 +1,12 @@
 package presentation.accueil.panelFonctionnalite.panelFiltres;
 
-public class ControleurPanelFiltres {
-    public enum Etat {
-        TOURNOI, RENCONTRE, JEU, EQUIPE, ECURIE;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+public class ControleurPanelFiltres implements ItemListener {
+    @Override
+    public void itemStateChanged(ItemEvent itemEvent) {
+        Fil
     }
     private final VuePanelFiltres vue;
 

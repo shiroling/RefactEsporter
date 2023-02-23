@@ -1,9 +1,10 @@
 package application.donneesPersistantes;
 
+import application.filtres.Filtre;
 import modele.BDEntity;
 import modele.BDSelect;
-import presentation.accueil.panelFonctionnalite.panelMenu.panelSelection.Selection;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ModeleGlobal {
@@ -33,5 +34,14 @@ public class ModeleGlobal {
             case RENCONTRE -> this.listeGrilleCourante = BDSelect.getListeRencontres();
             case TOURNOI -> this.listeGrilleCourante = BDSelect.getListeTournois();
         }
+    }
+
+    public List<? extends BDEntity> getListeCouranteFiltree(Filtre filtre) {
+        List<BDEntity> listeFiltre = new LinkedList<>();
+        for (BDEntity b : this.listeGrilleCourante) {
+            listeFiltre.add(b);
+        }
+        filtre.filtrer(this.listeGrilleCourante);
+        return listeFiltre;
     }
 }

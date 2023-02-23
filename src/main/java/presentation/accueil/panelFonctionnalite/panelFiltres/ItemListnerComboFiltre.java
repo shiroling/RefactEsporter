@@ -1,13 +1,10 @@
 package presentation.accueil.panelFonctionnalite.panelFiltres;
 
-public class ItemListnerComboFiltre {
+public class ItemListnerComboFiltre implements item{
 
 
-    public enum Etat {
-        TOURNOI, RENCONTRE, EQUIPE;
-    }
 
-    private ControleurAccueil controleurAccueil;
+
     private Etat state;
 
     public ItemListnerComboFiltre(ControleurAccueil controleurAccueil, Etat state) {

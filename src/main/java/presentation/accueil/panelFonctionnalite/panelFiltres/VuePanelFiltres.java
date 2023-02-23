@@ -12,9 +12,8 @@ public class VuePanelFiltres extends JPanel {
     public VuePanelFiltres(){
 
     }
-
     public void setFiltreTournois(){
-        ItemListnerComboFiltre itemListner = new ItemListnerComboFiltre(this);
+        ControleurPanelFiltres itemListner = new ControleurPanelFiltres(this);
         {
             JPanel panelComboAvancement = new JPanel();
             this.add(panelComboAvancement);
@@ -22,6 +21,7 @@ public class VuePanelFiltres extends JPanel {
 
             JLabel lblComboAvencement = new JLabel("Avancement");
             lblComboAvencement.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
             JPanel panelComboLbl = new JPanel();
             FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
             flowLayout2.setAlignment(FlowLayout.LEFT);
@@ -158,8 +158,6 @@ public class VuePanelFiltres extends JPanel {
         }
         this.updateUI();
     }
-
-
     public void setPanelFiltresRencontres() {
         this.setVisible(true);
         this.removeAll();
@@ -293,7 +291,6 @@ public class VuePanelFiltres extends JPanel {
 
         this.updateUI();
     }
-
     public void setPanelFiltresEquipes() {
         this.setVisible(true);
         this.removeAll();
@@ -369,12 +366,8 @@ public class VuePanelFiltres extends JPanel {
 
     }
     public void setPanelVide() {
-        this.getLblTitreFiltre().setVisible(false);;
         this.removeAll();
     }
 
-    private Component getLblTitreFiltre() {
-        
-    }
 
 }
