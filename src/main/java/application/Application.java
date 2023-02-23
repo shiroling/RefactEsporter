@@ -5,7 +5,7 @@ import modele.Ecurie;
 import modele.Equipe;
 import modele.Tournoi;
 import presentation.Popup.PopupTournoi.PopupTournoi;
-import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 public class Application {
 

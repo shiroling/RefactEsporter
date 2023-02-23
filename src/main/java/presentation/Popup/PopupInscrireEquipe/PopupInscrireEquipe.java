@@ -1,9 +1,9 @@
-package presentation.PopupInscrireEquipe;
+package presentation.Popup.PopupInscrireEquipe;
 
 import modele.Ecurie;
 import modele.Equipe;
 import modele.Tournoi;
-import presentation.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
+import presentation.Popup.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

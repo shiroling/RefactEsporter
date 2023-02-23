@@ -1,7 +1,7 @@
-package presentation.PopupInscrireEquipe.PanelEquipePourInscription;
+package presentation.Popup.PopupInscrireEquipe.PanelEquipePourInscription;
 
 import modele.Equipe;
-import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,12 +1,10 @@
-package presentation.PopupInscrireEquipe;
+package presentation.Popup.PopupInscrireEquipe;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 import application.Application;
-import presentation.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
 
 import javax.swing.JButton;
 

@@ -1,6 +1,6 @@
-package presentation.PopupInscrireEquipe.PanelEquipePourInscription;
+package presentation.Popup.PopupInscrireEquipe.PanelEquipePourInscription;
 
-import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

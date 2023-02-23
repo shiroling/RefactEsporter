@@ -3,9 +3,6 @@ package presentation.Popup.PopupTournoi;
 import application.Application;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.UtilisateurCourant;
-import modele.Ecurie;
-import modele.Equipe;
-import presentation.PopupInscrireEquipe.PopupInscrireEquipe;
 import presentation.connexion.VueConnexion;
 
 import javax.swing.*;
