@@ -12,33 +12,29 @@ import modele.Jeu;
 import java.util.List;
 
 public class FonctionsUtilisateurs {
-    private final ConnexionCourante con;
-    private final int id;
-    private int idLog;
 
-    public FonctionsUtilisateurs(ConnexionCourante etatConnexion, int idLog) {
-        this.con = etatConnexion;
-        this.id = idLog;
+    public FonctionsUtilisateurs() {
+
     }
 
 
 
-    public void launch() {
-        switch (con) {
-            case GESTIONNAIRE -> procedureCreerTournoi();
-            case MANAGER -> procedureCreerEquipe();
+    public static void launch() {
+        UtilisateurCourant ut = UtilisateurCourant.getInstance();
+        switch (ut.getEtatConnexion()) {
+            case GESTIONNAIRE -> procedureCreerTournoi(ut.getIdLog());
+            case MANAGER -> procedureCreerEquipe(ut.getIdLog());
         }
     }
 
-    private void procedureCreerEquipe() {
+    private static void procedureCreerEquipe(int idLog) {
         // Lancer formCreerEquipe
         // TODO Help shishi to launch the fenêtre please, il vous remercira gracieusement UwU
     }
 
-    private void procedureCreerTournoi() {
+    private static void procedureCreerTournoi(int idLog) {
         // Lancer formCreerTournoi
         // TODO Help shishi to launch the fenêtre please, il vous remercira gracieusement UwU
-
     }
 
     public static void insererTournoi(String nomTounoi, Portee porteeTournoi, PreDate dateFinInscription, PreDate dateDebutTournoi, PreDate dateFinTournoi, List<Jeu> jeux) throws IllegalArgumentException, BadUserExecption {

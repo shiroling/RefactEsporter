@@ -1,4 +1,4 @@
-package presentation.accueil.panelFonctionnalite.panelMenu.panelSelection;
+package application.donneesPersistantes;
 
 public enum Selection {
     TOURNOI("Tournois"), RENCONTRE("Matchs"), JEU("Jeux"), EQUIPE("Equipes"), ECURIE("Ecuries");

@@ -33,7 +33,7 @@ public class ControleurPanelConnexion implements ActionListener {
 
     private void fonctionUtilisateur() {
         UtilisateurCourant bob = UtilisateurCourant.getInstance();
-        (new FonctionsUtilisateurs(bob.getEtatConnexion(), bob.getIdLog())).launch();
+        FonctionsUtilisateurs.launch();
     }
 
     private void updateUI(ConnexionCourante connexionCourante) {

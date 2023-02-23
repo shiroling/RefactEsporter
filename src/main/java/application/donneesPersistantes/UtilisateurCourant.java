@@ -1,6 +1,7 @@
 package application.donneesPersistantes;
 
 import modele.BDSelect;
+import presentation.connexion.VueConnexion;
 
 public class UtilisateurCourant {
     private static UtilisateurCourant utilisateurCourant;
@@ -77,9 +78,7 @@ public class UtilisateurCourant {
             utilisateurCourant.setAnnonymous();
             return ConnexionCourante.ANNONYME;
         }
-        // le cas ou on est déconnecté, on se connecte
-        // TODO, je sais pas comment faire mais il faut envoyer la fenétre de connexion !
-
+        new VueConnexion();
         return utilisateurCourant.getEtatConnexion();
     }
     public static void deconnexion() {
