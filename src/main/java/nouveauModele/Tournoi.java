@@ -19,7 +19,7 @@ import javax.persistence.UniqueConstraint;
 public class Tournoi {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Tournoi")
-    @SequenceGenerator(name = "Seq_Tournoi", sequenceName = "Seq_Tournoi", allocationSize = 1)
+//    @SequenceGenerator(name = "Seq_Tournoi", sequenceName = "Seq_Tournoi", allocationSize = 1)
     @Column(name = "Id_Tournoi")
     private int id;
 
@@ -45,6 +45,10 @@ public class Tournoi {
     @ManyToOne
     @JoinColumn(name = "Id_Gerant", nullable = false)
     private Gerant manager;
+
+    public boolean verifierJeuTournoi(int idJeu) {
+        return idJeu == this.game.getIdJeu();
+    }
 
     // Getters and setters
 }

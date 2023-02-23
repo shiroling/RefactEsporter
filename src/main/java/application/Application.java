@@ -24,6 +24,7 @@ public class Application {
     }
 
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
+        //AppTournoi.getInstance().inscrireEquipe();
         tournoi.inscrireEquipe(equipeAInscrire);
         PopupTournoi popupTournoi = new PopupTournoi(tournoi);
         popupTournoi.setVisible(true);
