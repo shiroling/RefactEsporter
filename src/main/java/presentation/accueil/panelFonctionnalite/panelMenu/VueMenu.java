@@ -31,4 +31,7 @@ public class VueMenu extends JPanel {
 
     }
 
+    public void setSelected(Selection tournoi) {
+
+    }
 }

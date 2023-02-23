@@ -1,8 +1,8 @@
 package presentation.accueil.panelFonctionnalite;
 
+import application.donneesPersistantes.Selection;
 import presentation.accueil.panelFonctionnalite.panelConnexion.VuePanelConnexion;
 import presentation.accueil.panelFonctionnalite.panelFiltres.VuePanelFiltres;
-import presentation.accueil.panelFonctionnalite.panelMenu.Selection;
 import presentation.accueil.panelFonctionnalite.panelMenu.VueMenu;
 
 import javax.swing.*;
