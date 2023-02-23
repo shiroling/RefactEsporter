@@ -4,14 +4,14 @@ import application.donneesPersistantes.UtilisateurCourant;
 import modele.Ecurie;
 import modele.Equipe;
 import modele.Tournoi;
+import presentation.Popup.PopupEcurie.PopupEcurie;
 import presentation.Popup.PopupTournoi.PopupTournoi;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 public class Application {
 
     public static void main(String[] args) { //TEST
-        afficherPopupTournoi(new Tournoi(2556502));
-
+        PopupEcurie popup = new PopupEcurie(new Ecurie(6));
     }
 
     public static void afficherPopupTournoi(Tournoi tournoi) {
