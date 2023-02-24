@@ -3,6 +3,7 @@ package application;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.Ecurie;
 import modele.Equipe;
+import modele.Rencontre;
 import modele.Tournoi;
 import presentation.Popup.PopupEcurie.PopupEcurie;
 import presentation.Popup.PopupTournoi.PopupTournoi;
@@ -29,6 +30,12 @@ public class Application {
         PopupTournoi popupTournoi = new PopupTournoi(tournoi);
         popupTournoi.setVisible(true);
     }
+
+    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
+        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(this.vue.getRencontre());
+        indiquerVainqueur.setVisible(true);
+    }
+
 
     // Regarder si votre truc a mettre ici ne convient pas déjà à FonctionUtilisateurs
     // si il sagit d'un validateur (priére de le mettre dans le paquer du méme nom)
