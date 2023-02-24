@@ -11,10 +11,16 @@ import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
 import presentation.Popup.PopupJeu.PopupJeu;
 import presentation.Popup.PopupJoueur.PopupJoueur;
 import presentation.Popup.PopupRencontre.PopupRencontre;
+import modele.Ecurie;
+import modele.Equipe;
+import modele.Rencontre;
+import modele.Tournoi;
+import presentation.Popup.PopupEcurie.PopupEcurie;
 import presentation.Popup.PopupTournoi.PopupTournoi;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 public class Application {
+
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
@@ -52,21 +58,6 @@ public class Application {
     public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
         PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
         indiquerVainqueur.setVisible(true);
-    }
-
-    public static void afficherPopupInscrireEquipe(Tournoi tournoi) {
-        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
-        popupInscrireEquipe.setVisible(true);
-    }
-
-    public static void afficherPopupJeu(Jeu jeu) {
-        PopupJeu popupJeu = new PopupJeu(jeu);
-        popupJeu.setVisible(true);
-    }
-
-    public static void afficherPopupRencontre(Rencontre rencontre) {
-        PopupRencontre popupRencontre = new PopupRencontre(rencontre);
-        popupRencontre.setVisible(true);
     }
 
 
