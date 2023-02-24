@@ -50,10 +50,12 @@ public class ControleurPanelConnexion implements ActionListener {
                 vue.setFonctionUtilisateur("créer tournoi", "btnCreerTournoi");
                 vue.setFoncionVisible(true);
                 vue.setConnexionCourante("Gestionnaire", "Se déconencter");
+                break;
             case MANAGER:
                 vue.setFonctionUtilisateur("A changer, ", "jsp quelle fonction");
                 vue.setFoncionVisible(true);
                 vue.setConnexionCourante("Manager", "Se déconencter");
+                break;
         }
     }
 }
