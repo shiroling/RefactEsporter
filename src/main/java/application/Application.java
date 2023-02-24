@@ -3,6 +3,16 @@ package application;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import presentation.accueil.VueAccueil;
+import application.donneesPersistantes.UtilisateurCourant;
+import modele.*;
+import presentation.Popup.PopupEcurie.PopupEcurie;
+import presentation.Popup.PopupEquipe.PopupEquipe;
+import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
+import presentation.Popup.PopupJeu.PopupJeu;
+import presentation.Popup.PopupJoueur.PopupJoueur;
+import presentation.Popup.PopupRencontre.PopupRencontre;
+import presentation.Popup.PopupTournoi.PopupTournoi;
+import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 public class Application {
     private static Application instance;
@@ -26,6 +36,37 @@ public class Application {
     public void changerEtatAffichage(Selection select) {
         ModeleGlobal.getInstance().updateListeCourante(select);
         this.vueAccueil.updateToState(select);
+    }
+
+    public static void procedureInitierInscrireEquipe(Tournoi tournoi) {
+        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
+        popupInscrireEquipe.setVisible(true);
+    }
+
+    public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
+        //AppTournoi.getInstance().inscrireEquipe();
+        tournoi.inscrireEquipe(equipeAInscrire);
+        afficherPopupTournoi(tournoi);
+    }
+
+    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
+        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
+        indiquerVainqueur.setVisible(true);
+    }
+
+    public static void afficherPopupInscrireEquipe(Tournoi tournoi) {
+        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
+        popupInscrireEquipe.setVisible(true);
+    }
+
+    public static void afficherPopupJeu(Jeu jeu) {
+        PopupJeu popupJeu = new PopupJeu(jeu);
+        popupJeu.setVisible(true);
+    }
+
+    public static void afficherPopupRencontre(Rencontre rencontre) {
+        PopupRencontre popupRencontre = new PopupRencontre(rencontre);
+        popupRencontre.setVisible(true);
     }
 
 

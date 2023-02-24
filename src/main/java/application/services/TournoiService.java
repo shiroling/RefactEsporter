@@ -5,16 +5,19 @@ import modele.Ecurie;
 import modele.Equipe;
 import nouveauModele.Tournoi;
 import nouveauModele.TournoiRepository;
+
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+
 import presentation.Popup.PopupTournoi.PopupTournoi;
 
 //singleton
 // préssente les Sf de l'application à présentation
 public class TournoiService {
+    private static TournoiService instance;
     private TournoiRepository repository;
 
     private TournoiService() {
-
+        repository = TournoiRepository.getInstance();
     }
 
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, modele.Tournoi tournoi) {
@@ -35,11 +38,19 @@ public class TournoiService {
     }
 
     public TournoiService getInstance() {
-        return this;
+        if(instance == null) {
+            instance = new TournoiService();
+        }
+        return instance;
     }
     public boolean verifierJeuTournoi(int idTournoi, int idJeu) {
         Tournoi tournoiAVerifier = repository.findById(idTournoi);
         return tournoiAVerifier.verifierJeuTournoi(idJeu);
+    }
+
+    public void afficherPopupTournoi(int idTournoi) {
+        PopupTournoi popupTournoi = new PopupTournoi(repository.findById(idTournoi));
+        popupTournoi.setVisible(true);
     }
 
     /*public void creerNouveauTounoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) {
