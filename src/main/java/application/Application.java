@@ -1,34 +1,33 @@
 package application;
 
-import application.donneesPersistantes.UtilisateurCourant;
-import modele.Ecurie;
-import modele.Equipe;
-import modele.Tournoi;
-import presentation.Popup.PopupTournoi.PopupTournoi;
-import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+import application.donneesPersistantes.ModeleGlobal;
+import application.donneesPersistantes.Selection;
+import presentation.accueil.VueAccueil;
 
 public class Application {
-
-    public static void main(String[] args) { //TEST
-        afficherPopupTournoi(new Tournoi(2556502));
-
+    private static Application instance;
+    private VueAccueil vueAccueil;
+    public static void main(String[] args) {
+        (new  Application()).runApp();
     }
 
-    public static void afficherPopupTournoi(Tournoi tournoi) {
-        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
-        popupTournoi.setVisible(true);
-    }
-    public static void procedureInitierInscrireEquipe(Tournoi tournoi) {
-        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
-        popupInscrireEquipe.setVisible(true);
+    public static Application getinstance() {
+        if(instance == null) {
+            instance = new Application();
+        }
+        return instance;
     }
 
-    public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
-        //AppTournoi.getInstance().inscrireEquipe();
-        tournoi.inscrireEquipe(equipeAInscrire);
-        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
-        popupTournoi.setVisible(true);
+    public void runApp() {
+        vueAccueil =  new VueAccueil();
+        vueAccueil.setVisible(true);
     }
+
+    public void changerEtatAffichage(Selection select) {
+        ModeleGlobal.getInstance().updateListeCourante(select);
+        this.vueAccueil.updateToState(select);
+    }
+
 
     // Regarder si votre truc a mettre ici ne convient pas déjà à FonctionUtilisateurs
     // si il sagit d'un validateur (priére de le mettre dans le paquer du méme nom)

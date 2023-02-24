@@ -1,11 +1,8 @@
 package presentation.accueil;
 
-import application.Application;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import application.filtres.Filtre;
-
-import java.util.List;
 
 public class ControleurAccueil {
     private Selection etat;
@@ -20,14 +17,13 @@ public class ControleurAccueil {
      *                      null si aucun filtre n'est selectionné
      */
     public void nouveauFiltres(Filtre premierFiltre) {
-        this.vue.getVuePanelCarte().setCartes(ModeleGlobal.getInstance().getListeCouranteFiltree(premierFiltre));
+        this.vue.getVueCarte().setCartes(ModeleGlobal.getInstance().getListeCouranteFiltree(premierFiltre));
     }
-
 
     public void changeState(Selection etat) {
         this.etat = etat;
         ModeleGlobal.getInstance().updateListeCourante(etat);
-        this.vue.getVuePanelCarte().setCartes(ModeleGlobal.getInstance().getListeGrilleCourante());
+        this.vue.getVueCarte().setCartes(ModeleGlobal.getInstance().getListeCourante());
         switch (etat) {
             case ECURIE -> {
                 this.vue.getVueFonctionalite().setAffichageEcurie();

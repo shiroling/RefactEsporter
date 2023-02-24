@@ -1,5 +1,6 @@
 package presentation.accueil.panelFonctionnalite.panelMenu.panelSelection;
 
+import application.Application;
 import application.acceuil.GrilleCartes;
 import application.donneesPersistantes.Selection;
 
@@ -11,6 +12,7 @@ public class ContoleurPanelSelection implements MouseListener{
 
     private PanelSelection vue;
     private Selection select;
+    boolean estSelectionne;
 
     public ContoleurPanelSelection(PanelSelection vue, Selection selection) {
         super();
@@ -20,7 +22,7 @@ public class ContoleurPanelSelection implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        GrilleCartes.updateTo(select);
+        Application.getinstance().changerEtatAffichage(this.select);
     }
 
     @Override
@@ -35,12 +37,14 @@ public class ContoleurPanelSelection implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        vue.setPannelLineOver(10);
+        vue.setPannelLineON();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        vue.setPannelLineOver(0);
+        if (!estSelectionne) {
+            vue.setPannelLineOFF();
+        }
     }
 
 }

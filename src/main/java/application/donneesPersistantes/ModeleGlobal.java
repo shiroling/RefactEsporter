@@ -22,7 +22,7 @@ public class ModeleGlobal {
         return instance;
     }
 
-    public List<? extends BDEntity> getListeGrilleCourante() {
+    public List<? extends BDEntity> getListeCourante() {
         return listeGrilleCourante;
     }
 

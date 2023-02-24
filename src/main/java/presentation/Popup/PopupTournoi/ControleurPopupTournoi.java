@@ -1,8 +1,8 @@
 package presentation.Popup.PopupTournoi;
 
-import application.Application;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.UtilisateurCourant;
+import application.services.TournoiService;
 import presentation.connexion.VueConnexion;
 
 import javax.swing.*;
@@ -28,7 +28,7 @@ public class ControleurPopupTournoi implements ActionListener {
                     VueConnexion fenetreConnnexion = new VueConnexion();
                 }
                 if (UtilisateurCourant.getInstance().getEtatConnexion() == ConnexionCourante.MANAGER) {
-                    Application.procedureInitierInscrireEquipe(vue.getTournoi());
+                    TournoiService.procedureInitierInscrireEquipe(vue.getTournoi());
                     this.vue.dispose();
                 }
                 break;

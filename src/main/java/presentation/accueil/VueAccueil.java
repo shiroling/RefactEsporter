@@ -1,6 +1,8 @@
 package presentation.accueil;
 
 
+import application.donneesPersistantes.ModeleGlobal;
+import application.donneesPersistantes.Selection;
 import presentation.accueil.panelCartes.VuePanelCarte;
 import presentation.accueil.panelFonctionnalite.VueFonctionalite;
 
@@ -9,10 +11,10 @@ import java.awt.*;
 
 public class VueAccueil extends JFrame {
     private final VueFonctionalite vueFonctionalite;
-    private final VuePanelCarte vuePanelCarte;
-    public VueAccueil(VueFonctionalite vueFonctionalite, VuePanelCarte vuePanelCarte) {
-        this.vueFonctionalite =vueFonctionalite;
-        this.vuePanelCarte = vuePanelCarte;
+    private final VuePanelCarte vueCarte;
+    public VueAccueil() {
+        this.vueFonctionalite = new VueFonctionalite();
+        this.vueCarte = new VuePanelCarte();
         this.setMinimumSize(new Dimension(1000,500));
         this.setTitle("REMA");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
@@ -20,16 +22,23 @@ public class VueAccueil extends JFrame {
         this.getContentPane().add(vueFonctionalite, BorderLayout.WEST);
     }
 
-    public static void main(String[] args) {
-        VueAccueil acc = new VueAccueil(new VueFonctionalite(), new VuePanelCarte());
-        acc.setVisible(true);
-    }
-
     public VueFonctionalite getVueFonctionalite() {
         return vueFonctionalite;
     }
 
-    public VuePanelCarte getVuePanelCarte() {
-        return vuePanelCarte;
+    public VuePanelCarte getVueCarte() {
+        return vueCarte;
+    }
+
+    public void updateToState(Selection select) {
+        this.vueCarte.setCartes(ModeleGlobal.getInstance().getListeCourante());
+        switch (select) {
+            case EQUIPE -> this.vueFonctionalite.setAffichageEquipe();
+            case ECURIE -> this.vueFonctionalite.setAffichageEcurie();
+            case JEU -> this.vueFonctionalite.setAffichageJeu();
+            case RENCONTRE -> this.vueFonctionalite.setAffichageRencontre();
+            case TOURNOI -> this.vueFonctionalite.setAffichageTournoi();
+
+        }
     }
 }

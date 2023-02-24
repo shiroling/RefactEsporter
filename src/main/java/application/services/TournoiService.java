@@ -1,7 +1,12 @@
 package application.services;
 
+import application.donneesPersistantes.UtilisateurCourant;
+import modele.Ecurie;
+import modele.Equipe;
 import nouveauModele.Tournoi;
 import nouveauModele.TournoiRepository;
+import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.Popup.PopupTournoi.PopupTournoi;
 
 //singleton
 // préssente les Sf de l'application à présentation
@@ -10,6 +15,23 @@ public class TournoiService {
 
     private TournoiService() {
 
+    }
+
+    public static void procedureInscrireEquipe(Equipe equipeAInscrire, modele.Tournoi tournoi) {
+        //AppTournoi.getInstance().inscrireEquipe();
+        tournoi.inscrireEquipe(equipeAInscrire);
+        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
+        popupTournoi.setVisible(true);
+    }
+
+    public static void procedureInitierInscrireEquipe(modele.Tournoi tournoi) {
+        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
+        popupInscrireEquipe.setVisible(true);
+    }
+
+    public static void afficherPopupTournoi(modele.Tournoi tournoi) {
+        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
+        popupTournoi.setVisible(true);
     }
 
     public TournoiService getInstance() {

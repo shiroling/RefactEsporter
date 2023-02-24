@@ -6,7 +6,7 @@ import java.awt.event.ItemListener;
 public class ControleurPanelFiltres implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent itemEvent) {
-        Fil
+        // TODO
     }
     private final VuePanelFiltres vue;
 

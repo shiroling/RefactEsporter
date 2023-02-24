@@ -13,8 +13,15 @@ public class PanelSelection extends JPanel {
     private JPanel panelLigneHover;
     private ContoleurPanelSelection hover;
 
-    public void setPannelLineOver(int i) {
-        this.getPanelLigneHover().setPreferredSize(new Dimension(i, 0));
+
+    public void setPannelLineON() {
+        this.getPanelLigneHover().setPreferredSize(new Dimension(10, 0));
+        this.getPanelLigneHover().repaint();
+        this.revalidate();
+    }
+
+    public void setPannelLineOFF() {
+        this.getPanelLigneHover().setPreferredSize(new Dimension(10, 0));
         this.getPanelLigneHover().repaint();
         this.revalidate();
     }
@@ -50,4 +57,5 @@ public class PanelSelection extends JPanel {
     public ContoleurPanelSelection getHover() {
         return hover;
     }
+
 }
