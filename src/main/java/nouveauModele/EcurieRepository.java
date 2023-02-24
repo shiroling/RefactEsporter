@@ -17,4 +17,5 @@ public class EcurieRepository {
     public Ecurie findByName(String nomEcurie) {
         return new Ecurie();
     }
+    
 }

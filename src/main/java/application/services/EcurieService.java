@@ -23,13 +23,21 @@ public class EcurieService {
         return instance;
     }
 
-    public void afficherPopupEcurie(String nomEcurie) {
-        //PopupEcurie popupEcurie = new PopupEcurie(repository.findByName(nomEcurie));
-        //popupEcurie.setVisible(true);
+    public void afficherPopupEcurie(int idEcurie) {
+        PopupEcurie popupEcurie = new PopupEcurie(idEcurie);
+        popupEcurie.setVisible(true);
     }
 
     public List<Equipe> getEquipes(int id_Ecurie) {
-        Ecurie e = EcurieRepository.getInstance().findById(id_Ecurie);
+        Ecurie e = repository.findById(id_Ecurie);
+        return null;
+    }
 
+    public String getNomFromId(int idEcurie) {
+        return repository.findById(idEcurie).getNomEcurie();
+    }
+
+    public String getNomManagerFromId(int idEcurie) {
+        return repository.findById(idEcurie).getNomManager();
     }
 }

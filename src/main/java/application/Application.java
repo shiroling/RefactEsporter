@@ -2,6 +2,7 @@ package application;
 
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
+import application.services.EcurieService;
 import application.services.TournoiService;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
@@ -17,7 +18,8 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        (new  Application()).runApp();
+        //(new  Application()).runApp();
+        EcurieService.getInstance().afficherPopupEcurie(3);
     }
 
     public static Application getinstance() {
@@ -45,7 +47,7 @@ public class Application {
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
         //AppTournoi.getInstance().inscrireEquipe();
         tournoi.inscrireEquipe(equipeAInscrire);
-        TournoiService.afficherPopupTournoi(tournoi);
+        TournoiService.getInstance().afficherPopupTournoi(262);
     }
 
     public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {

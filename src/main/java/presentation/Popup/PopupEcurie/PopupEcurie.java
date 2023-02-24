@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -13,8 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import modele.Ecurie;
-import modele.Equipe;
+import application.services.EcurieService;
+import application.services.EquipeService;
+import nouveauModele.Equipe;
 
 public class PopupEcurie extends JDialog {
 
@@ -23,9 +26,12 @@ public class PopupEcurie extends JDialog {
     /**
      * Create the dialog.
      */
-    public PopupEcurie(Ecurie e) {
+    public PopupEcurie(int idEcurie) {
+        String nomEcurie = EcurieService.getInstance().getNomFromId(idEcurie);
+        String nomManagerEcurie = EcurieService.getInstance().getNomManagerFromId(idEcurie);
+        List<Integer> listIdEquipes = EquipeService.getInstance().getListIdEquipesFromIdEcurie(idEcurie);
 
-        setTitle("Ecurie : "+e.getNom());
+        setTitle("Ecurie : "+ nomEcurie);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(new BorderLayout());
@@ -37,12 +43,12 @@ public class PopupEcurie extends JDialog {
         contentPanel.add(panelEnTete, BorderLayout.NORTH);
         panelEnTete.setLayout(new GridLayout(2, 0, 0, 0));
 
-        JLabel lblNom = new JLabel(e.getNom());
+        JLabel lblNom = new JLabel(nomEcurie);
         lblNom.setHorizontalAlignment(SwingConstants.CENTER);
         lblNom.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
         panelEnTete.add(lblNom);
 
-        JLabel lblNewLabel = new JLabel("Manager : "+ e.getNomManager());
+        JLabel lblNewLabel = new JLabel("Manager : "+ nomManagerEcurie);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panelEnTete.add(lblNewLabel);
 
@@ -52,17 +58,17 @@ public class PopupEcurie extends JDialog {
         JPanel panelListeEquipe = new JPanel();
         JLabel lblEquipe = new JLabel();
         JPanel panelEquipe = new JPanel();
-        if (e.getListeEquipe().size() == 0) {
+        if (listIdEquipes.size() == 0) {
             panelEquipe = new JPanel();
             lblEquipe = new JLabel("Cette écurie n'a pas encore enregistré d'équipe.");
             lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
             panelEquipe.add(lblEquipe);
             panelListeEquipe.add(panelEquipe);
         } else {
-            for (Equipe eq : e.getListeEquipe()) {
+            for (int idEquipe : listIdEquipes) {
                 panelEquipe = new JPanel();
                 JPanel panelNomEquipe = new JPanel();
-                lblEquipe = new JLabel(eq.getNom());
+                lblEquipe = new JLabel(EquipeService.getInstance().getNomFromId(idEquipe));
                 lblEquipe.setName("Equipe");
                 lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
                 lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
@@ -87,7 +93,7 @@ public class PopupEcurie extends JDialog {
 
         setVisible(true);
         this.setMinimumSize(new Dimension(contentPanel.getWidth(),
-                (e.getListeEquipe().size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
+                (listIdEquipes.size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
     }
 
 }

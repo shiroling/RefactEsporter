@@ -23,7 +23,7 @@ public class ControleurPopupRencontre implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
 
-        switch(btn.getName()) {
+        /*switch(btn.getName()) {
             case "btnRenseignerVainqueur":
                 if (UtilisateurCourant.getInstance().getEtatConnexion() != ConnexionCourante.ARBITRE) {
                     new VueConnexion();
@@ -38,7 +38,7 @@ public class ControleurPopupRencontre implements ActionListener {
                     dialog.setVisible(true);
                 }
                 break;
-        }
+        }*/
 
     }
 
