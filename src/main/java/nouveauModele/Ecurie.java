@@ -51,4 +51,9 @@ public class Ecurie {
     public void setMdpManager(String mdpManager) {
         this.mdpManager = mdpManager;
     }
+
+    @Override
+    public String toString() {
+        return "Ecurie : " + nomEcurie + ", Manager='" + nomManager;
+    }
 }

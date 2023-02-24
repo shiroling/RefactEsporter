@@ -1,11 +1,5 @@
 package application.testeurs;
 
-import application.testeurs.date.PreDate;
-import oracle.jdbc.proxy.annotation.Pre;
-
-import javax.persistence.Column;
-import java.util.Date;
-
 public class PreJoueur {
     private String nom;
     private String prenom;

@@ -1,8 +1,11 @@
 package application.services;
 
-import modele.Ecurie;
+import nouveauModele.Ecurie;
 import nouveauModele.EcurieRepository;
+import nouveauModele.Equipe;
 import presentation.Popup.PopupEcurie.PopupEcurie;
+
+import java.util.List;
 
 public class EcurieService {
 
@@ -23,5 +26,10 @@ public class EcurieService {
     public void afficherPopupEcurie(String nomEcurie) {
         //PopupEcurie popupEcurie = new PopupEcurie(repository.findByName(nomEcurie));
         //popupEcurie.setVisible(true);
+    }
+
+    public List<Equipe> getEquipes(int id_Ecurie) {
+        Ecurie e = EcurieRepository.getInstance().findById(id_Ecurie);
+
     }
 }

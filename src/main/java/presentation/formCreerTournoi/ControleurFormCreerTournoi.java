@@ -2,8 +2,6 @@ package presentation.formCreerTournoi;
 
 import application.FonctionsUtilisateurs;
 import application.exceptions.BadUserExecption;
-import application.testeurs.date.PreDate;
-import application.testeurs.date.TesteurDate;
 import modele.Jeu;
 
 import javax.swing.*;

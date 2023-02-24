@@ -150,7 +150,7 @@ public class PopupInscrireEquipe extends JDialog {
         return this.ecurie;
     }
 
-    public Tournoi getTournoi() {
+    public nouveauModele.Tournoi getTournoi() {
         return this.tournoi;
     }
 

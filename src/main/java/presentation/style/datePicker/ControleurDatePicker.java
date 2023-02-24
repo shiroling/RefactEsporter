@@ -1,7 +1,5 @@
 package presentation.style.datePicker;
 
-import application.testeurs.date.TesteurDate;
-
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;

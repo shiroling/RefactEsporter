@@ -1,6 +1,7 @@
 package application.services;
 
 import application.donneesPersistantes.UtilisateurCourant;
+import modele.BDPredicats;
 import modele.Ecurie;
 import modele.Equipe;
 import nouveauModele.Tournoi;
@@ -9,6 +10,8 @@ import nouveauModele.TournoiRepository;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import presentation.Popup.PopupTournoi.PopupTournoi;
+
+import java.time.LocalDate;
 
 //singleton
 // préssente les Sf de l'application à présentation
@@ -20,12 +23,30 @@ public class TournoiService {
         repository = TournoiRepository.getInstance();
     }
 
-    public static void procedureInscrireEquipe(Equipe equipeAInscrire, modele.Tournoi tournoi) {
-        //AppTournoi.getInstance().inscrireEquipe();
-        tournoi.inscrireEquipe(equipeAInscrire);
-        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
-        popupTournoi.setVisible(true);
+    public TournoiService getInstance() {
+        if(instance == null) {
+            instance = new TournoiService();
+        }
+        return instance;
     }
+
+    public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi nouveauTournoi) {
+        if(estTournoiValide(nouveauTournoi))
+        TournoiRepository.getInstance().save(nouveauTournoi);
+
+    }
+
+    private static boolean estTournoiValide(Tournoi nouveauTournoi) {
+        return nouveauTournoi.getDateFinInscriptions().isBefore(LocalDate.now())
+                && nouveauTournoi.getDateDebutTournoi().isBefore(LocalDate.now())
+                && nouveauTournoi.getDateFinTournoi().isBefore(LocalDate.now())
+                && isValidNom(nouveauTournoi.getNom());
+    }
+
+    public static boolean isValidNom(String nomTounoi) {
+        return BDPredicats.estLibreNomTournoi(nomTounoi);
+    }
+
 
     public static void procedureInitierInscrireEquipe(modele.Tournoi tournoi) {
         PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
@@ -35,13 +56,6 @@ public class TournoiService {
     public static void afficherPopupTournoi(modele.Tournoi tournoi) {
         PopupTournoi popupTournoi = new PopupTournoi(tournoi);
         popupTournoi.setVisible(true);
-    }
-
-    public TournoiService getInstance() {
-        if(instance == null) {
-            instance = new TournoiService();
-        }
-        return instance;
     }
     public boolean verifierJeuTournoi(int idTournoi, int idJeu) {
         Tournoi tournoiAVerifier = repository.findById(idTournoi);
@@ -62,4 +76,5 @@ public class TournoiService {
         Tournoi tournoiAInserer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
         repository.save(tournoiAInserer);
     }*/
+
 }

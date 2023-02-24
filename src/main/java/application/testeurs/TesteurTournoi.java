@@ -1,7 +1,5 @@
 package application.testeurs;
 
-import application.testeurs.date.PreDate;
-import application.testeurs.date.TesteurDate;
 import modele.BDPredicats;
 
 public class TesteurTournoi {

@@ -1,6 +1,6 @@
 package nouveauModele;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,31 +24,95 @@ public class Tournoi {
     private int id;
 
     @Column(name = "nom", nullable = false)
-    private String name;
+    private String nom;
 
     @Column(name = "Portee", nullable = false)
-    private String scope;
+    private String portee;
 
     @Column(name = "dateFinInscriptions", nullable = false)
-    private Date endRegistrationDate;
+    private LocalDate dateFinInscriptions;
 
     @Column(name = "dateDebutTournoi", nullable = false)
-    private Date startTournamentDate;
+    private LocalDate dateDebutTournoi;
 
     @Column(name = "dateFinTournoi", nullable = false)
-    private Date endTournamentDate;
+    private LocalDate dateFinTournoi;
 
     @ManyToOne
     @JoinColumn(name = "Id_Jeu", nullable = false)
-    private Jeu game;
+    private int idJeu;
 
     @ManyToOne
     @JoinColumn(name = "Id_Gerant", nullable = false)
-    private Gerant manager;
+    private int idGerant;
 
-    public boolean verifierJeuTournoi(int idJeu) {
-        return idJeu == this.game.getIdJeu();
+    public int getId() {
+        return id;
     }
 
-    // Getters and setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPortee() {
+        return portee;
+    }
+
+    public void setPortee(String portee) {
+        this.portee = portee;
+    }
+
+    public LocalDate getDateFinInscriptions() {
+        return dateFinInscriptions;
+    }
+
+    public void setDateFinInscriptions(LocalDate dateFinInscriptions) {
+        this.dateFinInscriptions = dateFinInscriptions;
+    }
+
+    public LocalDate getDateDebutTournoi() {
+        return dateDebutTournoi;
+    }
+
+    public void setDateDebutTournoi(LocalDate dateDebutTournoi) {
+        this.dateDebutTournoi = dateDebutTournoi;
+    }
+
+    public LocalDate getDateFinTournoi() {
+        return dateFinTournoi;
+    }
+
+    public void setDateFinTournoi(LocalDate dateFinTournoi) {
+        this.dateFinTournoi = dateFinTournoi;
+    }
+
+    public int getIdJeu() {
+        return idJeu;
+    }
+
+    public void setIdJeu(int idJeu) {
+        this.idJeu = idJeu;
+    }
+
+    public int getIdGerant() {
+        return idGerant;
+    }
+
+    public void setIdGerant(int idGerant) {
+        this.idGerant = idGerant;
+    }
+
+    public boolean verifierJeuTournoi(int idJeu) {
+        return idJeu == this.idJeu;
+    }
+
+
 }
