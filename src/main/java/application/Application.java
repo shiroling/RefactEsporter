@@ -5,19 +5,11 @@ import application.donneesPersistantes.Selection;
 import application.services.TournoiService;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
-import modele.*;
-import presentation.Popup.PopupEcurie.PopupEcurie;
-import presentation.Popup.PopupEquipe.PopupEquipe;
 import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
-import presentation.Popup.PopupJeu.PopupJeu;
-import presentation.Popup.PopupJoueur.PopupJoueur;
-import presentation.Popup.PopupRencontre.PopupRencontre;
 import modele.Ecurie;
 import modele.Equipe;
 import modele.Rencontre;
 import modele.Tournoi;
-import presentation.Popup.PopupEcurie.PopupEcurie;
-import presentation.Popup.PopupTournoi.PopupTournoi;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 public class Application {
