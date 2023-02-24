@@ -22,12 +22,12 @@ public class PopupRencontre extends JDialog {
     /**
      * Create the dialog.
      */
-    public PopupRencontre(Rencontre r, ControleurAccueil controleurAccueil) {
+    public PopupRencontre(Rencontre r) {
         this.rencontre = r;
         Equipe equipe1 = r.getEquipes().get(0);
         Equipe equipe2 = r.getEquipes().get(1);
 
-        ControleurPopupRencontre controleur = new ControleurPopupRencontre(this, controleurAccueil);
+        ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
 
         setTitle("Match : " + equipe1.getNom() + " - " + equipe2.getNom());
         setBounds(100, 100, 450, 300);
@@ -53,7 +53,6 @@ public class PopupRencontre extends JDialog {
 
         JLabel lblEquipe1 = new JLabel(r.getEquipes().get(0).getNom());
         lblEquipe1.setName("Equipe");
-        lblEquipe1.addMouseListener(Accueil.getMa());
         panelEquipes.add(lblEquipe1);
 
         JLabel lblseparateur = new JLabel(" - ");
@@ -61,7 +60,6 @@ public class PopupRencontre extends JDialog {
 
         JLabel lblEquipe2 = new JLabel(r.getEquipes().get(1).getNom());
         lblEquipe2.setName("Equipe");
-        lblEquipe2.addMouseListener(Accueil.getMa());
         panelEquipes.add(lblEquipe2);
 
         JPanel panelDate = new JPanel();
@@ -104,22 +102,18 @@ public class PopupRencontre extends JDialog {
 
         JLabel panelEQ1J1 = new JLabel(equipe1.getListJoueur().get(0).getPseudo());
         panelEQ1J1.setName("Joueur");
-        panelEQ1J1.addMouseListener(Accueil.getMa());
         panelEq1.add(panelEQ1J1);
 
         JLabel panelEQ1J2 = new JLabel(equipe1.getListJoueur().get(1).getPseudo());
         panelEQ1J2.setName("Joueur");
-        panelEQ1J2.addMouseListener(Accueil.getMa());
         panelEq1.add(panelEQ1J2);
 
         JLabel panelEQ1J3 = new JLabel(equipe1.getListJoueur().get(2).getPseudo());
         panelEQ1J3.setName("Joueur");
-        panelEQ1J3.addMouseListener(Accueil.getMa());
         panelEq1.add(panelEQ1J3);
 
         JLabel panelEQ1J4 = new JLabel(equipe1.getListJoueur().get(3).getPseudo());
         panelEQ1J4.setName("Joueur");
-        panelEQ1J3.addMouseListener(Accueil.getMa());
         panelEq1.add(panelEQ1J4);
 
         JScrollPane scrollPaneEq2 = new JScrollPane();
@@ -128,7 +122,6 @@ public class PopupRencontre extends JDialog {
         for (Component c : panelEq1.getComponents()) {
             JLabel panel = (JLabel)c;
             panel.setName("Joueur");
-            panel.addMouseListener(Accueil.getMa());
         }
 
         JPanel panelEq2 = new JPanel();
@@ -139,22 +132,18 @@ public class PopupRencontre extends JDialog {
         panelEq2.add(panelNomEq2);
 
         JLabel panelEQ2J1 = new JLabel(equipe2.getListJoueur().get(0).getPseudo());
-        panelEQ2J1.addMouseListener(Accueil.getMa());
         panelEQ2J1.setName("Joueur");
         panelEq2.add(panelEQ2J1);
 
         JLabel panelEQ2J2 = new JLabel(equipe2.getListJoueur().get(1).getPseudo());
-        panelEQ2J2.addMouseListener(Accueil.getMa());
         panelEQ2J2.setName("Joueur");
         panelEq2.add(panelEQ2J2);
 
         JLabel panelEQ2J3 = new JLabel(equipe2.getListJoueur().get(2).getPseudo());
-        panelEQ2J3.addMouseListener(Accueil.getMa());
         panelEQ2J3.setName("Joueur");
         panelEq2.add(panelEQ2J3);
 
         JLabel panelEQ2J4 = new JLabel(equipe2.getListJoueur().get(3).getPseudo());
-        panelEQ2J4.addMouseListener(Accueil.getMa());
         panelEQ2J4.setName("Joueur");
         panelEq2.add(panelEQ2J4);
 
