@@ -21,7 +21,7 @@ public class EcurieService {
     }
 
     public void afficherPopupEcurie(String nomEcurie) {
-        PopupEcurie popupEcurie = new PopupEcurie(repository.findByName(nomEcurie));
-        popupEcurie.setVisible(true);
+        //PopupEcurie popupEcurie = new PopupEcurie(repository.findByName(nomEcurie));
+        //popupEcurie.setVisible(true);
     }
 }

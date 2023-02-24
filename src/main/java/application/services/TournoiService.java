@@ -49,8 +49,8 @@ public class TournoiService {
     }
 
     public void afficherPopupTournoi(int idTournoi) {
-        PopupTournoi popupTournoi = new PopupTournoi(repository.findById(idTournoi));
-        popupTournoi.setVisible(true);
+        //PopupTournoi popupTournoi = new PopupTournoi(repository.findById(idTournoi));
+        //popupTournoi.setVisible(true);
     }
 
     /*public void creerNouveauTounoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) {

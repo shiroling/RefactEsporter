@@ -19,7 +19,7 @@ public class EquipeService {
     }
 
     public void afficherPopupEquipe(String nomEquipe) {
-        PopupEquipe popupEquipe = new PopupEquipe(repository.findByName(nomEquipe));
-        popupEquipe.setVisible(true);
+        //PopupEquipe popupEquipe = new PopupEquipe(repository.findByName(nomEquipe));
+        //popupEquipe.setVisible(true);
     }
 }

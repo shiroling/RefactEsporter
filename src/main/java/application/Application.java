@@ -2,6 +2,7 @@ package application;
 
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
+import application.services.TournoiService;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.*;
@@ -52,7 +53,7 @@ public class Application {
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
         //AppTournoi.getInstance().inscrireEquipe();
         tournoi.inscrireEquipe(equipeAInscrire);
-        afficherPopupTournoi(tournoi);
+        TournoiService.afficherPopupTournoi(tournoi);
     }
 
     public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {

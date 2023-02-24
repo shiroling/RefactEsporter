@@ -18,7 +18,7 @@ public class JoueurService {
     }
 
     public void afficherPopupJoueur(String pseudoJoueur) {
-        PopupJoueur popupJoueur = new PopupJoueur(repository.findByPseudo(pseudoJoueur));
-        popupJoueur.setVisible(true);
+        //PopupJoueur popupJoueur = new PopupJoueur(repository.findByPseudo(pseudoJoueur));
+        //popupJoueur.setVisible(true);
     }
 }
