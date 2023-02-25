@@ -33,11 +33,8 @@ public class EcurieService {
         return null;
     }
 
-    public String getNomFromId(int idEcurie) {
-        return repository.findById(idEcurie).getNomEcurie();
+    public Ecurie getEcurieFromId(int idEcurie) {
+        return repository.findById(idEcurie);
     }
 
-    public String getNomManagerFromId(int idEcurie) {
-        return repository.findById(idEcurie).getNomManager();
-    }
 }

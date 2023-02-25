@@ -1,11 +1,12 @@
 package application.services;
 
+import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.BDPredicats;
+import modele.BDSelect;
 import modele.Ecurie;
 import modele.Equipe;
-import nouveauModele.Tournoi;
-import nouveauModele.TournoiRepository;
+import nouveauModele.*;
 
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
@@ -23,7 +24,7 @@ public class TournoiService {
         repository = TournoiRepository.getInstance();
     }
 
-    public TournoiService getInstance() {
+    public static TournoiService getInstance() {
         if(instance == null) {
             instance = new TournoiService();
         }
@@ -53,28 +54,34 @@ public class TournoiService {
         popupInscrireEquipe.setVisible(true);
     }
 
-    public static void afficherPopupTournoi(modele.Tournoi tournoi) {
-        PopupTournoi popupTournoi = new PopupTournoi(tournoi);
+    public void afficherPopupTournoi(int id_tournoi) {
+        //PopupTournoi popupTournoi = new PopupTournoi(repository.getTournoiById(id_tournoi));
+        PopupTournoi popupTournoi = new PopupTournoi(new modele.Tournoi(id_tournoi));
         popupTournoi.setVisible(true);
     }
+/*      In finae ca deverais étre ça !
+    public void afficherPopupTournoi(int id_tournoi) {
+        PopupTournoi popupTournoi = new PopupTournoi(repository.getTournoiById(id_tournoi));
+        popupTournoi.setVisible(true);
+    }
+ */
+
+
     public boolean verifierJeuTournoi(int idTournoi, int idJeu) {
-        Tournoi tournoiAVerifier = repository.findById(idTournoi);
+        Tournoi tournoiAVerifier = this.repository.findById(idTournoi);
         return tournoiAVerifier.verifierJeuTournoi(idJeu);
     }
 
-    public void afficherPopupTournoi(int idTournoi) {
-        //PopupTournoi popupTournoi = new PopupTournoi(repository.findById(idTournoi));
-        //popupTournoi.setVisible(true);
-    }
 
-    /*public void creerNouveauTounoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) {
+
+    public void enregistrerNouveauTounoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
         Jeu jeuDuTournoiACreer = JeuRepository.findById(idJeu);
         Gerant gerantCreateurDuTournoi = GerantRepository.findById(idJeu);
-        if (TournoiRepository.findByNom(nomTounoi) != null) {
-            throw
+        if (TournoiRepository.getInstance().findByNom(nomTounoi) != null) {
+            throw new IllegalArgumentException("le tournoi existe déja");
         }
         Tournoi tournoiAInserer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
         repository.save(tournoiAInserer);
-    }*/
+    }
 
 }

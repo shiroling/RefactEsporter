@@ -1,5 +1,7 @@
 package nouveauModele;
 
+import application.donneesPersistantes.Portee;
+
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +19,12 @@ import javax.persistence.UniqueConstraint;
         @UniqueConstraint(columnNames = "nom")
 })
 public class Tournoi {
+    public Tournoi() {
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Tournoi")
-//    @SequenceGenerator(name = "Seq_Tournoi", sequenceName = "Seq_Tournoi", allocationSize = 1)
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Tournoi")
+    @SequenceGenerator(name = "Seq_Tournoi", sequenceName = "Seq_Tournoi", allocationSize = 1)
     @Column(name = "Id_Tournoi")
     private int id;
 
@@ -40,11 +45,14 @@ public class Tournoi {
 
     @ManyToOne
     @JoinColumn(name = "Id_Jeu", nullable = false)
-    private int idJeu;
+    private Jeu jeu;
 
     @ManyToOne
-    @JoinColumn(name = "Id_Gerant", nullable = false)
-    private int idGerant;
+    @JoinColumn(name = "Id_Gerant")
+    private Ecurie gerant;
+
+    public Tournoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, Jeu jeuDuTournoiACreer, Gerant gerantCreateurDuTournoi) {
+    }
 
     public int getId() {
         return id;
@@ -94,24 +102,24 @@ public class Tournoi {
         this.dateFinTournoi = dateFinTournoi;
     }
 
-    public int getIdJeu() {
-        return idJeu;
+
+    public void setJeu(Jeu jeu) {
+        this.jeu = jeu;
     }
 
-    public void setIdJeu(int idJeu) {
-        this.idJeu = idJeu;
+    public Jeu getJeu() {
+        return jeu;
     }
 
-    public int getIdGerant() {
-        return idGerant;
+    public Ecurie getGerant() {
+        return gerant;
     }
-
-    public void setIdGerant(int idGerant) {
-        this.idGerant = idGerant;
+    public void setGerant(Ecurie gerant) {
+        this.gerant = gerant;
     }
 
     public boolean verifierJeuTournoi(int idJeu) {
-        return idJeu == this.idJeu;
+        return idJeu == this.jeu.getIdJeu();
     }
 
 

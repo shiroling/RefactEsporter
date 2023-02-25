@@ -47,7 +47,7 @@ public class Application {
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
         //AppTournoi.getInstance().inscrireEquipe();
         tournoi.inscrireEquipe(equipeAInscrire);
-        TournoiService.getInstance().afficherPopupTournoi(262);
+        TournoiService.getInstance().afficherPopupTournoi(tournoi.getId());
     }
 
     public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {

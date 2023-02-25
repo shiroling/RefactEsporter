@@ -1,9 +1,11 @@
 package application.testeurs;
 
+import java.time.LocalDate;
+
 public class PreJoueur {
     private String nom;
     private String prenom;
-    private PreDate dateDeNaissance;
+    private LocalDate dateDeNaissance;
     private String pseudo;
 
     public PreJoueur() {
@@ -29,11 +31,11 @@ public class PreJoueur {
         this.prenom = prenom;
     }
 
-    public PreDate getDateDeNaissance() {
+    public LocalDate getDateDeNaissance() {
         return dateDeNaissance;
     }
 
-    public void setDateDeNaissance(PreDate dateDeNaissance) {
+    public void setDateDeNaissance(LocalDate dateDeNaissance) {
         this.dateDeNaissance = dateDeNaissance;
     }
 

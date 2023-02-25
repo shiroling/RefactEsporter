@@ -27,8 +27,8 @@ public class PopupEcurie extends JDialog {
      * Create the dialog.
      */
     public PopupEcurie(int idEcurie) {
-        String nomEcurie = EcurieService.getInstance().getNomFromId(idEcurie);
-        String nomManagerEcurie = EcurieService.getInstance().getNomManagerFromId(idEcurie);
+        String nomEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomEcurie();
+        String nomManagerEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomManager();
         List<Integer> listIdEquipes = EquipeService.getInstance().getListIdEquipesFromIdEcurie(idEcurie);
 
         setTitle("Ecurie : "+ nomEcurie);

@@ -14,6 +14,11 @@ public class TournoiRepository {
         }
         return instance;
     }
+
+    public Tournoi findByNom(String nomTounoi) {
+        return null;
+    }
+
     public Tournoi findById(int idTournoi) {
         return null;
     }
