@@ -24,32 +24,32 @@ public class Equipe {
     public int getIdEquipe() {
         return idEquipe;
     }
-
     public void setIdEquipe(int idEquipe) {
         this.idEquipe = idEquipe;
     }
-
     public String getNomEquipe() {
         return nomEquipe;
     }
-
     public void setNomEquipe(String nomEquipe) {
         this.nomEquipe = nomEquipe;
     }
-
     public Jeu getJeu() {
         return jeu;
     }
-
     public void setJeu(Jeu jeu) {
         this.jeu = jeu;
     }
-
     public Ecurie getEcurie() {
         return ecurie;
     }
-
     public void setEcurie(Ecurie ecurie) {
         this.ecurie = ecurie;
+    }
+    @Override
+    public String toString() {
+        return "Equipe {" +
+                "idEquipe=" + idEquipe +
+                ", nomEquipe='" + nomEquipe +
+                '}';
     }
 }

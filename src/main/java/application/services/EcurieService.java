@@ -29,12 +29,14 @@ public class EcurieService {
     }
 
     public List<Equipe> getEquipes(int id_Ecurie) {
-        Ecurie e = repository.findById(id_Ecurie);
-        return null;
+        return repository.getEquipes(id_Ecurie);
     }
 
     public Ecurie getEcurieFromId(int idEcurie) {
         return repository.findById(idEcurie);
     }
 
+    public Ecurie getEcurieFromNom(String vitality) {
+        return repository.findByNom(vitality);
+    }
 }
