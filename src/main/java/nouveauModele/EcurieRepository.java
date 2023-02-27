@@ -80,4 +80,12 @@ public class EcurieRepository {
         return equipes;
     }
 
+    public int getPoints(int idEcurie) {
+        List<Equipe> equipesACompter = EcurieRepository.getInstance().getEquipes(idEcurie);
+        int totalPoints = 0;
+        for (Equipe e : equipesACompter) {
+            totalPoints += EquipeRepository.getInstance().getPoints(e.getIdEquipe());
+        }
+        return totalPoints;
+    }
 }

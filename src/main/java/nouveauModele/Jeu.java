@@ -41,4 +41,13 @@ public class Jeu {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    @Override
+    public String toString() {
+        return "Jeu{" +
+                "idJeu=" + idJeu +
+                ", nomJeu='" + nomJeu + '\'' +
+                ", logoPath='" + logo + '\'' +
+                '}';
+    }
 }

@@ -29,7 +29,7 @@ public class EcurieService {
     }
 
     public List<Equipe> getEquipes(int id_Ecurie) {
-        return repository.getEquipes(id_Ecurie);
+        return   repository.getEquipes(id_Ecurie);
     }
 
     public Ecurie getEcurieFromId(int idEcurie) {

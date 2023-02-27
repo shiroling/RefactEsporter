@@ -7,7 +7,7 @@ public class Equipe {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Equipe")
     @SequenceGenerator(name = "Seq_Equipe", sequenceName = "Seq_Equipe", allocationSize = 1)
-    @Column(name = "Id_Equipe")
+    @Column(name = "ID_EQUIPE", insertable = false, updatable = false)
     private int idEquipe;
 
     @Column(name = "nom_Equipe", nullable = false, unique = true)
@@ -20,6 +20,16 @@ public class Equipe {
     @ManyToOne
     @JoinColumn(name = "Id_Ecurie", referencedColumnName = "Id_Ecurie", nullable = false)
     private Ecurie ecurie;
+
+    public Equipe() {
+
+    }
+
+    public Equipe(String nomEquipe, Ecurie ecurieEnCharge, Jeu jeuJoue) {
+        this.nomEquipe = nomEquipe;
+        this.ecurie = ecurieEnCharge;
+        this.jeu = jeuJoue;
+    }
 
     public int getIdEquipe() {
         return idEquipe;
@@ -45,6 +55,7 @@ public class Equipe {
     public void setEcurie(Ecurie ecurie) {
         this.ecurie = ecurie;
     }
+
     @Override
     public String toString() {
         return "Equipe {" +

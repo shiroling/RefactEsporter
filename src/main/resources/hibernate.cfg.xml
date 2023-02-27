@@ -19,8 +19,11 @@
         <mapping class="nouveauModele.Equipe"/>
         <mapping class="nouveauModele.Gerant"/>
         <mapping class="nouveauModele.Jeu"/>
+        <mapping class="nouveauModele.Jouer"/>
         <mapping class="nouveauModele.Joueur"/>
+        <mapping class="nouveauModele.Poule"/>
         <mapping class="nouveauModele.Tournoi"/>
+        <mapping class="nouveauModele.Rencontre"/>
 
     </session-factory>
 </hibernate-configuration>

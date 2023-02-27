@@ -28,6 +28,17 @@ public class Joueur {
     @JoinColumn(name = "Id_Equipe", referencedColumnName = "Id_Equipe", nullable = false)
     private Equipe equipe;
 
+    public Joueur() {
+
+    }
+    public Joueur(String nom, String prenom, String pseudo, Date dateDeNaissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.pseudo = pseudo;
+        this.dateDeNaissance = dateDeNaissance;
+        this.equipe = equipe;
+    }
+
     public int getIdJoueur() {
         return idJoueur;
     }
@@ -74,5 +85,17 @@ public class Joueur {
 
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
+    }
+
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "idJoueur=" + idJoueur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateDeNaissance=" + dateDeNaissance +
+                ", pseudo='" + pseudo + '\'' +
+                ", equipe=" + equipe +
+                '}';
     }
 }

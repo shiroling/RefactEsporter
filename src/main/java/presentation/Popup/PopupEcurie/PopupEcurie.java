@@ -29,7 +29,7 @@ public class PopupEcurie extends JDialog {
     public PopupEcurie(int idEcurie) {
         String nomEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomEcurie();
         String nomManagerEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomManager();
-        List<Integer> listIdEquipes = EquipeService.getInstance().getListIdEquipesFromIdEcurie(idEcurie);
+        List<Equipe> listIdEquipes = EquipeService.getInstance().getListIdEquipesFromIdEcurie(idEcurie);
 
         setTitle("Ecurie : "+ nomEcurie);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -65,10 +65,10 @@ public class PopupEcurie extends JDialog {
             panelEquipe.add(lblEquipe);
             panelListeEquipe.add(panelEquipe);
         } else {
-            for (int idEquipe : listIdEquipes) {
+            for (Equipe equipe : listIdEquipes) {
                 panelEquipe = new JPanel();
                 JPanel panelNomEquipe = new JPanel();
-                lblEquipe = new JLabel(EquipeService.getInstance().getNomFromId(idEquipe));
+                lblEquipe = new JLabel(equipe.getNomEquipe());
                 lblEquipe.setName("Equipe");
                 lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
                 lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);

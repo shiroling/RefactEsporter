@@ -75,7 +75,7 @@ public class TournoiService {
 
 
     public void enregistrerNouveauTounoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
-        Jeu jeuDuTournoiACreer = JeuRepository.findById(idJeu);
+        Jeu jeuDuTournoiACreer = JeuRepository.getInstance().findById(idJeu);
         Gerant gerantCreateurDuTournoi = GerantRepository.findById(idJeu);
         if (TournoiRepository.getInstance().findByNom(nomTounoi) != null) {
             throw new IllegalArgumentException("le tournoi existe déja");

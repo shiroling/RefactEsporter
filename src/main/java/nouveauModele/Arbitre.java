@@ -40,4 +40,13 @@ public class Arbitre {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
+
+    @Override
+    public String toString() {
+        return "Arbitre{" +
+                "idArbitre=" + idArbitre +
+                ", nom='" + nom + '\'' +
+                ", mdp='" + mdp + '\'' +
+                '}';
+    }
 }

@@ -1,8 +1,6 @@
 package application.services;
 
-import nouveauModele.EcurieRepository;
-import nouveauModele.EquipeRepository;
-import presentation.Popup.PopupEquipe.PopupEquipe;
+import nouveauModele.*;
 
 import java.util.List;
 
@@ -30,8 +28,29 @@ public class EquipeService {
         return EquipeRepository.getInstance().findById(idEquipe).getNomEquipe();
     }
 
-    public List<Integer> getListIdEquipesFromIdEcurie(int idEcurie) {
+    public List<Equipe> getListIdEquipesFromIdEcurie(int idEcurie) {
          return EquipeRepository.getInstance().getListeIdsEquipesFromIdEcurie(idEcurie);
 
     }
+
+    public List<Joueur> getJoueurs(int id_Equipe) {
+        return repository.getJoueurs(id_Equipe);
+    }
+
+    public void enregistrerNouvelleEquipe(String nomEquipe, int idJeu, int idEcurie, List<Joueur> joueurAEnregistrer) {
+        if (estPrisNomEquipe(nomEquipe)) {
+            throw new IllegalArgumentException("Le nom de l'equipe est déja pris");
+        }
+        Jeu jeuJoue = JeuRepository.getInstance().findById(idJeu);
+        if (jeuJoue == null) {throw new IllegalArgumentException("Le jeu n'existe pas");}
+        Ecurie ecurieEnCharge = EcurieRepository.getInstance().findById(idEcurie);
+        if (ecurieEnCharge == null) {throw new IllegalArgumentException("L'écurie n'existe pas");}
+        Equipe equipeAEnregistrer = new Equipe(nomEquipe, ecurieEnCharge, jeuJoue);
+        EquipeRepository.getInstance().enregistrerEquipe(equipeAEnregistrer, joueurAEnregistrer);
+    }
+
+    private boolean estPrisNomEquipe(String nomEquipe) {
+        return EquipeRepository.getInstance().findByNom(nomEquipe) != null;
+    }
+
 }
