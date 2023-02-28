@@ -68,7 +68,7 @@ public class TournoiRepository {
         List<Equipe> equipes = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("SELECT i.id.equipe FROM Inscrit i WHERE i.id.tournoi.id = :idTournoi AND i.id.Equipe.id.idEquipe = :idEquipe");
+            Query query = session.createQuery("SELECT i.id.equipe FROM Inscrit i WHERE i.id.tournoi.id = :idTournoi AND i.id.equipe.idEquipe = :idEquipe");
             query.setParameter("idTournoi", tournoiHote.getId());
             query.setParameter("idEquipe", equipeAInscrire.getIdEquipe());
             equipes = query.list();

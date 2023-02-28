@@ -33,13 +33,17 @@ public class TournoiService {
     public void inscrireEquipeATournoi(int idEquipeAInscrire, int idTournoi) {
         Equipe equipeAInscrire = EquipeRepository.getInstance().findById(idEquipeAInscrire);
         Tournoi tournoiHote = TournoiRepository.getInstance().findById(idTournoi);
-        if(!estInscrivableEquipeATournoi(equipeAInscrire, tournoiHote))
+        if(!estInscrivableEquipeATournoi(equipeAInscrire, tournoiHote)) {
+            throw new RuntimeException("L'equipe n'est pas inscrivable");
+        }
         TournoiRepository.getInstance().inscrireEquipeATournoi(equipeAInscrire, tournoiHote);
-
     }
 
-    private boolean estInscrivableEquipeATournoi(Equipe equipeAInscrire, Tournoi tournoiHote) {
+    public boolean estInscrivableEquipeATournoi(Equipe equipeAInscrire, Tournoi tournoiHote) {
         if (equipeAInscrire == null || tournoiHote == null) {
+            return false;
+        }
+        if (isFull(tournoiHote)) {
             return false;
         }
         if (TournoiRepository.getInstance().estEquipeInscrite(equipeAInscrire, tournoiHote)) {
@@ -48,7 +52,9 @@ public class TournoiService {
         return true;
     }
 
-
+    public boolean isFull(Tournoi tournoiHote) {
+        return TournoiRepository.getInstance().getEquipesInscrites(tournoiHote).size() >= 16;
+    }
     public void procedureInitierInscrireEquipe(modele.Tournoi tournoi) {
         PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
         popupInscrireEquipe.setVisible(true);
@@ -75,7 +81,7 @@ public class TournoiService {
         popupTournoi.setVisible(true);
     }
  */
-    public void enregistrerNouveauTournoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Integer> ListeDeJeux, int idGerant) {
+    public void enregistrerNouveauTournoiMultigaming(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Integer> ListeDeJeux, int idGerant) {
         for (Integer idJeu: ListeDeJeux) {
             Jeu jeuJoue = JeuRepository.getInstance().findById(idJeu);
             enregistrerNouveauTournoi(nomTounoi + " - " + jeuJoue.getNomJeu(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, idJeu.intValue(), idGerant);
