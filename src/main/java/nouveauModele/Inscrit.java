@@ -15,6 +15,7 @@ public class Inscrit {
     private Date dateInscription;
 
     public Inscrit(Equipe equipeAInscrire, Tournoi tournoiHote, Date now) {
+        this.id = new InscritId();
         setTournoi(tournoiHote);
         setEquipe(equipeAInscrire);
         setDateInscription(now);
