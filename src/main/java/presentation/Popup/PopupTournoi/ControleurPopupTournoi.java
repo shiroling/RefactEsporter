@@ -28,7 +28,7 @@ public class ControleurPopupTournoi implements ActionListener {
                     VueConnexion fenetreConnnexion = new VueConnexion();
                 }
                 if (UtilisateurCourant.getInstance().getEtatConnexion() == ConnexionCourante.MANAGER) {
-                    TournoiService.procedureInitierInscrireEquipe(vue.getTournoi());
+                    TournoiService.getInstance().procedureInitierInscrireEquipe(vue.getTournoi());
                     this.vue.dispose();
                 }
                 break;

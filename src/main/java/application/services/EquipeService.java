@@ -28,11 +28,6 @@ public class EquipeService {
         return EquipeRepository.getInstance().findById(idEquipe).getNomEquipe();
     }
 
-    public List<Equipe> getListIdEquipesFromIdEcurie(int idEcurie) {
-         return EquipeRepository.getInstance().getListeIdsEquipesFromIdEcurie(idEcurie);
-
-    }
-
     public List<Joueur> getJoueurs(int id_Equipe) {
         return repository.getJoueurs(id_Equipe);
     }

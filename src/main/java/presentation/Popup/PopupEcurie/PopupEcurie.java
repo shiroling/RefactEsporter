@@ -29,7 +29,7 @@ public class PopupEcurie extends JDialog {
     public PopupEcurie(int idEcurie) {
         String nomEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomEcurie();
         String nomManagerEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomManager();
-        List<Equipe> listIdEquipes = EquipeService.getInstance().getListIdEquipesFromIdEcurie(idEcurie);
+        List<Equipe> listEquipes = EcurieService.getInstance().getEquipes(idEcurie);
 
         setTitle("Ecurie : "+ nomEcurie);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -58,14 +58,14 @@ public class PopupEcurie extends JDialog {
         JPanel panelListeEquipe = new JPanel();
         JLabel lblEquipe = new JLabel();
         JPanel panelEquipe = new JPanel();
-        if (listIdEquipes.size() == 0) {
+        if (listEquipes.size() == 0) {
             panelEquipe = new JPanel();
             lblEquipe = new JLabel("Cette écurie n'a pas encore enregistré d'équipe.");
             lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
             panelEquipe.add(lblEquipe);
             panelListeEquipe.add(panelEquipe);
         } else {
-            for (Equipe equipe : listIdEquipes) {
+            for (Equipe equipe : listEquipes) {
                 panelEquipe = new JPanel();
                 JPanel panelNomEquipe = new JPanel();
                 lblEquipe = new JLabel(equipe.getNomEquipe());
@@ -93,7 +93,7 @@ public class PopupEcurie extends JDialog {
 
         setVisible(true);
         this.setMinimumSize(new Dimension(contentPanel.getWidth(),
-                (listIdEquipes.size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
+                (listEquipes.size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
     }
 
 }

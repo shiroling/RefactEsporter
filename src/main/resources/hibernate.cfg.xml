@@ -18,6 +18,7 @@
         <mapping class="nouveauModele.Ecurie"/>
         <mapping class="nouveauModele.Equipe"/>
         <mapping class="nouveauModele.Gerant"/>
+        <mapping class="nouveauModele.Inscrit"/>
         <mapping class="nouveauModele.Jeu"/>
         <mapping class="nouveauModele.Jouer"/>
         <mapping class="nouveauModele.Joueur"/>

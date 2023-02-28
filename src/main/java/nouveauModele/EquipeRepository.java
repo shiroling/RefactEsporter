@@ -18,37 +18,6 @@ public class EquipeRepository {
         return instance;
     }
 
-    public List<Equipe> getListeIdsEquipesFromIdEcurie(int idEcurie) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-            //transaction = session.beginTransaction();
-
-            Query query = session.createQuery("select equipe from Equipe equipe where equipe.ecurie.id = :idEcurie");
-            query.setParameter("idEcurie", idEcurie);
-
-            List<Equipe> equipes = query.list();
-
-            //transaction.commit();
-            return equipes;
-
-        } catch (HibernateException e) {
-            //if (transaction != null) {
-            //    transaction.rollback();
-            //}
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return null;
-    }
-
-    public int getPoints(int idEquipe) {
-        // TODO
-        return -1;
-    }
-
     public Equipe findById(int idEquipe) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -135,5 +104,9 @@ public class EquipeRepository {
         } finally {
             session.close();
         }
+    }
+
+    public int getPoints(int idEquipe) {
+        return -1;
     }
 }

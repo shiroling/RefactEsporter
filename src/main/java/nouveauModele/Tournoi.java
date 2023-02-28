@@ -34,7 +34,7 @@ public class Tournoi {
     @Column(name = "Portee", nullable = false)
     private String portee;
 
-    @Column(name = "dateFinInscriptions", nullable = false)
+    @Column(name = "DATEFININSRIPTIONS", nullable = false)
     private LocalDate dateFinInscriptions;
 
     @Column(name = "dateDebutTournoi", nullable = false)
@@ -122,5 +122,17 @@ public class Tournoi {
         return idJeu == this.jeu.getIdJeu();
     }
 
-
+    @Override
+    public String toString() {
+        return "Tournoi{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", portee='" + portee + '\'' +
+                ", dateFinInscriptions=" + dateFinInscriptions +
+                ", dateDebutTournoi=" + dateDebutTournoi +
+                ", dateFinTournoi=" + dateFinTournoi +
+                ", jeu=" + jeu +
+                ", gerant=" + gerant +
+                '}';
+    }
 }
