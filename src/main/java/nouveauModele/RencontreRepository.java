@@ -67,4 +67,31 @@ public class RencontreRepository {
     public boolean estResultatRenseigne(Rencontre rencontre) {
         return false;
     }
+
+    public Equipe getGagnant(Rencontre r) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Equipe> equipes = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("SELECT j.id.equipe FROM Jouer j WHERE j.id.rencontre.idRencontre = :idRencontre AND j.aGagne = 1");
+            query.setParameter("idRencontre", r.getIdRencontre());
+            equipes = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        if (equipes.size() >1 ) {
+            throw new RuntimeException("Il deverais y avoir qu'un gagnant la dedans, pabon...");
+        }
+        if (equipes.isEmpty()) {
+            return null;
+        }
+        return equipes.get(0);
+    }
 }

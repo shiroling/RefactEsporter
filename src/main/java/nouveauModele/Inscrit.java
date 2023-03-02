@@ -8,6 +8,10 @@ import java.util.Date;
 @Table(name = "INSCRIT")
 public class Inscrit {
 
+    public Inscrit() {
+
+    }
+
     @EmbeddedId
     private InscritId id;
 

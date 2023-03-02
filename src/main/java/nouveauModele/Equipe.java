@@ -1,9 +1,13 @@
 package nouveauModele;
 
+import application.services.EquipeService;
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
+
 @Entity
 @Table(name = "Equipe")
-public class Equipe {
+public class Equipe implements Comparable<Equipe> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Equipe")
     @SequenceGenerator(name = "Seq_Equipe", sequenceName = "Seq_Equipe", allocationSize = 1)
@@ -63,4 +67,57 @@ public class Equipe {
                 ", nomEquipe='" + nomEquipe +
                 '}';
     }
+
+    @Override
+    public int compareTo(@NotNull Equipe o) {
+        EquipeService service = EquipeService.getInstance();
+        if(!(o instanceof Equipe)) {
+            throw new IllegalArgumentException("l'objet en entrée n'est pas une instance d'équipe");
+        }
+        Equipe e = (Equipe) o;
+
+        if(this.getIdEquipe() == (e).getIdEquipe()) {
+            return 0;
+        }
+
+        float diffPoints = service.getPoints() - service.getPoints();
+        if(diffPoints != 0) {
+            if (diffPoints < 0) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+
+        float diffAge = service.getAgeMoyen(this) - service.getAgeMoyen(e);
+        if(diffAge != 0) {
+            if (diffAge < 0) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+
+        return this.getNomEquipe().compareTo(e.getNomEquipe());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Equipe equipe = (Equipe) o;
+
+        if (idEquipe != equipe.idEquipe) return false;
+        return nomEquipe.equals(equipe.nomEquipe);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idEquipe;
+        result = 31 * result + nomEquipe.hashCode();
+        return result;
+    }
+
+
 }

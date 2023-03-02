@@ -15,6 +15,7 @@
 
         <!-- Mapping de classes d'entités -->
         <mapping class="nouveauModele.Arbitre"/>
+        <mapping class="nouveauModele.Composer"/>
         <mapping class="nouveauModele.Ecurie"/>
         <mapping class="nouveauModele.Equipe"/>
         <mapping class="nouveauModele.Gerant"/>

@@ -18,6 +18,10 @@ public class TournoiRepository {
         return instance;
     }
 
+    public int getNbParticipants(Tournoi tournoi) {
+        return this.getEquipesInscrites(tournoi).size();
+    }
+
     public Tournoi findByNom(String nomTounoi) {
         return null;
     }
@@ -163,5 +167,33 @@ public class TournoiRepository {
             session.close();
         }
         return poules;
+    }
+
+    public Poule getPouleFinale(Tournoi tournoiAvecPoules) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Poule> poules = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Poule p  WHERE p.idTournoi = :idTournoi AND p.finale = 1");
+            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            poules = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        if (poules.size() > 1) {
+            throw new RuntimeException("Le tournois à plusieurs poules finales");
+        }
+        if (poules.size() ==1) {
+            return poules.get(0);
+        }else {
+            return null;
+        }
     }
 }

@@ -1,5 +1,4 @@
 package nouveauModele.test;
-
 import application.donneesPersistantes.Portee;
 import application.services.PouleService;
 import application.services.TournoiService;
@@ -35,17 +34,18 @@ public class TestTournoi {
         }
 */
         // Obtention de toutes les poules
-
-        List<Poule> listePoulesAll = TournoiService.getInstance().getAllPoules(299);
+        List<Poule> listePoulesAll = TournoiService.getInstance().getAllPoules(263);
         for (Poule p : listePoulesAll ) {
             System.out.println(p + " # " + PouleService.estPouleFinale.test(p));
         }
 
-        List<Poule> listePoulesSimples = TournoiService.getInstance().getPoulesSimples(299);
+        List<Poule> listePoulesSimples = TournoiService.getInstance().getPoulesSimples(263);
         for (Poule p : listePoulesSimples ) {
             System.out.println(p + " ## " + PouleService.estPouleFinale.test(p));
         }
 
+        Poule poulesFinale = TournoiService.getInstance().getPouleFinale(263);
+        System.out.println(poulesFinale);
 /*
         // Enregistrement d'un tournoi
         LocalDate finTournoi = LocalDate.of(2025, 10, 12);

@@ -1,11 +1,11 @@
 package nouveauModele;
 
-import modele.ConnexionBase;
+import application.services.EquipeService;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import java.sql.CallableStatement;
-import java.sql.SQLException;
+import java.util.*;
 
 public class PouleRepository {
     private static PouleRepository instance;
@@ -78,5 +78,53 @@ public class PouleRepository {
         }
         return poule;
     }
+
+
+
+
+
+    public List<Rencontre> getRencontres(Poule poule) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Rencontre> rencontres = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("SELECT r FROM Rencontre r WHERE r.poule.idPoule = :idPoule");
+            query.setParameter("idPoule", poule.getIdPoule());
+            rencontres = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return rencontres;
+    }
+
+    public List<Equipe> getEquipes(Poule poule) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Equipe> equipes = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("SELECT c.id.equipe FROM Composer c WHERE c.id.poule.idPoule = :idPoule");
+            query.setParameter("idPoule", poule.getIdPoule());
+            equipes = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return equipes;
+    }
+
+
 }
 

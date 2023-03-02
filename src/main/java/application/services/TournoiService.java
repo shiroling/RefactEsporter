@@ -12,7 +12,6 @@ import presentation.Popup.PopupTournoi.PopupTournoi;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //singleton
 // préssente les Sf de l'application à présentation
@@ -54,7 +53,7 @@ public class TournoiService {
         if (equipeAInscrire == null || tournoiHote == null) {
             return false;
         }
-        if (isFull(tournoiHote)) {
+        if (getEtatTournoi(tournoiHote) == EtatTournoi.INSCRIPTIONS) {
             return false;
         }
         if (TournoiRepository.getInstance().estEquipeInscrite(equipeAInscrire, tournoiHote)) {
@@ -130,22 +129,73 @@ public class TournoiService {
     }
 
     public List<Poule> getAllPoules(int idTournoi) {
-        Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
-        if (tournoiAvecPoules == null) {
-            throw new IllegalArgumentException("Le tournoi n'existe pas");
-        }
+        Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
 
         return TournoiRepository.getInstance().getAllPoules(tournoiAvecPoules);
     }
 
     public List<Poule> getPoulesSimples(int idTournoi) {
+        Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
+
+        return TournoiRepository.getInstance().getPoulesClassiques(tournoiAvecPoules);
+    }
+
+    private static Tournoi getTournoiExistant(int idTournoi) {
         Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
         if (tournoiAvecPoules == null) {
             throw new IllegalArgumentException("Le tournoi n'existe pas");
         }
-
-        return TournoiRepository.getInstance().getPoulesClassiques(tournoiAvecPoules);
+        return tournoiAvecPoules;
     }
+
+    public Poule getPouleFinale(int idTournoi) {
+        Tournoi tournoiAvecPoules = TournoiService.getTournoiExistant(idTournoi);
+        return TournoiRepository.getInstance().getPouleFinale(tournoiAvecPoules);
+
+    }
+
+    public EtatTournoi getEtatTournoi(Tournoi tournoi) {
+        if(repository.getNbParticipants(tournoi) == 16) {
+            if(estPhaseInsciptionPassee(tournoi)) {
+                return EtatTournoi.MORT; // puisqu'il ne seras jamais pleins
+            }
+            return EtatTournoi.INSCRIPTIONS;
+        }
+
+        if (!estTournoiCommence(tournoi)) {
+            return EtatTournoi.COMPLET;
+        }
+
+        return getPhase(tournoi);
+
+    }
+
+    private EtatTournoi getPhase(Tournoi tournoi) {
+        for (Poule p : repository.getPoulesClassiques(tournoi)) {
+            if(PouleService.getInstance().getResultat(p) == null)
+                return EtatTournoi.PHASE_POULES;
+        }
+        if (PouleService.getInstance().getResultat(repository.getPouleFinale(tournoi))== null) {
+            return EtatTournoi.PHASE_FINALES;
+        }
+
+        return  EtatTournoi.FINI;
+    }
+
+    private boolean estTournoiEnCours(Tournoi tournoi) {
+        return tournoi.getDateFinTournoi().isAfter(LocalDate.now());
+    }
+
+    private boolean estTournoiCommence(Tournoi tournoi) {
+        return tournoi.getDateDebutTournoi().isBefore(LocalDate.now());
+    }
+
+    private boolean estPhaseInsciptionPassee(Tournoi tournoi) {
+        return tournoi.getDateFinInscriptions().isAfter(LocalDate.now());
+    }
+
+
+
 
 
 
