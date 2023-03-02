@@ -3,10 +3,7 @@ package nouveauModele;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hibernate.type.TrueFalseType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -124,5 +121,47 @@ public class TournoiRepository {
             session.close();
         }
         return equipes;
+    }
+
+    public List<Poule> getAllPoules(Tournoi tournoiAvecPoules) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Poule> poules = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Poule p  WHERE p.idTournoi = :idTournoi");
+            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            poules = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return poules;
+    }
+
+    public List<Poule> getPoulesClassiques(Tournoi tournoiAvecPoules) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Poule> poules = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Poule p  WHERE p.idTournoi = :idTournoi AND p.finale = 0");
+            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            poules = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return poules;
     }
 }

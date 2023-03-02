@@ -12,6 +12,7 @@ import presentation.Popup.PopupTournoi.PopupTournoi;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //singleton
 // préssente les Sf de l'application à présentation
@@ -37,6 +38,16 @@ public class TournoiService {
             throw new RuntimeException("L'equipe n'est pas inscrivable");
         }
         TournoiRepository.getInstance().inscrireEquipeATournoi(equipeAInscrire, tournoiHote);
+        if (getEquipesInscrites(idTournoi).size() >= 16) {
+            // Creation et peuplage des poules
+            PouleRepository.getInstance().creerPoules(idTournoi); // TODO
+
+            // Creation des Rencontres pour les poules classiques
+
+            for (Poule p : repository.getAllPoules(tournoiHote)) {
+
+            }
+        }
     }
 
     public boolean estInscrivableEquipeATournoi(Equipe equipeAInscrire, Tournoi tournoiHote) {
@@ -117,5 +128,26 @@ public class TournoiService {
         Tournoi tournoiAVerifier = this.repository.findById(idTournoi);
         return tournoiAVerifier.verifierJeuTournoi(idJeu);
     }
+
+    public List<Poule> getAllPoules(int idTournoi) {
+        Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
+        if (tournoiAvecPoules == null) {
+            throw new IllegalArgumentException("Le tournoi n'existe pas");
+        }
+
+        return TournoiRepository.getInstance().getAllPoules(tournoiAvecPoules);
+    }
+
+    public List<Poule> getPoulesSimples(int idTournoi) {
+        Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
+        if (tournoiAvecPoules == null) {
+            throw new IllegalArgumentException("Le tournoi n'existe pas");
+        }
+
+        return TournoiRepository.getInstance().getPoulesClassiques(tournoiAvecPoules);
+    }
+
+
+
 
 }

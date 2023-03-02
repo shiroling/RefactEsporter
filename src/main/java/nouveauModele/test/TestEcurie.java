@@ -3,11 +3,10 @@ package nouveauModele.test;
 import application.services.EcurieService;
 import nouveauModele.Ecurie;
 import nouveauModele.Equipe;
-import oracle.jdbc.internal.XSCacheOutput;
 
 import java.util.List;
 
-public class testEcurie {
+public class TestEcurie {
 
     public static void main(String[] args) {
         Ecurie e = EcurieService.getInstance().getEcurieFromId(1);
