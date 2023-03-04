@@ -1,9 +1,7 @@
 package nouveauModele.test;
 
-import application.services.PouleService;
-import nouveauModele.Equipe;
-import nouveauModele.Poule;
-import nouveauModele.PouleRepository;
+import nouveauModele.dataRepresentation.Poule;
+import nouveauModele.repositories.PouleRepository;
 
 public class TestPoule {
     public static void main(String[] args) {
@@ -21,9 +19,11 @@ public class TestPoule {
 
         System.out.println("Equipes : ");
         System.out.println(PouleRepository.getInstance().getEquipes(pouleById));
-*/
+
         System.out.println("resultat : ");
         System.out.println(PouleService.getInstance().getResultat(pouleById));
+*/
+        PouleRepository.getInstance().creerPoules(299);
     }
 
 

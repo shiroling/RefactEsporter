@@ -14,18 +14,18 @@
         <property name="hibernate.connection.password">toor</property>
 
         <!-- Mapping de classes d'entités -->
-        <mapping class="nouveauModele.Arbitre"/>
-        <mapping class="nouveauModele.Composer"/>
-        <mapping class="nouveauModele.Ecurie"/>
-        <mapping class="nouveauModele.Equipe"/>
-        <mapping class="nouveauModele.Gerant"/>
-        <mapping class="nouveauModele.Inscrit"/>
-        <mapping class="nouveauModele.Jeu"/>
-        <mapping class="nouveauModele.Jouer"/>
-        <mapping class="nouveauModele.Joueur"/>
-        <mapping class="nouveauModele.Poule"/>
-        <mapping class="nouveauModele.Tournoi"/>
-        <mapping class="nouveauModele.Rencontre"/>
+        <mapping class="nouveauModele.dataRepresentation.Arbitre"/>
+        <mapping class="nouveauModele.dataRepresentation.Composer"/>
+        <mapping class="nouveauModele.dataRepresentation.Ecurie"/>
+        <mapping class="nouveauModele.dataRepresentation.Equipe"/>
+        <mapping class="nouveauModele.dataRepresentation.Gerant"/>
+        <mapping class="nouveauModele.dataRepresentation.Inscrit"/>
+        <mapping class="nouveauModele.dataRepresentation.Jeu"/>
+        <mapping class="nouveauModele.dataRepresentation.Jouer"/>
+        <mapping class="nouveauModele.dataRepresentation.Joueur"/>
+        <mapping class="nouveauModele.dataRepresentation.Poule"/>
+        <mapping class="nouveauModele.dataRepresentation.Tournoi"/>
+        <mapping class="nouveauModele.dataRepresentation.Rencontre"/>
 
     </session-factory>
 </hibernate-configuration>

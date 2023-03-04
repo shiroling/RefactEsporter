@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -16,8 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import application.services.EcurieService;
-import application.services.EquipeService;
-import nouveauModele.Equipe;
+import nouveauModele.dataRepresentation.Equipe;
 
 public class PopupEcurie extends JDialog {
 

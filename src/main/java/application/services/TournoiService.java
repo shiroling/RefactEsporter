@@ -4,13 +4,15 @@ import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.BDPredicats;
 import modele.Ecurie;
-import nouveauModele.*;
 
+import nouveauModele.dataRepresentation.*;
+import nouveauModele.repositories.*;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import presentation.Popup.PopupTournoi.PopupTournoi;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 //singleton
@@ -30,33 +32,44 @@ public class TournoiService {
         return instance;
     }
 
-    public void inscrireEquipeATournoi(int idEquipeAInscrire, int idTournoi) {
+    public void inscrireEquipe(int idEquipeAInscrire, int idTournoi) {
         Equipe equipeAInscrire = EquipeRepository.getInstance().findById(idEquipeAInscrire);
         Tournoi tournoiHote = TournoiRepository.getInstance().findById(idTournoi);
         if(!estInscrivableEquipeATournoi(equipeAInscrire, tournoiHote)) {
             throw new RuntimeException("L'equipe n'est pas inscrivable");
         }
         TournoiRepository.getInstance().inscrireEquipeATournoi(equipeAInscrire, tournoiHote);
-        if (getEquipesInscrites(idTournoi).size() >= 16) {
-            // Creation et peuplage des poules
-            PouleRepository.getInstance().creerPoules(idTournoi); // TODO
+        if (getEtatTournoi(tournoiHote) ==  EtatTournoi.COMPLET)
+            procedureTournoiComplet(tournoiHote); // création/peuplage des poules et rencontres
 
-            // Creation des Rencontres pour les poules classiques
+    }
 
-            for (Poule p : repository.getAllPoules(tournoiHote)) {
-
-            }
+    private void procedureTournoiComplet(Tournoi tournoiHote) {
+        // Creation et peuplage des poules
+        System.out.print("Creation des poules...");
+        PouleRepository.getInstance().creerPoules(tournoiHote.getId());
+        System.out.println("OK");
+        List<Poule> poulesCreationRencontres = getPoulesSimples(tournoiHote.getId());
+        System.out.println("Creation et peuplage des poules : ");
+        for (Poule p : poulesCreationRencontres) {
+            System.out.print(p + " ...");
+            RencontreRepository.getInstance().creerPeuplerRencontres(p);
+            System.out.println("OK");
         }
+
     }
 
     public boolean estInscrivableEquipeATournoi(Equipe equipeAInscrire, Tournoi tournoiHote) {
         if (equipeAInscrire == null || tournoiHote == null) {
+            System.out.println("blop");
             return false;
         }
-        if (getEtatTournoi(tournoiHote) == EtatTournoi.INSCRIPTIONS) {
+        if (getEtatTournoi(tournoiHote) != EtatTournoi.INSCRIPTIONS) {
+            System.out.println("blip");
             return false;
         }
         if (TournoiRepository.getInstance().estEquipeInscrite(equipeAInscrire, tournoiHote)) {
+            System.out.println("blap");
             return  false;
         };
         return true;
@@ -74,7 +87,6 @@ public class TournoiService {
         Tournoi tournoi = repository.findById(idTournoi);
         if (tournoi == null) { throw new IllegalArgumentException("le tournoi n'existe pas ");}
         return repository.getEquipesInscrites(tournoi);
-
     }
 
     public void afficherPopupTournoi(int id_tournoi) {
@@ -83,6 +95,9 @@ public class TournoiService {
         popupTournoi.setVisible(true);
     }
 
+    public int getNbParticipants(int idTournoi) {
+        return this.getEquipesInscrites(idTournoi).size();
+    }
 
 
 /*      In finae ca deverais étre ça !
@@ -99,14 +114,43 @@ public class TournoiService {
     }
 
     public void enregistrerNouveauTournoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
+        if (dateFinInscription == null ||dateDebutTournoi == null || dateFinTournoi ==  null) {
+            throw new IllegalArgumentException("une date est nulle :" + dateFinInscription + dateDebutTournoi + dateFinTournoi);
+        }
         Jeu jeuDuTournoiACreer = JeuRepository.getInstance().findById(idJeu);
-        Gerant gerantCreateurDuTournoi = GerantRepository.findById(idJeu);
+        if (jeuDuTournoiACreer == null) {
+            throw new RuntimeException("le jeu n'existe pas");
+        }
+        Gerant gerantCreateurDuTournoi = GerantRepository.findById(idGerant);
+        if (gerantCreateurDuTournoi == null) {
+            throw new RuntimeException("le gérant n'existe pas");
+        }
         if (TournoiRepository.getInstance().findByNom(nomTounoi) != null) {
             throw new IllegalArgumentException("le tournoi existe déja");
         }
         Tournoi tournoiAEnregistrer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
         repository.enregistrerNouveauTournoi(tournoiAEnregistrer);
     }
+
+    public void enregistrerNouveauTournoi2(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
+        if (dateFinInscription == null || dateDebutTournoi == null || dateFinTournoi == null) {
+            throw new IllegalArgumentException("une date est nulle :" + dateFinInscription + dateDebutTournoi + dateFinTournoi);
+        }
+        Jeu jeuDuTournoiACreer = JeuRepository.getInstance().findById(idJeu);
+        if (jeuDuTournoiACreer == null) {
+            throw new RuntimeException("le jeu n'existe pas");
+        }
+        Gerant gerantCreateurDuTournoi = GerantRepository.findById(idGerant);
+        if (gerantCreateurDuTournoi == null) {
+            throw new RuntimeException("le gérant n'existe pas");
+        }
+        if (TournoiRepository.getInstance().findByNom(nomTounoi) != null) {
+            throw new IllegalArgumentException("le tournoi existe déjà");
+        }
+        Tournoi tournoiAEnregistrer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
+        repository.enregistrerNouveauTournoi(tournoiAEnregistrer);
+    }
+
 
     private static boolean estTournoiValide(Tournoi nouveauTournoi) {
         return nouveauTournoi.getDateFinInscriptions().isBefore(LocalDate.now())
@@ -155,7 +199,7 @@ public class TournoiService {
     }
 
     public EtatTournoi getEtatTournoi(Tournoi tournoi) {
-        if(repository.getNbParticipants(tournoi) == 16) {
+        if(getNbParticipants(tournoi.getId()) < 16) {
             if(estPhaseInsciptionPassee(tournoi)) {
                 return EtatTournoi.MORT; // puisqu'il ne seras jamais pleins
             }
@@ -191,13 +235,38 @@ public class TournoiService {
     }
 
     private boolean estPhaseInsciptionPassee(Tournoi tournoi) {
-        return tournoi.getDateFinInscriptions().isAfter(LocalDate.now());
+        return tournoi.getDateFinInscriptions().isBefore(LocalDate.now());
     }
 
 
+    public int getClassementInPoule(Equipe equipe, Tournoi tournoi) {
+        if (equipe ==  null) { throw new IllegalArgumentException("l'equipe n'existe pas ");}
+        if (tournoi ==  null) { throw new IllegalArgumentException("le tournoi n'existe pas ");}
+        HashMap<Equipe, Integer> mapGagnantRencontes = new HashMap<>();
+        for (Equipe e : repository.getEquipesInscrites(tournoi)) {
+            mapGagnantRencontes.put(e, 0);
+        }
+        List<Rencontre> rencontresFinales = PouleRepository.getInstance().getRencontres(TournoiService.getInstance().getPouleFinale(tournoi.getId())); // on obtient les rencontres finales
+        for (Rencontre r : rencontresFinales) {
+            Equipe equipeGagnante = RencontreRepository.getInstance().getGagnant(r);
+            mapGagnantRencontes.put(
+                    equipeGagnante,
+                    mapGagnantRencontes.get(equipeGagnante) + 1
+            );
+        }
+        int classement = 1;
+        int scoreEquipeAClasser = mapGagnantRencontes.get(equipe);
+        for (Equipe e : mapGagnantRencontes.keySet()) {
+            System.out.println("Comparaison entre : " + e.getNomEquipe() + "=" +mapGagnantRencontes.get(e) + "et"+ equipe.getNomEquipe() + "=" +mapGagnantRencontes.get(equipe));
+            if (mapGagnantRencontes.get(e) > scoreEquipeAClasser) {
+                System.out.println("pouet");
+                classement +=1;
+            }
+        }
+        System.out.println("Maps de winners end : " +  mapGagnantRencontes);
+
+        return classement;
 
 
-
-
-
+    }
 }

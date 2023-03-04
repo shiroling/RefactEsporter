@@ -1,8 +1,8 @@
 package nouveauModele.test;
 
 import application.services.JoueurService;
-import nouveauModele.Joueur;
-import nouveauModele.JoueurRepository;
+import nouveauModele.dataRepresentation.Joueur;
+import nouveauModele.repositories.JoueurRepository;
 
 import java.time.LocalDate;
 

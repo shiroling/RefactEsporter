@@ -32,7 +32,6 @@ public class TestTournoi {
         for (Equipe e : le ) {
             System.out.println(e);
         }
-*/
         // Obtention de toutes les poules
         List<Poule> listePoulesAll = TournoiService.getInstance().getAllPoules(263);
         for (Poule p : listePoulesAll ) {
@@ -46,16 +45,19 @@ public class TestTournoi {
 
         Poule poulesFinale = TournoiService.getInstance().getPouleFinale(263);
         System.out.println(poulesFinale);
-/*
+
         // Enregistrement d'un tournoi
         LocalDate finTournoi = LocalDate.of(2025, 10, 12);
         LocalDate debutTournoi = LocalDate.of(2025, 10, 11);
         LocalDate dateFinInscription = LocalDate.of(2025, 10, 10);
-        System.out.println(debutTournoi);
+        System.out.println(debutTournoi +" "  + finTournoi + " "  +dateFinInscription);
 
-        TournoiService.getInstance().enregistrerNouveauTournoi("tournoi du commit ?", Portee.INTERNATIONAL, dateFinInscription, debutTournoi, finTournoi, 2, 1 );
-        System.out.println(TournoiRepository.getInstance().findByNom("tournoi du commit ?"));
+        TournoiService.getInstance().enregistrerNouveauTournoi("tournoi du commit seconde edition ?", Portee.INTERNATIONAL, dateFinInscription, debutTournoi, finTournoi, 2, 1 );
+        System.out.println(TournoiRepository.getInstance().findByNom("tournoi du commit seconde edition ?"));
 */
+
+
+
     }
 
 

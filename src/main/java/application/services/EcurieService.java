@@ -1,8 +1,8 @@
 package application.services;
 
-import nouveauModele.Ecurie;
-import nouveauModele.EcurieRepository;
-import nouveauModele.Equipe;
+import nouveauModele.dataRepresentation.Ecurie;
+import nouveauModele.repositories.EcurieRepository;
+import nouveauModele.dataRepresentation.Equipe;
 import presentation.Popup.PopupEcurie.PopupEcurie;
 
 import java.util.List;

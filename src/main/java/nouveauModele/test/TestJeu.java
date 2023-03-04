@@ -1,7 +1,7 @@
 package nouveauModele.test;
 
-import nouveauModele.Jeu;
-import nouveauModele.JeuRepository;
+import nouveauModele.dataRepresentation.Jeu;
+import nouveauModele.repositories.JeuRepository;
 
 public class TestJeu {
     public static void main(String[] args) {

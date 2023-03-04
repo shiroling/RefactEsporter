@@ -1,8 +1,16 @@
 package application.services;
 
-import nouveauModele.*;
+import modele.BDPredicats;
+import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Jeu;
+import nouveauModele.dataRepresentation.Rencontre;
+import nouveauModele.dataRepresentation.Tournoi;
+import nouveauModele.repositories.RencontreRepository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class RencontreService {
     private static RencontreService instance;
@@ -22,9 +30,7 @@ public class RencontreService {
     public void afficherPopupRencontre(Rencontre rencontre) {
 
     }
-    public List<Equipe> getEquipesParticipantes(int idRencontre) {
-        return   repository.getEquipes(idRencontre);
-    }
+    public List<Equipe> getEquipesParticipantes(int idRencontre) { return repository.getEquipes(idRencontre); }
     public Rencontre getRencontreFromId(int idRencontre) {
         return repository.findById(idRencontre);
     }
@@ -34,7 +40,10 @@ public class RencontreService {
         if (rencontre == null) {
             throw new IllegalArgumentException("la rencontre renseigné n'existe pas ");
         }
-        return repository.getInstance().estResultatRenseigne(rencontre);
+        return repository.estResultatRenseigne(rencontre);
     }
+
+
+
 
 }
