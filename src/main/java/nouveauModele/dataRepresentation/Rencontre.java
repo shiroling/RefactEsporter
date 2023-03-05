@@ -1,8 +1,7 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import javax.persistence.*;
-import java.util.Date;
-
+import java.time.LocalDate;
 @Entity
 @Table(name = "RENCONTRE")
 public class Rencontre {
@@ -21,7 +20,7 @@ public class Rencontre {
     private Poule poule;
 
     @Column(name = "DATE_RENCONTRE")
-    private Date dateRencontre;
+    private LocalDate dateRencontre;
     public int getIdRencontre() {
         return idRencontre;
     }
@@ -40,10 +39,10 @@ public class Rencontre {
     public void setPoule(Poule poule) {
         this.poule = poule;
     }
-    public Date getDateRencontre() {
+    public LocalDate getDateRencontre() {
         return dateRencontre;
     }
-    public void setDateRencontre(Date dateRencontre) {
+    public void setDateRencontre(LocalDate dateRencontre) {
         this.dateRencontre = dateRencontre;
     }
 

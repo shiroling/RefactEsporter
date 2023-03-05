@@ -1,13 +1,15 @@
 package application.services;
 
-import nouveauModele.*;
+import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Poule;
+import nouveauModele.dataRepresentation.Rencontre;
+import nouveauModele.repositories.PouleRepository;
+import nouveauModele.repositories.RencontreRepository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-
-import static modele.BDPredicats.estTournoiEnCours;
 
 public class PouleService {
 

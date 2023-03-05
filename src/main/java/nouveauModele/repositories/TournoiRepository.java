@@ -1,5 +1,10 @@
-package nouveauModele;
+package nouveauModele.repositories;
 
+import nouveauModele.HibernateUtil;
+import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Inscrit;
+import nouveauModele.dataRepresentation.Poule;
+import nouveauModele.dataRepresentation.Tournoi;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -18,12 +23,30 @@ public class TournoiRepository {
         return instance;
     }
 
-    public int getNbParticipants(Tournoi tournoi) {
-        return this.getEquipesInscrites(tournoi).size();
-    }
-
-    public Tournoi findByNom(String nomTounoi) {
-        return null;
+    public Tournoi findByNom(String nomTournoi) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Tournoi> tournois = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Tournoi t WHERE t.nom = :nomTournoi");
+            query.setParameter("nomTournoi", nomTournoi);
+            tournois = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        if (tournois.size() > 1 ) {
+            throw new RuntimeException("Doublon de tournois alors qu'il est unique");
+        } else if (tournois.isEmpty())  {
+            return null;
+        }
+        return tournois.get(0);
     }
 
     public Tournoi findById(int idTournoi) {
@@ -125,6 +148,25 @@ public class TournoiRepository {
             session.close();
         }
         return equipes;
+    }
+    public List<Tournoi> getTournois() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Tournoi> tournoi = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Tournoi t");
+            tournoi = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return tournoi;
     }
 
     public List<Poule> getAllPoules(Tournoi tournoiAvecPoules) {

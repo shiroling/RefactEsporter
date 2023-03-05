@@ -1,8 +1,9 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "INSCRIT")
@@ -34,6 +35,19 @@ public class Inscrit {
         @ManyToOne
         @JoinColumn(name = "ID_TOURNOI")
         Tournoi tournoi;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            InscritId inscritId = (InscritId) o;
+            return Objects.equals(equipe, inscritId.equipe) && Objects.equals(tournoi, inscritId.tournoi);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(equipe, tournoi);
+        }
     }
 
     public Equipe getEquipe() {

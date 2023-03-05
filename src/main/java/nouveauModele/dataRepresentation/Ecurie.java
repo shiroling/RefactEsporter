@@ -1,4 +1,4 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import javax.persistence.*;
 @Entity

@@ -1,8 +1,9 @@
 package nouveauModele.test;
 
 import application.services.EcurieService;
-import nouveauModele.Ecurie;
-import nouveauModele.Equipe;
+import nouveauModele.dataRepresentation.Ecurie;
+import nouveauModele.repositories.EcurieRepository;
+import nouveauModele.dataRepresentation.Equipe;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class TestEcurie {
         for (Equipe eee: le) {
             System.out.println(eee);
         }
+
+        System.out.println(EcurieRepository.getInstance().getPoints(5));
     }
 
 

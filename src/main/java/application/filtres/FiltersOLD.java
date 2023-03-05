@@ -12,7 +12,7 @@ import static modele.BDPredicats.estTournoiDePortee;
 import static modele.BDPredicats.estTournoiSurJeu;
 
 
-public class Filters {
+public class FiltersOLD {
 	// Tournoi
 	// Avancement
 	public static Predicate<Tournoi> estTournoiEnCours = t -> estTournoiEnCours(t.getId());
@@ -21,7 +21,7 @@ public class Filters {
 	
 	// Inscriptions
 	public static Predicate<Tournoi> sontInscriptionsFinies = t -> sontInscriptionsFinies(t.getId());
-	public static Predicate<Tournoi> sontInscriptionsEnCours = Filters.sontInscriptionsFinies.negate();
+	public static Predicate<Tournoi> sontInscriptionsEnCours = FiltersOLD.sontInscriptionsFinies.negate();
 	
 	// Multijoueurs
 	public static Predicate<Tournoi> estTournoiMulti = BDPredicats::estTournoiMulti;
@@ -61,7 +61,7 @@ public class Filters {
 	
 	public static List<BDEntity> filtrer(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
 		for(Predicate<BDEntity> p : lp) {
-			 lt = Filters.filtrer(lt, p);
+			 lt = FiltersOLD.filtrer(lt, p);
 		}
 		return lt;
 	}
@@ -69,7 +69,7 @@ public class Filters {
 
 	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, List<BiPredicate<T, TypeSecondPart>> lp, TypeSecondPart secondPart) {
 		for(BiPredicate<T, TypeSecondPart> p : lp) {
-			 lt = Filters.filtrer(lt, p, secondPart);
+			 lt = FiltersOLD.filtrer(lt, p, secondPart);
 		}
 		return lt;
 	}

@@ -1,15 +1,15 @@
 package nouveauModele.test;
 
 import application.services.RencontreService;
-import nouveauModele.Equipe;
-import nouveauModele.Rencontre;
-import nouveauModele.RencontreRepository;
+import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Rencontre;
+import nouveauModele.repositories.RencontreRepository;
 
 import java.util.List;
 
 public class TestRencontre {
     public static void main(String[] args) {
-        Rencontre rencontreById = RencontreService.getInstance().getRencontreFromId(351);
+        Rencontre rencontreById = RencontreService.getInstance().getRencontreFromId(300);
         System.out.println(rencontreById);
 
         List<Equipe> le = RencontreService.getInstance().getEquipesParticipantes(327);
@@ -19,6 +19,8 @@ public class TestRencontre {
 
 
         System.out.println("rencontre gagné par " + RencontreRepository.getInstance().getGagnant(rencontreById));
+
+        System.out.println(RencontreRepository.getInstance().getPorteeRenconre(rencontreById));
     }
 
 

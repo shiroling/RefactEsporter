@@ -1,9 +1,17 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import application.services.EquipeService;
 
 import javax.persistence.*;
-
+// This stored procedure returns a result set and has one input parameter.
+@NamedStoredProcedureQuery(
+        name = "getPointsEquipe",
+        resultClasses = Integer.class,
+        procedureName = "GET_PTS_EQUIPE",
+        parameters = {
+                @StoredProcedureParameter(mode=javax.persistence.ParameterMode.IN, name="ID_EQ", type=Long.class)
+        }
+)
 @Entity
 @Table(name = "Equipe")
 public class Equipe implements Comparable<Equipe> {

@@ -1,6 +1,5 @@
 package application.donneesPersistantes;
 
-import application.filtres.Filtre;
 import modele.BDEntity;
 import modele.BDSelect;
 
@@ -35,7 +34,7 @@ public class ModeleGlobal {
             case TOURNOI -> this.listeGrilleCourante = BDSelect.getListeTournois();
         }
     }
-
+/*
     public List<? extends BDEntity> getListeCouranteFiltree(Filtre filtre) {
         List<BDEntity> listeFiltre = new LinkedList<>();
         for (BDEntity b : this.listeGrilleCourante) {
@@ -44,4 +43,6 @@ public class ModeleGlobal {
         filtre.filtrer(this.listeGrilleCourante);
         return listeFiltre;
     }
+
+ */
 }

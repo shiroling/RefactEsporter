@@ -1,8 +1,9 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import application.donneesPersistantes.Portee;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Tournoi {
     }
 
     @Id
- //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Tournoi")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Seq_Tournoi")
     @SequenceGenerator(name = "Seq_Tournoi", sequenceName = "Seq_Tournoi", allocationSize = 1)
     @Column(name = "Id_Tournoi")
     private int id;
@@ -49,9 +50,16 @@ public class Tournoi {
 
     @ManyToOne
     @JoinColumn(name = "Id_Gerant")
-    private Ecurie gerant;
+    private Gerant gerant;
 
-    public Tournoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, Jeu jeuDuTournoiACreer, Gerant gerantCreateurDuTournoi) {
+    public Tournoi(String nom, Portee portee, LocalDate dateFinInscriptions, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, Jeu jeu, Gerant gerant) {
+        this.nom = nom;
+        this.portee = portee.getName();
+        this.dateFinInscriptions = dateFinInscriptions;
+        this.dateDebutTournoi = dateDebutTournoi;
+        this.dateFinTournoi = dateFinTournoi;
+        this.jeu = jeu;
+        this.gerant = gerant;
     }
 
     public int getId() {
@@ -111,10 +119,10 @@ public class Tournoi {
         return jeu;
     }
 
-    public Ecurie getGerant() {
+    public Gerant getGerant() {
         return gerant;
     }
-    public void setGerant(Ecurie gerant) {
+    public void setGerant(Gerant gerant) {
         this.gerant = gerant;
     }
 
@@ -134,5 +142,18 @@ public class Tournoi {
                 ", jeu=" + jeu +
                 ", gerant=" + gerant +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tournoi tournoi = (Tournoi) o;
+        return id == tournoi.id && nom.equals(tournoi.nom) && portee.equals(tournoi.portee) && dateFinInscriptions.equals(tournoi.dateFinInscriptions) && dateDebutTournoi.equals(tournoi.dateDebutTournoi) && dateFinTournoi.equals(tournoi.dateFinTournoi) && jeu.equals(tournoi.jeu) && gerant.equals(tournoi.gerant);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, portee, dateFinInscriptions, dateDebutTournoi, dateFinTournoi, jeu, gerant);
     }
 }

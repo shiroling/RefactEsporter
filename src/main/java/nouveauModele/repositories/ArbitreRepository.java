@@ -1,5 +1,7 @@
-package nouveauModele;
+package nouveauModele.repositories;
 
+import nouveauModele.HibernateUtil;
+import nouveauModele.dataRepresentation.Arbitre;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

@@ -1,4 +1,4 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 
 import javax.persistence.*;
@@ -7,13 +7,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "POULE", schema = "CTQ4266A")
 public class Poule {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_POULE")
+    @SequenceGenerator(name = "SEQ_POULE", sequenceName = "SEQ_POULE", allocationSize = 1)
     @Column(name = "ID_POULE")
     private int idPoule;
     @Column(name = "FINALE")
     private int finale;
-    @Column(name = "ID_TOURNOI")
-    private int idTournoi;
+    @ManyToOne
+    @JoinColumn(name = "ID_TOURNOI")
+    private Tournoi tournoi;
+
+    public Poule() {}
+    public Poule(int finale, Tournoi tournoi) {
+        this.finale = finale;
+        this.tournoi = tournoi;
+    }
 
     public int getIdPoule() {
         return idPoule;
@@ -27,11 +37,11 @@ public class Poule {
     public void setFinale(int finale) {
         this.finale = finale;
     }
-    public int getIdTournoi() {
-        return idTournoi;
+    public Tournoi getTournoi() {
+        return tournoi;
     }
-    public void setIdTournoi(int idTournoi) {
-        this.idTournoi = idTournoi;
+    public void setIdTournoi(Tournoi tournoi) {
+        this.tournoi = tournoi;
     }
 
     @Override
@@ -39,7 +49,7 @@ public class Poule {
         return "Poule{" +
                 "idPoule=" + idPoule +
                 ", finale=" + finale +
-                ", idTournoi=" + idTournoi +
+                ", Tournoi=" + tournoi +
                 '}';
     }
 }

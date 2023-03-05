@@ -1,9 +1,13 @@
-package nouveauModele;
+package nouveauModele.repositories;
 
+import nouveauModele.HibernateUtil;
+import nouveauModele.dataRepresentation.Ecurie;
+import nouveauModele.dataRepresentation.Equipe;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.net.SecureCacheResponse;
 import java.util.List;
 
 public class EcurieRepository {
@@ -84,8 +88,28 @@ public class EcurieRepository {
         List<Equipe> equipesACompter = EcurieRepository.getInstance().getEquipes(idEcurie);
         int totalPoints = 0;
         for (Equipe e : equipesACompter) {
-            totalPoints += EquipeRepository.getInstance().getPoints(e.getIdEquipe());
+            totalPoints += EquipeRepository.getInstance().getPoints(e);
         }
         return totalPoints;
+    }
+
+    public List<Ecurie> getEcuries() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Ecurie> ecuries = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Ecurie e");
+            ecuries = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return ecuries;
     }
 }

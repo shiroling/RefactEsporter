@@ -1,13 +1,10 @@
 package application.services;
 
-import nouveauModele.Equipe;
-import nouveauModele.EquipeRepository;
-import nouveauModele.Joueur;
-import nouveauModele.JoueurRepository;
+import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.repositories.EquipeRepository;
+import nouveauModele.repositories.JoueurRepository;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 public class JoueurService {
 
