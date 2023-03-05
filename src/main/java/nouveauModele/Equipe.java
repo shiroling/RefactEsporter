@@ -1,7 +1,6 @@
 package nouveauModele;
 
 import application.services.EquipeService;
-import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
@@ -69,7 +68,7 @@ public class Equipe implements Comparable<Equipe> {
     }
 
     @Override
-    public int compareTo(@NotNull Equipe o) {
+    public int compareTo(Equipe o) {
         EquipeService service = EquipeService.getInstance();
         if(!(o instanceof Equipe)) {
             throw new IllegalArgumentException("l'objet en entrée n'est pas une instance d'équipe");
