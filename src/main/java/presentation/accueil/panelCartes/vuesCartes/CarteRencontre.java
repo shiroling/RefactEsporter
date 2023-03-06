@@ -70,7 +70,7 @@ public class CarteRencontre extends Carte{
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
     }
 
-    public void setLblNomTournoi(boolean finale,String nom){
+    public void setNomTournoi(boolean finale, String nom){
         if (finale) {
             lblNomTournoi.setText("Finale du "+nom);
         }
@@ -99,8 +99,7 @@ public class CarteRencontre extends Carte{
     }
 
     public void setDateRencontre(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        lblDateRencontre.setText(date.format(formatter));
+        lblDateRencontre.setText(date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
 

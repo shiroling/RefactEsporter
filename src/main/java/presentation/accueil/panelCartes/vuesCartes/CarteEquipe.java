@@ -48,6 +48,6 @@ public class CarteEquipe extends Carte{
 
     @Override
     public Carte clone() {
-        return null;
+        return (CarteEquipe) super.clone();
     }
 }

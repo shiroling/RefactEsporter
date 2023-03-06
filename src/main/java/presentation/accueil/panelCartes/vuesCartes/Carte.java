@@ -9,7 +9,21 @@ import java.awt.*;
 public abstract class Carte extends JPanel implements Cloneable  {
     private int id;
 
-    public abstract Carte clone();
+    @Override
+    public Carte clone() {
+        Carte cloned = null;
+        try {
+            cloned = (Carte) super.clone();
+        } catch (CloneNotSupportedException e) {
+            // Ne devrait jamais arriver car Carte implémente l'interface Cloneable
+            throw new AssertionError();
+        }
+        cloned.setId(this.getId());
+        return cloned;
+    }
+
+
+
     public Carte() {
         setBackground(Color.WHITE);
         setBorder(new EmptyBorder(0,0,0,0));

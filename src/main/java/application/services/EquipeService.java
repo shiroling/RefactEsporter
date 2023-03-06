@@ -58,11 +58,6 @@ public class EquipeService {
         return EquipeRepository.getInstance().findByNom(nomEquipe) != null;
     }
 
-    public float getPoints() {
-        // TODO et giga important
-        return -6969;
-    }
-
     public float getAgeMoyen(Equipe equipeTemp) {
         List<Joueur> listeJoueurs = repository.getJoueurs(equipeTemp);
         if (listeJoueurs.size() != 4) {

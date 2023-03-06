@@ -56,7 +56,7 @@ public class CarteTournoi extends Carte{
         lblDateDebutFinTournoi.setText(dateDebut.format(formatter)+" -- "+dateFin.format(formatter));
     }
 
-    public void setLblNomTournoi(String nom){
+    public void setNomTournoi(String nom){
         lblNomTournoi.setText(nom);
     }
 
