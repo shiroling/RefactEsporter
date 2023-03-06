@@ -14,7 +14,8 @@ public class CarteRencontre extends Carte{
     private JLabel lblDateRencontre;
     private JLabel lblNomTournoi;
     private JPanel panelNomTournoi;
-    private String resultat;
+    private JLabel lblFinal;
+
     @Override
     public Carte clone() {
         return null;
@@ -59,6 +60,8 @@ public class CarteRencontre extends Carte{
 
         lblNomTournoi = new JLabel("nomTournoi");
         lblNomTournoi.setFont(ElementCommun.getFontPrincipal());
+        lblFinal=new JLabel();
+        panelNomTournoi.add(lblFinal);
         panelNomTournoi.add(lblNomTournoi);
         super.addHoverPannels(this);
 
@@ -69,11 +72,11 @@ public class CarteRencontre extends Carte{
 
     public void setLblNomTournoi(boolean finale,String nom){
         if (finale) {
-            JLabel lblFinal = new JLabel("-- Finale");
-            lblFinal.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
-            panelNomTournoi.add(lblFinal);
+            lblNomTournoi.setText("Finale du "+nom);
         }
-        lblNomTournoi.setText(nom);
+        else {
+            lblNomTournoi.setText("Poule de "+nom);
+        }
     }
 
     /**
