@@ -1,7 +1,7 @@
 package presentation.formCreerTournoi;
 
-import application.FonctionsUtilisateurs;
 import application.exceptions.BadUserExecption;
+import application.services.TournoiService;
 import modele.Jeu;
 
 import javax.swing.*;
@@ -64,81 +64,15 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 */
 
 
-                boolean testDateDebut =testerDateDebutTournoi();
-                /* la fonction juste au dessus substitu la premiére, je te laisse regarder :)
-                PreDate dateDebutTournois = vue.getPreDateDebutTournois();
-                //Si la date n'est pas valide, alors mettre le libellé en rouge
-                if (dateDebutTournois.estDateValide() && !dateDebutTournois.estPassee()) {
-                    this.vue.getLabelDateDebutTournoi().setText("Date Début Tournoi");
-                    this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
-                } else if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-                    this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
-                    this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
-                }
-                */
-
-                boolean testDatefin = testerDateFinTournoi();
-                /* la fonction juste au dessus substitu la premiére, je te laisse regarder :)
-                PreDate dateFinTournois = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
-                //Si la date n'est pas valide, alors mettre le libellé en rouge
-                if (dateFinTournois.estDateValide() && !dateFinTournois.estPassee()) {
-                    this.vue.getLabelDateFinTournoi().setText("Date Fin Tournoi");
-                    this.vue.getLabelDateFinTournoi().setForeground(new Color(51, 51, 51));
-                } else if (!(this.vue.getLabelDateFinTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-                    this.vue.getLabelDateFinTournoi().setText(this.vue.getLabelDateFinTournoi().getText() + "*");
-                    this.vue.getLabelDateFinTournoi().setForeground(new Color(255, 0, 0));
-                }
-                 */
-
-                boolean testDateFinInsc =testerDateFinInscription();
-                /* la fonction juste au dessus substitu la premiére, je te laisse regarder :)
-                PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
-                //Si la date n'est pas valide, alors mettre le libellé en rouge
-                if (dateFinInscription.estDateValide() && !dateFinInscription.estPassee()) {
-                    this.vue.getLabelDateFinInscription().setText("Date Fin Inscription");
-                    this.vue.getLabelDateFinInscription().setForeground(new Color(51, 51, 51));
-                } else if (!(this.vue.getLabelDateFinInscription().getForeground().equals(new Color(255, 0, 0)))) {
-                    this.vue.getLabelDateFinInscription().setText(this.vue.getLabelDateFinInscription().getText() + "*");
-                    this.vue.getLabelDateFinInscription().setForeground(new Color(255, 0, 0));
-                }
-                 */
-
-                boolean testChrono = testerChronologieDates();
-                /* la fonction substitue les deux suivantes
-                //Si la date Fin tournoi est avant la Date debut Tournoi, alors mettre les deux libélé en Rouge
-                if (dateFinTournois.toDate().compareTo(dateDebutTournois.toDate()) < 0) {
-                    if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-                        this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
-                        this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
-                    }
-                    if (!(this.vue.getLabelDateFinTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-                        this.vue.getLabelDateFinTournoi().setText(this.vue.getLabelDateFinTournoi().getText() + "*");
-                        this.vue.getLabelDateFinTournoi().setForeground(new Color(255, 0, 0));
-                    }
-                }
-                //Si la date d'inscription est après la date de début tournoi, alors mettre le libellé en rouge
-                if (dateFinInscription.toDate().compareTo(dateDebutTournois.toDate()) > 0) {
-                    if (!(this.vue.getLabelDateFinInscription().getForeground().equals(new Color(255, 0, 0)))) {
-                        this.vue.getLabelDateFinInscription().setText(this.vue.getLabelDateFinInscription().getText() + "*");
-                        this.vue.getLabelDateFinInscription().setForeground(new Color(255, 0, 0));
-                    }
-                }
-                */
 
                 //Si le formulaire est valide alors inserer le tournoi.
                 //
                 //  FAUT PAS QUE CE SOIT ICI !
                 //  la vue deverait retourner les infos mais pas les insérer
-                if (testNom && testJeux && testDateDebut && testDatefin && testDateFinInsc && testChrono) {
-                    //Verifie si le tournoi est multigaming ou non.
-                    try {
-                        FonctionsUtilisateurs.insererTournoi(this.vue.getNomTournoi(), vue.getPortee(), vue.getPreDateFinInscriptions(), vue.getPreDateDebutTournois(), vue.getPreDateFinTournoi(), this.jeux);
-                    } catch (BadUserExecption ex) {
-                        throw new RuntimeException(ex);
-                    }
+                // ici le truc pour instérer
 
                     this.vue.dispose();
-                }
+
             }
             case "btnCancel" -> //Ferme le formulaire de création de tournoi
                     this.vue.dispose();
@@ -146,59 +80,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
         }
     }
 
-    public boolean testerDateDebutTournoi() {
-        if (!TesteurDate.test(vue.getPreDateDebutTournois())) {
-            this.vue.setLabelOnDefault(vue.getLabelDateDebutTournoi(), "Date Début Tournoi");
-            return true;
-        }
-        if (this.isLabelDateDebutTournoiOnDefault()) {
-            this.vue.setLabelOnWarning(vue.getLabelDateDebutTournoi(), "Date Début Tournoi");
-        }
-        return false;
-    }
 
-    public boolean testerDateFinTournoi() {
-        if (!TesteurDate.test( vue.getPreDateFinTournoi())) {
-            this.vue.setLabelOnDefault(vue.getLabelDateFinTournoi(), "Date Fin Tournoi");
-            return true;
-        }
-        if (this.isLabelDateFinTournoiOnDefault()) {
-            this.vue.setLabelOnWarning(vue.getLabelDateFinTournoi(), "Date Fin Tournoi");
-        }
-        return false;
-    }
-
-    public boolean testerDateFinInscription() {
-        if (!TesteurDate.test(vue.getPreDateFinInscriptions())) {
-            this.vue.setLabelOnDefault(vue.getLabelDateFinInscription(), "Date fin inscription");
-            return true;
-        }
-        if (this.isLabelDateFinInscriptionOnDefault()) {
-            this.vue.setLabelOnWarning(vue.getLabelDateFinInscription(), "Date fin inscription");
-        }
-        return false;
-    }
-
-    public boolean testerChronologieDates() {
-        // dans le cas ou la date de fin est avant le début, on passe le label en rouge
-        PreDate dateDebutTournois = vue.getPreDateDebutTournois();
-        if (vue.getPreDateFinTournoi().toDate().before(dateDebutTournois.toDate())) {
-            if(isLabelDateDebutTournoiOnDefault())
-                this.vue.setLabelOnWarning(vue.getLabelDateDebutTournoi(), "Date debut tournoi");
-            if(isLabelDateFinTournoiOnDefault())
-                this.vue.setLabelOnWarning(vue.getLabelDateFinTournoi(), "Date Fin Tournoi");
-            return false;
-        }
-        // dans le cas ou la date de debut est avant la fin des inscriptions, on passe le label en rouge
-        if (dateDebutTournois.toDate().before((vue.getPreDateFinInscriptions().toDate()))) {
-            if(isLabelDateDebutTournoiOnDefault())
-                this.vue.setLabelOnWarning(vue.getLabelDateDebutTournoi(), "Date debut tournoi");
-            if(isLabelDateFinInscriptionOnDefault())
-                this.vue.setLabelOnWarning(vue.getLabelDateFinInscription(), "Date fin inscription");
-            return false;
-        }
-        return true;
-    }
     public boolean isLabelDateDebutTournoiOnDefault() {
         return !vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0));
     }

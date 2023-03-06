@@ -150,9 +150,11 @@ public class PopupInscrireEquipe extends JDialog {
         return this.ecurie;
     }
 
-    public nouveauModele.Tournoi getTournoi() {
-        return this.tournoi;
+    public modele.Tournoi getTournoi() {
+        return new Tournoi(this.tournoi.getId());
     }
+
+
 
     public JLabel getLblAucuneEquipeSelectionee() {
         return this.lblAucuneEquipeSelectionnee;

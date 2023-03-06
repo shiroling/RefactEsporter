@@ -4,10 +4,11 @@ import application.exceptions.BadUserExecption;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
-import application.testeurs.TesteurTournoi;
 import modele.BDInsert;
 import modele.Jeu;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class FonctionsUtilisateurs {
@@ -35,8 +36,8 @@ public class FonctionsUtilisateurs {
         // Lancer formCreerTournoi
         // TODO Help shishi to launch the fenêtre please, il vous remercira gracieusement UwU
     }
-
-    public static void insererTournoi(String nomTounoi, Portee porteeTournoi, PreDate dateFinInscription, PreDate dateDebutTournoi, PreDate dateFinTournoi, List<Jeu> jeux) throws IllegalArgumentException, BadUserExecption {
+/*
+    public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Jeu> jeux) throws IllegalArgumentException, BadUserExecption {
         if(UtilisateurCourant.getInstance().getEtatConnexion() != ConnexionCourante.GESTIONNAIRE) {
             throw new BadUserExecption("L'utilisateur connecté n'est pas un gérant");
         }
@@ -46,12 +47,15 @@ public class FonctionsUtilisateurs {
             throw e;
         }
         if (jeux.size() == 1) {
-            BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription.toDate(), dateDebutTournoi.toDate(), dateFinTournoi.toDate(), jeux.get(0).getId(), UtilisateurCourant.getInstance().getIdLog());
+            BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeux.get(0).getId(), UtilisateurCourant.getInstance().getIdLog());
         } else if (jeux.size() > 1) {
             for (Jeu j: jeux) {
                 BDInsert.insererTournoi(nomTounoi + "-"+ j.getNom(), porteeTournoi, dateFinInscription.toDate(), dateDebutTournoi.toDate(), dateFinTournoi.toDate(), j.getId(), UtilisateurCourant.getInstance().getIdLog());
             }
         }
+
     }
+
+ */
 
 }

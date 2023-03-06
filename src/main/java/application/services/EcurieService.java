@@ -1,8 +1,8 @@
 package application.services;
 
-import nouveauModele.Ecurie;
-import nouveauModele.EcurieRepository;
-import nouveauModele.Equipe;
+import nouveauModele.dataRepresentation.Ecurie;
+import nouveauModele.repositories.EcurieRepository;
+import nouveauModele.dataRepresentation.Equipe;
 import presentation.Popup.PopupEcurie.PopupEcurie;
 
 import java.util.List;
@@ -29,15 +29,14 @@ public class EcurieService {
     }
 
     public List<Equipe> getEquipes(int id_Ecurie) {
-        Ecurie e = repository.findById(id_Ecurie);
-        return null;
+        return   repository.getEquipes(id_Ecurie);
     }
 
-    public String getNomFromId(int idEcurie) {
-        return repository.findById(idEcurie).getNomEcurie();
+    public Ecurie getEcurieFromId(int idEcurie) {
+        return repository.findById(idEcurie);
     }
 
-    public String getNomManagerFromId(int idEcurie) {
-        return repository.findById(idEcurie).getNomManager();
+    public Ecurie getEcurieFromNom(String vitality) {
+        return repository.findByNom(vitality);
     }
 }

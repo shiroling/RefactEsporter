@@ -1,8 +1,10 @@
 package application.filtres;
 
+import nouveauModele.dataRepresentation.Rencontre;
+
 import java.util.List;
 
-public interface Filtre {
-    void setNext(Filtre handler);
-    void filtrer(List<?> l);
+@FunctionalInterface
+public interface Filtre<TypeAFiltrer> {
+    List<TypeAFiltrer> filtrer(List<TypeAFiltrer> listeRencontre);
 }
