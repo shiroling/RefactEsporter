@@ -1,6 +1,7 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
 import nouveauModele.dataRepresentation.Ecurie;
+import presentation.style.ElementCommun;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -13,12 +14,11 @@ public class CarteEcurie extends Carte {
         super();
 
         lblNomEcurie = new JLabel("NomEcurie()");
-        lblNomEcurie.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblNomEcurie.setFont(ElementCommun.getFontPrincipal());
         add(lblNomEcurie);
 
-        JPanel listPanelAHover = new JPanel();
-        listPanelAHover.add(this);
-        super.addHoverPannels(listPanelAHover);
+
+        super.addHoverPannels(this);
         this.setName("CarteEcurie");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
 
