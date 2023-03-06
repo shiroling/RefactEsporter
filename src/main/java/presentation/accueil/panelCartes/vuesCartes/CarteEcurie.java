@@ -10,7 +10,7 @@ public class CarteEcurie extends Carte {
 
     private Ecurie ecurie;
 
-    public CarteEcurie(Ecurie ecurie) {
+    public CarteEcurie() {
         super();
         this.ecurie = ecurie;
 
