@@ -5,6 +5,8 @@ import presentation.style.ElementCommun;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CarteRencontre extends Carte{
     private JLabel lblNomEquipe2;
@@ -93,8 +95,9 @@ public class CarteRencontre extends Carte{
         }
     }
 
-    public void setLblDateRencontre(String date){
-        lblDateRencontre.setText(date);
+    public void setDateRencontre(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        lblDateRencontre.setText(date.format(formatter));
     }
 
 
