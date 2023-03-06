@@ -63,14 +63,14 @@ public class EcurieRepository {
         }
         return ecuries.get(0);
     }
-    public List<Equipe> getEquipes(int idEcurie) {
+    public List<Equipe> getEquipes(Ecurie ecurie) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         List<Equipe> equipes = null;
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("FROM Equipe e WHERE e.ecurie.idEcurie = :idEcurie");
-            query.setParameter("idEcurie", idEcurie);
+            query.setParameter("idEcurie", ecurie.getIdEcurie());
             equipes = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -84,8 +84,8 @@ public class EcurieRepository {
         return equipes;
     }
 
-    public int getPoints(int idEcurie) {
-        List<Equipe> equipesACompter = EcurieRepository.getInstance().getEquipes(idEcurie);
+    public int getPoints(Ecurie ecurie) {
+        List<Equipe> equipesACompter = EcurieRepository.getInstance().getEquipes(ecurie);
         int totalPoints = 0;
         for (Equipe e : equipesACompter) {
             totalPoints += EquipeRepository.getInstance().getPoints(e);

@@ -24,19 +24,13 @@ public class EcurieService {
     }
 
     public void afficherPopupEcurie(int idEcurie) {
-        PopupEcurie popupEcurie = new PopupEcurie(idEcurie);
+        Ecurie ecurie = repository.findById(idEcurie);
+        List<String> nomsJoueur = repository.getEquipes(ecurie).stream().map(Equipe::getNomEquipe).toList();
+        PopupEcurie popupEcurie = new PopupEcurie(ecurie.getNomEcurie(), ecurie.getNomManager(), nomsJoueur);
         popupEcurie.setVisible(true);
     }
 
-    public List<Equipe> getEquipes(int id_Ecurie) {
-        return   repository.getEquipes(id_Ecurie);
-    }
-
-    public Ecurie getEcurieFromId(int idEcurie) {
-        return repository.findById(idEcurie);
-    }
-
-    public Ecurie getEcurieFromNom(String vitality) {
-        return repository.findByNom(vitality);
+    public List<Equipe> getEquipes(int idEcurie) {
+        return   repository.getEquipes(repository.findById(idEcurie));
     }
 }

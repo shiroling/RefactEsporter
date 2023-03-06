@@ -7,6 +7,7 @@ import nouveauModele.dataRepresentation.Joueur;
 import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.JeuRepository;
+import presentation.Popup.PopupEquipe.PopupEquipe;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -27,9 +28,12 @@ public class EquipeService {
         return instance;
     }
 
-    public void afficherPopupEquipe(String nomEquipe) {
-        //PopupEquipe popupEquipe = new PopupEquipe(repository.findByName(nomEquipe));
-        //popupEquipe.setVisible(true);
+    public void afficherPopupEquipe(int idEquipe) {
+        Equipe equipe = repository.findById(idEquipe);
+        int nbPoints = repository.getPoints(equipe);
+        List<String> nomsJoueurs = repository.getJoueurs(equipe).stream().map(Joueur::getNom).toList();
+        PopupEquipe popupEquipe = new PopupEquipe(equipe.getNomEquipe(), nbPoints, nomsJoueurs);
+        popupEquipe.setVisible(true);
     }
 
     public String getNomFromId(int idEquipe) {
