@@ -10,8 +10,13 @@ import java.awt.*;
 public class CarteEcurie extends Carte {
 
     private JLabel lblNomEcurie;
+    private JLabel lblPoint;
+    private int point;
     public CarteEcurie() {
         super();
+        setLayout(new GridLayout(2, 1, 0, 0));
+        JPanel panelNom = new JPanel();
+        add(panelNom);
 
         lblNomEcurie = new JLabel("NomEcurie()");
         lblNomEcurie.setFont(ElementCommun.getFontPrincipal());
@@ -21,6 +26,15 @@ public class CarteEcurie extends Carte {
         super.addHoverPannels(this);
         this.setName("CarteEcurie");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+        JPanel panelPoint = new JPanel();
+        add(panelPoint);
+
+        lblPoint = new JLabel("Nombre de points ");
+        lblPoint.setFont(ElementCommun.getFontPrincipal());
+        panelPoint.add(lblPoint);
+        panelPoint.setBackground(new Color(0,0,0,0));
+        panelNom.setBackground(new Color(0,0,0,0));
 
     }
     public void setNomEcurie(String nom){
