@@ -1,7 +1,7 @@
-package nouveauModele;
+package nouveauModele.dataRepresentation;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Joueur")
@@ -19,7 +19,7 @@ public class Joueur {
     private String prenom;
 
     @Column(name = "Date_De_Naissance", nullable = false)
-    private Date dateDeNaissance;
+    private LocalDate dateDeNaissance;
 
     @Column(name = "Pseudo", nullable = false)
     private String pseudo;
@@ -27,6 +27,17 @@ public class Joueur {
     @ManyToOne
     @JoinColumn(name = "Id_Equipe", referencedColumnName = "Id_Equipe", nullable = false)
     private Equipe equipe;
+
+    public Joueur() {
+
+    }
+    public Joueur(String nom, String prenom, String pseudo, LocalDate dateDeNaissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.pseudo = pseudo;
+        this.dateDeNaissance = dateDeNaissance;
+        this.equipe = equipe;
+    }
 
     public int getIdJoueur() {
         return idJoueur;
@@ -52,11 +63,11 @@ public class Joueur {
         this.prenom = prenom;
     }
 
-    public Date getDateDeNaissance() {
+    public LocalDate getDateDeNaissance() {
         return dateDeNaissance;
     }
 
-    public void setDateDeNaissance(Date dateDeNaissance) {
+    public void setDateDeNaissance(LocalDate dateDeNaissance) {
         this.dateDeNaissance = dateDeNaissance;
     }
 
@@ -74,5 +85,17 @@ public class Joueur {
 
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
+    }
+
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "idJoueur=" + idJoueur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateDeNaissance=" + dateDeNaissance +
+                ", pseudo='" + pseudo + '\'' +
+                ", equipe=" + equipe +
+                '}';
     }
 }

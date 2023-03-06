@@ -2,7 +2,6 @@ package presentation.accueil;
 
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
-import application.filtres.Filtre;
 
 public class ControleurAccueil {
     private Selection etat;
@@ -16,9 +15,10 @@ public class ControleurAccueil {
      * @param premierFiltre est le premier filtre d'une chaine de reponsabilite qui permet de filtrer les entitées affichées sous formes de cartes
      *                      null si aucun filtre n'est selectionné
      */
+    /*
     public void nouveauFiltres(Filtre premierFiltre) {
         this.vue.getVueCarte().setCartes(ModeleGlobal.getInstance().getListeCouranteFiltree(premierFiltre));
-    }
+    }*/
 
     public void changeState(Selection etat) {
         this.etat = etat;

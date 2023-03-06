@@ -2,7 +2,6 @@ package presentation.formCreerTournoi;
 
 import application.donneesPersistantes.Mois;
 import application.donneesPersistantes.Portee;
-import application.testeurs.date.PreDate;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -111,7 +110,7 @@ public class VueFormCreerTournoi extends JDialog {
     public String getSelectedValueComboMoiFinTournoi() {
         return Objects.requireNonNull(this.comboMoiFinTournoi.getSelectedItem()).toString();
     }
-
+/*
     public PreDate getPreDateDebutTournois() {
         return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourDebutTournoi()));
     }
@@ -124,7 +123,7 @@ public class VueFormCreerTournoi extends JDialog {
         return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourFinInscription()));
     }
 
-
+*/
     public VueFormCreerTournoi(int idGerant) {
         this.idGerant = idGerant;
         ControleurFormCreerTournoi controleur = new ControleurFormCreerTournoi(this);

@@ -1,13 +1,10 @@
 package presentation.formJoueur;
 
 import application.testeurs.PreJoueur;
-import presentation.formCreerEquipe.VueJoueur;
 import presentation.style.datePicker.VueDatePicker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
 
 import static presentation.style.ElementCommun.getDefaultColor;
 import static presentation.style.ElementCommun.getWarningColor;
@@ -123,7 +120,7 @@ public class VueFormJoueur extends JDialog {
         pj.setNom(this.textFieldNom.getText());
         pj.setPrenom(textFieldPrenom.getText());
         pj.setPseudo(textFieldPseudo.getText());
-        pj.setDateDeNaissance(datePickerNaissance.getDate());
+        pj.setDateDeNaissance(datePickerNaissance.getLocalDate());
         return pj;
     }
 }

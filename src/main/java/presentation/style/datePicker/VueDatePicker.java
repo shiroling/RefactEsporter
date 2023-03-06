@@ -3,10 +3,11 @@ package presentation.style.datePicker;
 import application.donneesPersistantes.Annees;
 import application.donneesPersistantes.Jours;
 import application.donneesPersistantes.Mois;
-import application.testeurs.date.PreDate;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class VueDatePicker extends JPanel {
@@ -61,24 +62,22 @@ public class VueDatePicker extends JPanel {
     }
 
 
-    public PreDate getDate() {
-        return new PreDate(getAnnee(), getMois(), getJour());
+    public LocalDate getLocalDate() throws DateTimeException {
+        return LocalDate.of(getAnnee(), getMois(), getJour());
     }
 
-    public void setOnWarning(JComboBox<String> source) {
-        if (source.getForeground() != new Color(255, 0, 0)) {
-            source.setForeground(new Color(255, 0, 0));
-        }
-        source.updateUI();
-        this.updateUI();
 
+    public void setOnWarning() {
+        this.comboJour.setForeground(new Color(255, 0, 0));
+        this.comboMois.setForeground(new Color(255, 0, 0));
+        this.comboAnnee.setForeground(new Color(255, 0, 0));
+        this.updateUI();
     }
 
     public void setOnDefault(JComboBox<String> source) {
-        if (source.getForeground() != new Color(0, 0, 0)) {
-            source.setForeground(new Color(0, 0, 0));
-        }
-        source.updateUI();
+        this.comboJour.setForeground(new Color(0, 0, 0));
+        this.comboMois.setForeground(new Color(0, 0, 0));
+        this.comboAnnee.setForeground(new Color(0, 0, 0));
         this.updateUI();
     }
     public JComboBox<String> getComboJour() {
