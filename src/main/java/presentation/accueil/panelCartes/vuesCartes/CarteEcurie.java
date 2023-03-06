@@ -41,6 +41,10 @@ public class CarteEcurie extends Carte {
         lblNomEcurie.setText(nom);
     }
 
+    public void setPoint(int i){
+        lblPoint.setText("Nombre de points: "+i);
+    }
+
 
     @Override
     public Carte clone() {

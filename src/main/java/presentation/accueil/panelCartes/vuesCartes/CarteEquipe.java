@@ -10,7 +10,6 @@ public class CarteEquipe extends Carte{
 
     private JLabel lblNomEquipe;
     private JLabel lblPoint;
-    private int point;
 
     public CarteEquipe() {
         super();
@@ -44,7 +43,6 @@ public class CarteEquipe extends Carte{
         lblNomEquipe.setText(nom);
     }
     public void setNombrePoint(int i){
-        this.point=i;
         lblPoint.setText("Nombre de points: "+i);
     }
 
