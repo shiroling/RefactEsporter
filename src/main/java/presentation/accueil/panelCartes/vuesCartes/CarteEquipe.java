@@ -40,7 +40,7 @@ public class CarteEquipe extends Carte{
 
     }
 
-    public void setNomEcurie(String nom) {
+    public void setNomEquipe(String nom) {
         lblNomEquipe.setText(nom);
     }
     public void setNombrePoint(int i){
