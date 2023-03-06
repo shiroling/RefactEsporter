@@ -1,12 +1,14 @@
 package presentation.accueil.panelFonctionnalite.panelConnexion;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class VuePanelConnexion extends JPanel {
     private final ControleurPanelConnexion controleur = new ControleurPanelConnexion(this);
     private final VueLabelBouton fonctionUtilisateur;
     private final VueLabelBouton connexionCourante;
     public VuePanelConnexion() {
+        this.setLayout(new GridLayout(2,1));
         fonctionUtilisateur = new VueLabelBouton("Gestionnaire : ", "créer tournoi", "btnFonctionUtilisateur", this.controleur);
         connexionCourante =  new VueLabelBouton("Déconnecté ", "se connecter", "btnSwitchConnexion", this.controleur);
         fonctionUtilisateur.setName("fonctionCourante");
