@@ -1,7 +1,5 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
-import nouveauModele.dataRepresentation.Ecurie;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -10,7 +8,7 @@ public class CarteEquipe extends Carte{
 
     private JLabel lblNomEcurie;
 
-    public CarteEcurie() {
+    public CarteEquipe() {
         super();
 
         JLabel lblNomEcurie = new JLabel("NomEcurie()");
