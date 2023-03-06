@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public abstract class Carte extends JPanel implements Cloneable  {
+    private int id;
+
     public abstract Carte clone();
     public Carte() {
         setBackground(Color.WHITE);
@@ -18,6 +20,13 @@ public abstract class Carte extends JPanel implements Cloneable  {
     public void addHoverPannels(JPanel panelAHover) {
         HoverCarte hoverCarte = new HoverCarte(this, panelAHover);
         addMouseListener(hoverCarte);
+    }
+    public void setId(int id){
+        this.id=id;
+    }
+
+    public int getId(){
+        return id;
     }
 }
 

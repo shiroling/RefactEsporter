@@ -8,13 +8,11 @@ import java.awt.*;
 
 public class CarteEcurie extends Carte {
 
-    private Ecurie ecurie;
-
+    private JLabel lblNomEcurie;
     public CarteEcurie() {
         super();
-        this.ecurie = ecurie;
 
-        JLabel lblNomEcurie = new JLabel(ecurie.getNomEcurie());
+        lblNomEcurie = new JLabel("NomEcurie()");
         lblNomEcurie.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
         add(lblNomEcurie);
 
@@ -25,10 +23,10 @@ public class CarteEcurie extends Carte {
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
 
     }
-
-    public Ecurie getEcurie() {
-        return ecurie;
+    public void setNomEcurie(String nom){
+        lblNomEcurie.setText(nom);
     }
+
 
     @Override
     public Carte clone() {
