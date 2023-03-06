@@ -20,6 +20,7 @@ public class VueAccueil extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().add(vueFonctionalite, BorderLayout.WEST);
+        this.getContentPane().add(vueCarte, BorderLayout.CENTER);
     }
 
     public VueFonctionalite getVueFonctionalite() {
