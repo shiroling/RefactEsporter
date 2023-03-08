@@ -1,8 +1,10 @@
 package nouveauModele.repositories;
 
+import application.Application;
 import modele.ConnexionBase;
 import nouveauModele.HibernateUtil;
 import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Jouer;
 import nouveauModele.dataRepresentation.Poule;
 import nouveauModele.dataRepresentation.Rencontre;
 import org.hibernate.Session;
@@ -169,5 +171,20 @@ public class RencontreRepository {
             session.close();
         }
         return rencontres;
+    }
+
+    public void setVainqueur(Equipe equipeGagnante, Rencontre rencontre) {
+        Equipe equipe1 = this.getEquipes(rencontre).get(0);
+        Equipe equipe2 = this.getEquipes(rencontre).get(1);
+
+        Jouer tupleJouerEquipe1 = JouerRepository.getInstance().findByIdRencontreIdEquipe(rencontre.getIdRencontre(), equipe1.getIdEquipe());
+        Jouer tupleJouerEquipe2 = JouerRepository.getInstance().findByIdRencontreIdEquipe(rencontre.getIdRencontre(), equipe2.getIdEquipe());
+        if(equipe1.equals(equipeGagnante)) {
+            tupleJouerEquipe1.setAGagne(true);
+            tupleJouerEquipe2.setAGagne(false);
+        } else {
+            tupleJouerEquipe1.setAGagne(false);
+            tupleJouerEquipe2.setAGagne(true);
+        }
     }
 }

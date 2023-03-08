@@ -3,6 +3,7 @@ package application.services;
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.RencontreRepository;
+import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
 import presentation.Popup.PopupRencontre.PopupRencontre;
 
 import java.util.List;
@@ -62,7 +63,13 @@ public class RencontreService {
         return repository.estResultatRenseigne(rencontre);
     }
 
+    public void afficherIndiquerVainqueur(int idRencontre) {
+        //PopupIndiquerVainqueur fen = new PopupIndiquerVainqueur();
+    }
 
-
-
+    public void designerVainqueur(String nomEquipeVainqueur, int idRencontre) {
+        Equipe equipe = EquipeRepository.getInstance().findByNom(nomEquipeVainqueur);
+        Rencontre rencontre = repository.findById(idRencontre);
+        repository.setVainqueur(equipe, rencontre);
+    }
 }

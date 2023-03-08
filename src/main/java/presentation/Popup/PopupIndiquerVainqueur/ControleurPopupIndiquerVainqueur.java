@@ -1,4 +1,5 @@
 package presentation.Popup.PopupIndiquerVainqueur;
+import application.services.RencontreService;
 import presentation.style.btnStyle.BtnStyle;
 
 import java.awt.event.ActionEvent;
@@ -20,12 +21,7 @@ public class ControleurPopupIndiquerVainqueur implements ActionListener {
 
         switch (btn.getName())	{
             case "btnConfirmer" :
-                try {
-                    this.vue.getRencontre().designerVainceur(this.vue.getVainqueur().getId());
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                RencontreService.getInstance().designerVainqueur(vue.getNomEquipeVainqueur(), vue.getIdRencontre())
                 this.vue.dispose();
                 break;
             case "btnAnnuler" :

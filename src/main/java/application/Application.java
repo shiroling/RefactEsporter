@@ -22,7 +22,7 @@ public class Application {
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
         //(new  Application()).runApp();
-        TournoiService.getInstance().afficherPopupTournoi(262);
+
     }
 
     public static Application getinstance() {

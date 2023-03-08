@@ -58,4 +58,12 @@ public class Jouer {
     public int hashCode() {
         return Objects.hash(id, aGagne);
     }
+
+    public void setAGagne(boolean aGagne) {
+        if(aGagne) {
+            this.aGagne = 1;
+        }else {
+            this.aGagne = 0;
+        }
+    }
 }
