@@ -42,8 +42,8 @@ public class CarteJeu extends Carte{
 
         // Récupération de l'image à partir du classpath
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("PathLogo()");
-
+        InputStream inputStream = classLoader.getResourceAsStream("logosJeux/icon.png");
+        System.out.println(inputStream);
         // Chargement de l'image en utilisant la classe ImageIO
         BufferedImage image = null;
         try {
