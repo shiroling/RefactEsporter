@@ -32,7 +32,7 @@ public class CarteJeu extends Carte{
         flowLayout.setVgap(30);
         add(panelNomJeu);
 
-        JLabel lblNomJeu = new JLabel("NomJeu");
+        lblNomJeu = new JLabel("NomJeu");
         lblNomJeu.setFont(ElementCommun.getFontPrincipal());
         panelNomJeu.add(lblNomJeu);
 
@@ -76,7 +76,8 @@ public class CarteJeu extends Carte{
             }
 
             // Affichage de l'image dans un JLabel
-            JLabel lblLogoJeu = new JLabel(new ImageIcon(image));
+            lblLogoJeu.setIcon(new ImageIcon(image));
+
         }
 
 }
