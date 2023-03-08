@@ -48,7 +48,7 @@ public class TournoiService {
         System.out.print("Creation des poules...");
         PouleRepository.getInstance().creerPoules(tournoiHote.getId());
         System.out.println("OK");
-        List<Poule> poulesCreationRencontres = getPoulesSimples(tournoiHote.getId());
+        List<Poule> poulesCreationRencontres = repository.getPoulesClassiques(tournoiHote);
         System.out.println("Creation et peuplage des poules : ");
         for (Poule p : poulesCreationRencontres) {
             System.out.print(p + " ...");
@@ -189,12 +189,6 @@ public class TournoiService {
         Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
 
         return TournoiRepository.getInstance().getAllPoules(tournoiAvecPoules);
-    }
-
-    public List<Poule> getPoulesSimples(int idTournoi) {
-        Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
-
-        return TournoiRepository.getInstance().getPoulesClassiques(tournoiAvecPoules);
     }
 
     private static Tournoi getTournoiExistant(int idTournoi) {
