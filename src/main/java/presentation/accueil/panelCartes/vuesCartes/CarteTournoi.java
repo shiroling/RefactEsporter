@@ -1,3 +1,4 @@
+
 package presentation.accueil.panelCartes.vuesCartes;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class CarteTournoi extends Carte{
 
     public CarteTournoi() {
         super();
-
+        setLayout(new GridLayout(2, 1, 0, 0));
         panelNom = new JPanel();
         panelNom.setBackground(new Color(0,0,0,0));
         add(panelNom);

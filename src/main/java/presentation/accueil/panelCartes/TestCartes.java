@@ -1,6 +1,9 @@
 package presentation.accueil.panelCartes;
 
-import presentation.accueil.panelCartes.vuesCartes.*;
+import presentation.accueil.panelCartes.vuesCartes.CarteEcurie;
+import presentation.accueil.panelCartes.vuesCartes.CarteEquipe;
+import presentation.accueil.panelCartes.vuesCartes.CarteRencontre;
+import presentation.accueil.panelCartes.vuesCartes.CarteTournoi;
 
 import javax.swing.*;
 import java.awt.*;

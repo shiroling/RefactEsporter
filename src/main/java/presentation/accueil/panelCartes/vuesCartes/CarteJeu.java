@@ -77,7 +77,6 @@ public class CarteJeu extends Carte{
 
             // Affichage de l'image dans un JLabel
             lblLogoJeu.setIcon(new ImageIcon(image));
-
         }
 
 }
