@@ -18,8 +18,7 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        //(new  Application()).runApp();
-        EcurieService.getInstance().afficherPopupEcurie(3);
+        (new  Application()).runApp();
     }
 
     public static Application getinstance() {
