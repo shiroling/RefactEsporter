@@ -32,7 +32,7 @@ public class UsineCarte {
         CarteEcurie clone = (CarteEcurie) carteEcurie.clone();
         clone.setId(idEcurie);
         clone.setNomEcurie(nomEcurie);
-        // clone.setPointsEcurie(pointsEcurie);
+        clone.setPoint(pointsEcurie);
         return clone;
     }
 
