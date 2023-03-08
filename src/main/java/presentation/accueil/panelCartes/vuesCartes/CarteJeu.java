@@ -19,7 +19,7 @@ public class CarteJeu extends Carte{
 
     @Override
     public Carte clone() {
-        return null;
+        return (CarteJeu) super.clone();
     }
 
     public CarteJeu() {

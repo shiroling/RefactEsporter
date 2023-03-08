@@ -63,6 +63,6 @@ public class CarteTournoi extends Carte{
 
     @Override
     public Carte clone() {
-        return null;
+        return (CarteTournoi) super.clone();
     }
 }

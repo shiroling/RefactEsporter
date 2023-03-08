@@ -48,7 +48,7 @@ public class CarteEcurie extends Carte {
 
     @Override
     public Carte clone() {
-        return null;
+        return (CarteEcurie) super.clone();
     }
 
 }

@@ -18,7 +18,7 @@ public class CarteRencontre extends Carte{
 
     @Override
     public Carte clone() {
-        return null;
+        return (CarteRencontre) super.clone();
     }
 
     public CarteRencontre() {
