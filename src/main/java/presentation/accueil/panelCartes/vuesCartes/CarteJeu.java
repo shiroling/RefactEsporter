@@ -64,7 +64,7 @@ public class CarteJeu extends Carte{
         public void setLblLogoJeu(String path){
             // Récupération de l'image à partir du classpath
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("src/main/resources/logosJeux/"+path);
+            InputStream inputStream = classLoader.getResourceAsStream("logosJeux/"+path);
 
             // Chargement de l'image en utilisant la classe ImageIO
             BufferedImage image = null;

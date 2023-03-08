@@ -15,6 +15,7 @@ public class TestCartes extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         UsineCarte uC = UsineCarte.getInstance();
         CarteEcurie ce = uC.getCarteEcurie(12,"bouboule",14);
+        ce = new CarteEcurie();
         add(ce);
     }
 

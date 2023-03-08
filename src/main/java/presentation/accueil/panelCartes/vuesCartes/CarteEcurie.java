@@ -16,14 +16,11 @@ public class CarteEcurie extends Carte {
         super();
         setLayout(new GridLayout(2, 1, 0, 0));
         JPanel panelNom = new JPanel();
-        add(panelNom);
+        FlowLayout flowLayout = (FlowLayout) panelNom.getLayout();
+        flowLayout.setVgap(40);
 
-        lblNomEcurie = new JLabel("NomEcurie()");
-        lblNomEcurie.setFont(ElementCommun.getFontPrincipal());
-        add(lblNomEcurie);
-
-
-        super.addHoverPannels(this);
+        lblNomEcurie = new JLabel("NomEcurie");
+        panelNom.add(lblNomEcurie);
         this.setName("CarteEcurie");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
 
@@ -31,10 +28,13 @@ public class CarteEcurie extends Carte {
         add(panelPoint);
 
         lblPoint = new JLabel("Nombre de points ");
-        lblPoint.setFont(ElementCommun.getFontPrincipal());
         panelPoint.add(lblPoint);
         panelPoint.setBackground(new Color(0,0,0,0));
         panelNom.setBackground(new Color(0,0,0,0));
+        lblPoint.setFont(ElementCommun.getFontPrincipal());
+        lblNomEcurie.setFont(ElementCommun.getFontPrincipal());
+        add(panelNom);
+        add(panelPoint);
 
     }
     public void setNomEcurie(String nom){
