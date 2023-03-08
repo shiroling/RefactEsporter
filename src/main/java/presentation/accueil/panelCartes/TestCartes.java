@@ -3,9 +3,11 @@ package presentation.accueil.panelCartes;
 import presentation.accueil.panelCartes.vuesCartes.CarteEcurie;
 import presentation.accueil.panelCartes.vuesCartes.CarteEquipe;
 import presentation.accueil.panelCartes.vuesCartes.CarteRencontre;
+import presentation.accueil.panelCartes.vuesCartes.CarteTournoi;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class TestCartes extends JFrame {
     public TestCartes(){
@@ -14,8 +16,7 @@ public class TestCartes extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         UsineCarte uC = UsineCarte.getInstance();
-        CarteEcurie ce = uC.getCarteEcurie(12,"bouboule",14);
-        ce = new CarteEcurie();
+        CarteTournoi ce = uC.getCarteTournoi(12,"bouboule", LocalDate.now(),LocalDate.now());
         add(ce);
     }
 
