@@ -25,35 +25,20 @@ import javax.swing.border.EmptyBorder;
 public class PopupInscrireEquipe extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-    private Ecurie ecurie;
     private JScrollPane scrollPane;
-    private Equipe equipeSelectionnee;
-    private Tournoi tournoi;
+    private String nomEquipeSelectionee;
     private JPanel panelListEquipes;
     private JLabel lblAucuneEquipeSelectionnee;
-    /**
-     * Launch the application.
-     */
-	/*public static void main(String[] args) {
-		try {
-			PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(2), new Tournoi(172));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
+    private String nomTournoi;
 
-    /**
-     * Create the dialog.
-     */
-    public PopupInscrireEquipe(Ecurie ecurie, Tournoi tournoi) {
-        this.ecurie = ecurie;
-        this.tournoi = tournoi;
-
+    public String getNomTournoi() {
+        return this.nomTournoi;
+    }
+    public PopupInscrireEquipe(List<String> nomsEquipesPouvantSInscrire, String nomTournoi) {
+        this.nomTournoi = nomTournoi;
         ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
 
-        List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).collect(Collectors.toList());
+        //List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).collect(Collectors.toList());
         setBounds(100, 100, 450, 300);
         setTitle("Inscrire Equipe");
         getContentPane().setLayout(new BorderLayout());
@@ -75,15 +60,15 @@ public class PopupInscrireEquipe extends JDialog {
         {
             panelListEquipes = new JPanel();
             scrollPane.setViewportView(panelListEquipes);
-            panelListEquipes.setLayout(new GridLayout(equipes.size(), 1, 5, 5));
+            panelListEquipes.setLayout(new GridLayout(nomsEquipesPouvantSInscrire.size(), 1, 5, 5));
 
-            if(equipes.size() == 0) {
+            if(nomsEquipesPouvantSInscrire.size() == 0) {
                 JLabel lblAucuneEquipeAInscrire = new JLabel("-- Aucune equipe à inscrire --");
                 lblAucuneEquipeAInscrire.setFont(new Font("Tahoma", Font.ITALIC, 11));
                 panelListEquipes.add(lblAucuneEquipeAInscrire);
             }
-            for(Equipe e : equipes) {
-                PanelEquipePourInscription panelEquipe = new PanelEquipePourInscription(e, this);
+            for(String nomEquipe : nomsEquipesPouvantSInscrire) {
+                PanelEquipePourInscription panelEquipe = new PanelEquipePourInscription(nomEquipe, this);
                 panelListEquipes.add(panelEquipe);
             }
         }
@@ -129,31 +114,21 @@ public class PopupInscrireEquipe extends JDialog {
         }
     }
 
-    public Equipe getEquipeSelectionee() {
-        return this.equipeSelectionnee;
+    public String getNomEquipeSelectionee() {
+        return this.nomEquipeSelectionee;
     }
 
-    public void setEquipeSelectionee(Equipe equipe) {
+    public void setEquipeSelectionee(String nomEquipe) {
         for(Component p : panelListEquipes.getComponents()) {
              PanelEquipePourInscription panel = (PanelEquipePourInscription) p;
-            if(panel.getEquipe().equals(equipeSelectionnee)) {
+            if(panel.getNomEquipe().equals(nomEquipe)) {
+                panel.setBorderBleu();
+            } else {
                 panel.setBorder(new EmptyBorder(0,0,0,0));
             }
-            if(panel.getEquipe().equals(equipe)) {
-                panel.setBorderBleu();
-            }
         }
-        this.equipeSelectionnee = equipe;
+        this.nomEquipeSelectionee = nomEquipe;
     }
-
-    public Ecurie getEcurie() {
-        return this.ecurie;
-    }
-
-    public modele.Tournoi getTournoi() {
-        return new Tournoi(this.tournoi.getId());
-    }
-
 
 
     public JLabel getLblAucuneEquipeSelectionee() {

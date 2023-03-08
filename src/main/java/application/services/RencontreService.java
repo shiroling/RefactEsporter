@@ -1,16 +1,11 @@
 package application.services;
 
-import modele.BDPredicats;
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Jeu;
-import nouveauModele.dataRepresentation.Rencontre;
-import nouveauModele.dataRepresentation.Tournoi;
+import nouveauModele.dataRepresentation.*;
+import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.RencontreRepository;
+import presentation.Popup.PopupRencontre.PopupRencontre;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 
 public class RencontreService {
     private static RencontreService instance;
@@ -27,10 +22,34 @@ public class RencontreService {
         return instance;
     }
 
-    public void afficherPopupRencontre(Rencontre rencontre) {
-
+    public void afficherPopupRencontre(int idRencontre) {
+        Rencontre rencontre = repository.findById(idRencontre);
+        String nomEquipe1 = repository.getEquipes(rencontre).get(0).getNomEquipe();
+        String nomEquipe2 = repository.getEquipes(rencontre).get(1).getNomEquipe();
+        String nomTournoi = rencontre.getPoule().getTournoi().getNom();
+        String dateRencontre = rencontre.getDateRencontre().toString();
+        List<String> pseudosJoueursEquipe1 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe1).stream().map(Joueur::getPseudo).toList();
+        List<String> pseudosJoueursEquipe2 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe2).stream().map(Joueur::getPseudo).toList();
+        int statutRencontre = getStatutRencontre(rencontre, nomEquipe1);
+        PopupRencontre popupRencontre = new PopupRencontre(nomEquipe1, nomEquipe2, nomTournoi, dateRencontre, statutRencontre, pseudosJoueursEquipe1, pseudosJoueursEquipe2);
+        popupRencontre.setVisible(true);
     }
-    public List<Equipe> getEquipesParticipantes(int idRencontre) { return repository.getEquipes(idRencontre); }
+
+    private int getStatutRencontre(Rencontre rencontre, String nomEquipe1) {
+        int statutRencontre;
+        if(repository.estResultatRenseigne(rencontre)) {
+            if(repository.getGagnant(rencontre).getNomEquipe().equals(nomEquipe1)) {
+                statutRencontre = 1;
+            } else {
+                statutRencontre = 2;
+            }
+        } else {
+            statutRencontre = 0;
+        }
+        return statutRencontre;
+    }
+
+    public List<Equipe> getEquipesParticipantes(int idRencontre) { return repository.getEquipes(repository.findById(idRencontre)); }
     public Rencontre getRencontreFromId(int idRencontre) {
         return repository.findById(idRencontre);
     }

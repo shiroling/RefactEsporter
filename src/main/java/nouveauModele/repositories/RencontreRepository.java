@@ -28,14 +28,14 @@ public class RencontreRepository {
         return instance;
     }
 
-    public List<Equipe> getEquipes(int idRencontre) {
+    public List<Equipe> getEquipes(Rencontre rencontre) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         List<Equipe> equipes = null;
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("SELECT j.id.equipe FROM Jouer j WHERE j.id.rencontre.idRencontre = :idRencontre");
-            query.setParameter("idRencontre", idRencontre);
+            query.setParameter("idRencontre", rencontre.getIdRencontre());
             equipes = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -46,6 +46,7 @@ public class RencontreRepository {
         } finally {
             session.close();
         }
+
         if (equipes.size() >2 || equipes.isEmpty()) {
             throw new RuntimeException("Il deverais y avoir des équipes la dedans, pabon...");
         }

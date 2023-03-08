@@ -64,6 +64,10 @@ public class EquipeRepository {
         return joueurs;
     }
 
+    public List<Joueur> getJoueursFromNomEquipe(String nomEquipe) {
+        return this.getJoueurs(this.findByNom(nomEquipe));
+    }
+
     public Equipe findByNom(String nomEquipe) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

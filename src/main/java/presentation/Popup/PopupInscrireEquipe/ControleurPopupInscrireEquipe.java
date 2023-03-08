@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+import application.Application;
 import application.services.TournoiService;
 
 import javax.swing.JButton;
@@ -25,15 +26,14 @@ public class ControleurPopupInscrireEquipe implements ActionListener {
 
         switch (btn.getName()) {
             case "Inscrire":
-                if (this.vue.getEquipeSelectionee() != null) {
-                    //TournoiService.procedureInscrireEquipe(this.vue.getEquipeSelectionee(), this.vue.getTournoi());
+                if (this.vue.getNomEquipeSelectionee() != null) {
+                    Application.getinstance().inscrireEquipeAuTournoi(vue.getNomEquipeSelectionee(), vue.getNomTournoi());
                     this.vue.dispose();
                 } else {
                     this.vue.getLblAucuneEquipeSelectionee().setVisible(true);
                 }
                 break;
             case "Annuler":
-                TournoiService.getInstance().afficherPopupTournoi(this.vue.getTournoi().getId());
                 this.vue.dispose();
                 break;
         }

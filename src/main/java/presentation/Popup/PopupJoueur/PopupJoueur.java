@@ -19,8 +19,8 @@ public class PopupJoueur extends JDialog {
     /**
      * Create the dialog.
      */
-    public PopupJoueur(Joueur j) {
-        setTitle("Joueur : "+j.getPrenom()+" \""+j.getPseudo()+"\" "+j.getNom());
+    public PopupJoueur(String prenom, String pseudo, String nom, String dateNaissance, String nomEcurie, String nomEquipe) {
+        setTitle("Joueur : " + prenom + " \"" + pseudo + "\" " + nom);
         setBounds(100, 100, 614, 528);
         BorderLayout borderLayout = new BorderLayout();
         borderLayout.setVgap(30);
@@ -32,11 +32,7 @@ public class PopupJoueur extends JDialog {
             JPanel panelEnTete = new JPanel();
             contentPanel.add(panelEnTete, BorderLayout.NORTH);
 
-            JLabel photo = new JLabel("");
-            panelEnTete.add(photo);
-
-
-            JLabel lblNom = new JLabel(j.getPrenom()+' '+'"'+j.getPseudo()+'"'+' '+j.getNom());
+            JLabel lblNom = new JLabel(prenom + ' ' + '"' + pseudo + '"' + ' ' + nom);
             lblNom.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
             panelEnTete.add(lblNom);
         }
@@ -47,7 +43,7 @@ public class PopupJoueur extends JDialog {
         flowLayout.setHgap(777);
         contentPanel.add(panelCorp);
 
-        JLabel lblNaissance = new JLabel("Naissance : "+j.getNaissance().toString());
+        JLabel lblNaissance = new JLabel("Naissance : " + dateNaissance);
         lblNaissance.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
         panelCorp.add(lblNaissance);
 
@@ -61,7 +57,7 @@ public class PopupJoueur extends JDialog {
         JLabel lbllblecurie = new JLabel("Ecurie : ");
         panelEcurie.add(lbllblecurie);
 
-        JLabel lblEcurie = new JLabel(j.getEquipe().getEcurie().getNom());
+        JLabel lblEcurie = new JLabel(nomEcurie);
         lblEcurie.setName("Ecurie");
         lblEcurie.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
         panelEcurie.add(lblEcurie);
@@ -72,7 +68,7 @@ public class PopupJoueur extends JDialog {
         JLabel lbllblEquipe = new JLabel("Equipe : ");
         panelPanelEquipe.add(lbllblEquipe);
 
-        JLabel lblEquipe = new JLabel(j.getEquipe().getNom());
+        JLabel lblEquipe = new JLabel(nomEquipe);
         lblEquipe.setName("Equipe");
         lblEquipe.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
         panelPanelEquipe.add(lblEquipe);
