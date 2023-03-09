@@ -81,7 +81,7 @@ public class UtilisateurCourant {
         new VueConnexion();
         return utilisateurCourant.getEtatConnexion();
     }
-    public static void deconnexion() {
+    public void deconnexion() {
         utilisateurCourant.setAnnonymous();
     }
 }

@@ -1,9 +1,11 @@
 package application;
 
+import application.donneesPersistantes.ListeCourante;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import application.services.EcurieService;
 import application.services.TournoiService;
+import nouveauModele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
 import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
@@ -18,7 +20,8 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        (new  Application()).runApp();
+        Application app = Application.getinstance();
+        app.runApp();
     }
 
     public static Application getinstance() {
@@ -29,8 +32,12 @@ public class Application {
     }
 
     public void runApp() {
+        ListeCourante.getInstance().updateListeCourante(Selection.TOURNOI);
+        UtilisateurCourant.getInstance().deconnexion();
         vueAccueil =  new VueAccueil();
+        vueAccueil.updateToState(Selection.TOURNOI);
         vueAccueil.setVisible(true);
+
     }
 
     public void changerEtatAffichage(Selection select) {
