@@ -1,5 +1,8 @@
 package presentation.Popup.PopupTournoi;
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -16,7 +19,6 @@ public class PopupTournoi extends JDialog {
     }
     public PopupTournoi(String nomTournoi, String dateDebut, String dateFin, String dateFinInscription, boolean isFini, boolean isPlein, List<String> nomsEquipesParticipantes) {
         this.nomTournoi = nomTournoi;
-        //nomTournoi dateDebut dateFin dateFinInscription isFini isPlein nomsEquipeParticipantes
         this.setTitle("Tournoi : " + nomTournoi);
         ControleurPopupTournoi controleur = new ControleurPopupTournoi(this);
 
@@ -91,6 +93,7 @@ public class PopupTournoi extends JDialog {
             panelInscription.add(lblPlein);
         }
 
+        ControleurLabelsPopups controleurLblEquipe = new ControleurLabelsPopups(TypeLabel.EQUIPE);
         for (String nomEquipe : nomsEquipesParticipantes) {
 
             JPanel panelEquipe = new JPanel();
@@ -99,6 +102,7 @@ public class PopupTournoi extends JDialog {
             JLabel lblPlace = new JLabel(nomsEquipesParticipantes.indexOf(nomEquipe)+1+"-");
             JLabel equipe = new JLabel(nomEquipe);
             equipe.setName("Equipe");
+            equipe.addMouseListener(controleurLblEquipe);
             panelEquipe.add(lblPlace);
             panelEquipe.add(equipe);
             flowLayout = (FlowLayout) panelEquipe.getLayout();

@@ -21,7 +21,7 @@ public class ControleurPopupIndiquerVainqueur implements ActionListener {
 
         switch (btn.getName())	{
             case "btnConfirmer" :
-                RencontreService.getInstance().designerVainqueur(vue.getNomEquipeVainqueur(), vue.getIdRencontre())
+                RencontreService.getInstance().designerVainqueur(vue.getNomEquipeVainqueur(), vue.getIdRencontre());
                 this.vue.dispose();
                 break;
             case "btnAnnuler" :

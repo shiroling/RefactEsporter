@@ -1,5 +1,8 @@
 package presentation.Popup.PopupRencontre;
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
@@ -15,9 +18,15 @@ import javax.swing.border.EmptyBorder;
 public class PopupRencontre extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
+    private int idRencontre;
+
+    public int getIdRencontre() {
+        return this.idRencontre;
+    }
 
     /**
      *
+     * @param idRencontre
      * @param nomEquipe1
      * @param nomEquipe2
      * @param nomTournoi
@@ -26,8 +35,8 @@ public class PopupRencontre extends JDialog {
      * @param pseudosJoueursEquipe1
      * @param pseudosJoueursEquipe2
      */
-    public PopupRencontre(String nomEquipe1, String nomEquipe2, String nomTournoi, String dateRencontre, int statutRencontre, List<String> pseudosJoueursEquipe1, List<String> pseudosJoueursEquipe2) {
-
+    public PopupRencontre(int idRencontre, String nomEquipe1, String nomEquipe2, String nomTournoi, String dateRencontre, int statutRencontre, List<String> pseudosJoueursEquipe1, List<String> pseudosJoueursEquipe2) {
+        this.idRencontre = idRencontre;
         ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
 
         setTitle("Match : " + nomEquipe1 + " - " + nomEquipe2);
@@ -109,9 +118,11 @@ public class PopupRencontre extends JDialog {
         JLabel lblNomEq1 = new JLabel(nomEquipe1+" : ");
         panelEq1.add(lblNomEq1);
 
+        ControleurLabelsPopups controleurLblPseudo = new ControleurLabelsPopups(TypeLabel.JOUEUR);
         for(String pseudoJoueur : pseudosJoueursEquipe1) {
             JLabel lblPseudoJoeur = new JLabel(pseudoJoueur);
             lblPseudoJoeur.setName("Joueur");
+            lblPseudoJoeur.addMouseListener(controleurLblPseudo);
             panelEq1.add(lblPseudoJoeur);
         }
 
@@ -128,6 +139,7 @@ public class PopupRencontre extends JDialog {
         for(String pseudoJoueur : pseudosJoueursEquipe2) {
             JLabel lblPseudoJoeur = new JLabel(pseudoJoueur);
             lblPseudoJoeur.setName("Joueur");
+            lblPseudoJoeur.addMouseListener(controleurLblPseudo);
             panelEq2.add(lblPseudoJoeur);
         }
 

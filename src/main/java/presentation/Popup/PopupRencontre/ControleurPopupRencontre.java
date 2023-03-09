@@ -3,6 +3,7 @@ package presentation.Popup.PopupRencontre;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.UtilisateurCourant;
 import application.Application;
+import application.services.RencontreService;
 import modele.Rencontre;
 import presentation.connexion.VueConnexion;
 
@@ -23,23 +24,10 @@ public class ControleurPopupRencontre implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
 
-        /*switch(btn.getName()) {
+        switch(btn.getName()) {
             case "btnRenseignerVainqueur":
-                if (UtilisateurCourant.getInstance().getEtatConnexion() != ConnexionCourante.ARBITRE) {
-                    new VueConnexion();
-                }
-                if (UtilisateurCourant.getInstance().getEtatConnexion() == ConnexionCourante.ARBITRE && this.vue.getRencontre().isArbitre(UtilisateurCourant.getInstance().getIdLog())) {
-                    Application.afficherPopupIndiquerVainqueurRencontre(this.vue.getRencontre());
-                } else if(controleurAccueil.getConnexionState() == ConnexionState.ARBITRE) {
-                    FenMessage dialog = new FenMessage("Vous n'êtes pas arbitre de ce match");
-                    dialog.setVisible(true);
-                } else {
-                    FenMessage dialog = new FenMessage("Vous n'êtes pas arbitre");
-                    dialog.setVisible(true);
-                }
-                break;
-        }*/
-
+                RencontreService.getInstance().afficherIndiquerVainqueur(this.vue.getIdRencontre());
+        }
     }
 
 }

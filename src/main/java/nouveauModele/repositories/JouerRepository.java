@@ -29,7 +29,7 @@ public class JouerRepository {
         List<Jouer> jouerList = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM Jouer j WHERE j.id_rencontre = :idRencontre AND j.id_equipe = :idEquipe");
+            Query query = session.createQuery("FROM Jouer j WHERE j.id.rencontre.idRencontre = :idRencontre AND j.id.equipe.idEquipe = :idEquipe");
             query.setParameter("idRencontre", idRencontre);
             query.setParameter("idEquipe", idEquipe);
             jouerList = query.list();

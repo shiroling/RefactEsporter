@@ -4,6 +4,7 @@ import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import application.services.*;
+import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
@@ -22,7 +23,7 @@ public class Application {
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
         //(new  Application()).runApp();
-
+        TournoiService.getInstance().afficherPopupTournoi(262);
     }
 
     public static Application getinstance() {
@@ -54,12 +55,6 @@ public class Application {
         int idEcurie = UtilisateurCourant.getInstance().getIdLog();
         int idTournoi = TournoiService.getInstance().getIdTournoiFromNom(nomTournoi);
         TournoiService.getInstance().afficherPopupInscrireEquipe(idTournoi, idEcurie);
-    }
-
-
-    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
-        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
-        indiquerVainqueur.setVisible(true);
     }
 
     public void inscrireEquipeAuTournoi(String nomEquipeSelectionee, String nomTournoi) {

@@ -11,6 +11,7 @@ import presentation.Popup.PopupEquipe.PopupEquipe;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class EquipeService {
@@ -31,9 +32,14 @@ public class EquipeService {
     public void afficherPopupEquipe(int idEquipe) {
         Equipe equipe = repository.findById(idEquipe);
         int nbPoints = repository.getPoints(equipe);
-        List<String> nomsJoueurs = repository.getJoueurs(equipe).stream().map(Joueur::getNom).toList();
-        PopupEquipe popupEquipe = new PopupEquipe(equipe.getNomEquipe(), nbPoints, nomsJoueurs);
+        List<String> pseudosJoueurs = repository.getJoueurs(equipe).stream().map(Joueur::getPseudo).toList();
+        PopupEquipe popupEquipe = new PopupEquipe(equipe.getNomEquipe(), nbPoints, pseudosJoueurs);
         popupEquipe.setVisible(true);
+    }
+
+    public void afficherPopupEquipe(String nomEquipe) {
+        int idEquipe = repository.findByNom(nomEquipe).getIdEquipe();
+        afficherPopupEquipe(idEquipe);
     }
 
     public String getNomFromId(int idEquipe) {
@@ -74,9 +80,9 @@ public class EquipeService {
         }
         float ageMoyen = 0;
         for (Joueur j : listeJoueurs) {
-            Duration d = Duration.between(LocalDate.now(), j.getDateDeNaissance());
-            ageMoyen += Math.abs(d.toMinutes());
+            long age = ChronoUnit.DAYS.between(j.getDateDeNaissance(), LocalDate.now());
+            ageMoyen += age;
         }
-        return ageMoyen/4;
+        return ageMoyen/listeJoueurs.size();
     }
 }

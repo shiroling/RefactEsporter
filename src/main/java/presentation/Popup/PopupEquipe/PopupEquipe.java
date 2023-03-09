@@ -1,6 +1,9 @@
 package presentation.Popup.PopupEquipe;
 
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
@@ -54,9 +57,11 @@ public class PopupEquipe extends JDialog {
         scrollPaneJoueurs.setViewportView(panelJoueurs);
         panelJoueurs.setLayout(new GridLayout(5, 0, 0, 0));
 
+        ControleurLabelsPopups controleurLblPseudo = new ControleurLabelsPopups(TypeLabel.JOUEUR);
         for (String pseudo : pseudosJoueurs) {
             JLabel lblJoueur = new JLabel(pseudo);
             lblJoueur.setName("Joueur");
+            lblJoueur.addMouseListener(controleurLblPseudo);
             panelJoueurs.add(lblJoueur);
         }
     }

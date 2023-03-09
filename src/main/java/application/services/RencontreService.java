@@ -32,7 +32,7 @@ public class RencontreService {
         List<String> pseudosJoueursEquipe1 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe1).stream().map(Joueur::getPseudo).toList();
         List<String> pseudosJoueursEquipe2 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe2).stream().map(Joueur::getPseudo).toList();
         int statutRencontre = getStatutRencontre(rencontre, nomEquipe1);
-        PopupRencontre popupRencontre = new PopupRencontre(nomEquipe1, nomEquipe2, nomTournoi, dateRencontre, statutRencontre, pseudosJoueursEquipe1, pseudosJoueursEquipe2);
+        PopupRencontre popupRencontre = new PopupRencontre(idRencontre, nomEquipe1, nomEquipe2, nomTournoi, dateRencontre, statutRencontre, pseudosJoueursEquipe1, pseudosJoueursEquipe2);
         popupRencontre.setVisible(true);
     }
 
@@ -64,7 +64,11 @@ public class RencontreService {
     }
 
     public void afficherIndiquerVainqueur(int idRencontre) {
-        //PopupIndiquerVainqueur fen = new PopupIndiquerVainqueur();
+        Rencontre rencontre = repository.findById(idRencontre);
+        String nomEquipe1 = repository.getEquipes(rencontre).get(0).getNomEquipe();
+        String nomEquipe2 = repository.getEquipes(rencontre).get(1).getNomEquipe();
+        PopupIndiquerVainqueur fen = new PopupIndiquerVainqueur(nomEquipe1, nomEquipe2, idRencontre);
+        fen.setVisible(true);
     }
 
     public void designerVainqueur(String nomEquipeVainqueur, int idRencontre) {

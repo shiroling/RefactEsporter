@@ -1,5 +1,8 @@
 package presentation.Popup.PopupEcurie;
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -17,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 public class PopupEcurie extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-
     /**
      * Create the dialog.
      */
@@ -56,11 +58,13 @@ public class PopupEcurie extends JDialog {
             panelEquipe.add(lblEquipe);
             panelListeEquipe.add(panelEquipe);
         } else {
+            ControleurLabelsPopups controleurLabelEquipe = new ControleurLabelsPopups(TypeLabel.EQUIPE);
             for (String nomEquipe : nomsEquipe) {
                 panelEquipe = new JPanel();
                 JPanel panelNomEquipe = new JPanel();
                 lblEquipe = new JLabel(nomEquipe);
                 lblEquipe.setName("Equipe");
+                lblEquipe.addMouseListener(controleurLabelEquipe);
                 lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
                 lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
                 panelNomEquipe.add(lblEquipe);

@@ -107,6 +107,10 @@ public class TournoiService {
         PopupTournoi popupTournoi = new PopupTournoi(nomTournoi, dateDebut, dateFin, dateFinIscription, isFini, isPlein, nomsEquipesParticipantes);
         popupTournoi.setVisible(true);
     }
+    public void afficherPopupTournoi(String nomTournoi) {
+        int idTournoi = repository.findByNom(nomTournoi).getId();
+        afficherPopupTournoi(idTournoi);
+    }
 
     public int getNbParticipants(int idTournoi) {
         return this.getEquipesInscrites(idTournoi).size();

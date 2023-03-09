@@ -217,7 +217,7 @@ public class TournoiRepository {
         List<Poule> poules = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM Poule p  WHERE p.idTournoi = :idTournoi AND p.finale = 1");
+            Query query = session.createQuery("FROM Poule p  WHERE p.tournoi.id = :idTournoi AND p.finale = 1");
             query.setParameter("idTournoi", tournoiAvecPoules.getId());
             poules = query.list();
             tx.commit();

@@ -186,5 +186,11 @@ public class RencontreRepository {
             tupleJouerEquipe1.setAGagne(false);
             tupleJouerEquipe2.setAGagne(true);
         }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(tupleJouerEquipe1);
+        session.saveOrUpdate(tupleJouerEquipe2);
+        session.getTransaction().commit();
+        session.close();
     }
 }

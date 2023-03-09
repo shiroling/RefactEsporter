@@ -30,6 +30,11 @@ public class EcurieService {
         popupEcurie.setVisible(true);
     }
 
+    public void afficherPopupEcurie(String nomEcurie) {
+        int idEcurie = repository.findByNom(nomEcurie).getIdEcurie();
+        afficherPopupEcurie(idEcurie);
+    }
+
     public List<Equipe> getEquipes(int idEcurie) {
         return   repository.getEquipes(repository.findById(idEcurie));
     }

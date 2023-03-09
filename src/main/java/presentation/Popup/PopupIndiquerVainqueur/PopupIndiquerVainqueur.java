@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.lang.invoke.StringConcatFactory;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -19,6 +20,8 @@ public class PopupIndiquerVainqueur extends JDialog {
 
     private String nomEquipeVainqueur;
     private int idRencontre;
+    private String nomEquipe1;
+    private String nomEquipe2;
     private JPanel panelEquipe1;
     private JPanel panelEquipe2;
 
@@ -26,6 +29,18 @@ public class PopupIndiquerVainqueur extends JDialog {
 
     public String getNomEquipeVainqueur() {
         return this.nomEquipeVainqueur;
+    }
+
+    public void setNomEquipeVainqueur(String nomEquipeVainqueur) {
+        this.nomEquipeVainqueur = nomEquipeVainqueur;
+    }
+
+    public String getNomEquipe1() {
+        return this.nomEquipe1;
+    }
+
+    public String getNomEquipe2() {
+        return this.nomEquipe2;
     }
 
     public int getIdRencontre() {
@@ -36,6 +51,8 @@ public class PopupIndiquerVainqueur extends JDialog {
      */
     public PopupIndiquerVainqueur(String nomEquipe1, String nomEquipe2, int idRencontre) {
         this.idRencontre = idRencontre;
+        this.nomEquipe1 = nomEquipe1;
+        this.nomEquipe2 = nomEquipe2;
         HoverPanelEquipe hover = new HoverPanelEquipe(this);
         ControleurPopupIndiquerVainqueur controleur = new ControleurPopupIndiquerVainqueur(this);
 
