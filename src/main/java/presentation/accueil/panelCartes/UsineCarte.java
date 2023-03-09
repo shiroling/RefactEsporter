@@ -1,6 +1,7 @@
 package presentation.accueil.panelCartes;
 
 import javassist.LoaderClassPath;
+import presentation.accueil.panelCartes.controleursCarte.*;
 import presentation.accueil.panelCartes.vuesCartes.*;
 
 import java.time.LocalDate;
@@ -33,6 +34,7 @@ public class UsineCarte {
         clone.setId(idEcurie);
         clone.setNomEcurie(nomEcurie);
         clone.setPoint(pointsEcurie);
+        clone.addMouseListener(new ControleurCarteEcurie(clone));
         return clone;
     }
 
@@ -41,6 +43,7 @@ public class UsineCarte {
         clone.setId(idEquipe);
         clone.setNombrePoint(nbPoints);
         clone.setNomEquipe(nomEquipe);
+        clone.addMouseListener(new ControleurCarteEquipe(clone));
         return clone;
     }
 
@@ -49,6 +52,7 @@ public class UsineCarte {
         clone.setId(idJeu);
         clone.setNomJeu(nomJeu);
         clone.setLblLogoJeu(nomLogo);
+        clone.addMouseListener(new ControleurCarteJeu(clone));
         return clone;
     }
 
@@ -58,6 +62,7 @@ public class UsineCarte {
         clone.setNomTournoi(estFinale, nomTournoi);
         clone.setDateRencontre(dateRencontre);
         clone.setNomEquipes(nomEquipe1, nomEquipe2, indexVaincueur);
+        clone.addMouseListener(new ControleurCarteRencontre(clone));
         return clone;
     }
 
@@ -66,6 +71,7 @@ public class UsineCarte {
         clone.setId(idTournoi);
         clone.setNomTournoi(nomTournoi);
         clone.setPanelDate(dateDebut, dateFin);
+        clone.addMouseListener(new ControleurCarteTournoi(clone));
         return clone;
     }
 }
