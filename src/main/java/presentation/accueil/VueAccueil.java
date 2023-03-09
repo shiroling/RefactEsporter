@@ -1,9 +1,11 @@
 package presentation.accueil;
 
 
+import application.donneesPersistantes.ListeCourante;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import presentation.accueil.panelCartes.VuePanelCarte;
+import presentation.accueil.panelCartes.vuesCartes.Carte;
 import presentation.accueil.panelFonctionnalite.VueFonctionalite;
 
 import javax.swing.*;
@@ -32,14 +34,18 @@ public class VueAccueil extends JFrame {
     }
 
     public void updateToState(Selection select) {
-        this.vueCarte.setCartes(ModeleGlobal.getInstance().getListeCourante());
+        updateCartesGrille();
         switch (select) {
             case EQUIPE -> this.vueFonctionalite.setAffichageEquipe();
             case ECURIE -> this.vueFonctionalite.setAffichageEcurie();
             case JEU -> this.vueFonctionalite.setAffichageJeu();
             case RENCONTRE -> this.vueFonctionalite.setAffichageRencontre();
             case TOURNOI -> this.vueFonctionalite.setAffichageTournoi();
-
+        }
+    }
+    public void updateCartesGrille() {
+        for (Carte c: ListeCourante.getInstance().getListeEnCartes()) {
+            getVueCarte().addCarte(c);
         }
     }
 }

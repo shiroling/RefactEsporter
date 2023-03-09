@@ -26,7 +26,7 @@ public class ControleurPanelConnexion implements ActionListener {
                 fonctionUtilisateur();
                 break;
             case "btnSwitchConnexion" :
-                updateUI(UtilisateurCourant.switchConnexion());
+                updateUI(UtilisateurCourant.getInstance().switchConnexion());
                 break;
         }
     }

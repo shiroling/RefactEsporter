@@ -72,7 +72,7 @@ public class UtilisateurCourant {
         }
         return false;
     }
-    public static ConnexionCourante switchConnexion() {
+    public ConnexionCourante switchConnexion() {
         // le cas ou on est connecté, on déconnecte
         if (utilisateurCourant.getEtatConnexion() != ConnexionCourante.ANNONYME) {
             utilisateurCourant.setAnnonymous();
