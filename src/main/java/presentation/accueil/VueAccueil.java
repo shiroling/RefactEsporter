@@ -52,6 +52,7 @@ public class VueAccueil extends JFrame {
         }
     }
     public void updateCartesGrille() {
+        getVueCarte().viderCartes();
         for (Carte c: ListeCourante.getInstance().getListeEnCartes()) {
             getVueCarte().addCarte(c);
         }
