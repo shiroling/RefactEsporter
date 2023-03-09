@@ -88,11 +88,11 @@ public class CarteRencontre extends Carte{
     public void setNomEquipes(String nomEquipe1,String nomEquipe2, int vainqueur){
         lblNomEquipe1.setText(nomEquipe1);
         lblNomEquipe2.setText(nomEquipe2);
-        if (vainqueur==1) {
+        if (vainqueur==0) {
             lblNomEquipe1.setForeground(new Color(0, 128, 0));
             lblNomEquipe2.setForeground(new Color(128, 0, 0));
         }
-        if (vainqueur==2) {
+        if (vainqueur==1) {
             lblNomEquipe2.setForeground(new Color(0, 128, 0));
             lblNomEquipe1.setForeground(new Color(128, 0, 0));
         }
