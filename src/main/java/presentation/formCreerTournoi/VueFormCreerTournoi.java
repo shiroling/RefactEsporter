@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Objects;
+import java.util.List;
 
 public class VueFormCreerTournoi extends JDialog {
     private final JTextField textFieldNom;
@@ -28,11 +29,16 @@ public class VueFormCreerTournoi extends JDialog {
     private final JComboBox<String> comboJeux;
     private final JButton btnAjouterJeu;
     private final JLabel lblJeuxAjoutes;
+    private List<String> nomJeuxDisponibles;
     private final int idGerant;
 
 
     public int getIdGerant() {
         return this.idGerant;
+    }
+
+    public List<String> getNomJeuxDisponibles() {
+        return this.nomJeuxDisponibles;
     }
 
     public JTextField getTextFieldNom() {
@@ -110,21 +116,8 @@ public class VueFormCreerTournoi extends JDialog {
     public String getSelectedValueComboMoiFinTournoi() {
         return Objects.requireNonNull(this.comboMoiFinTournoi.getSelectedItem()).toString();
     }
-/*
-    public PreDate getPreDateDebutTournois() {
-        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourDebutTournoi()));
-    }
 
-    public PreDate getPreDateFinTournoi() {
-        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourFinTournoi()));
-    }
-
-    public PreDate getPreDateFinInscriptions() {
-        return new PreDate(Integer.parseInt(this.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.getSelectedValueComboJourFinInscription()));
-    }
-
-*/
-    public VueFormCreerTournoi(int idGerant) {
+    public VueFormCreerTournoi(int idGerant, List<String> nomJeuxDisponible) {
         this.idGerant = idGerant;
         ControleurFormCreerTournoi controleur = new ControleurFormCreerTournoi(this);
         setTitle("Nouveau tournoi");
@@ -305,7 +298,7 @@ public class VueFormCreerTournoi extends JDialog {
                 PanelChampsSaisie.add(panel);
                 {
                     comboJeux = new JComboBox<>();
-                    comboJeux.setModel(new DefaultComboBoxModel<>(modele.Jeu.toStrings()));
+                    comboJeux.setModel(new DefaultComboBoxModel<>((String[]) nomJeuxDisponible.toArray()));
                     panel.add(comboJeux);
                 }
             }

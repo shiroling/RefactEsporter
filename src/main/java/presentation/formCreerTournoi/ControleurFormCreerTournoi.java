@@ -14,19 +14,19 @@ import java.util.Objects;
 
 public class ControleurFormCreerTournoi implements ActionListener {
     private final VueFormCreerTournoi vue;
-    private final List<Jeu> jeux;
+    private final List<String> nomJeux;
 
     public ControleurFormCreerTournoi(VueFormCreerTournoi vue) {
         this.vue = vue;
-        this.jeux = new ArrayList<>();
+        this.nomJeux = new ArrayList<>();
     }
 
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
         switch (btn.getName()) {
             case "btnAjouterJeu" -> { //Ajoute un jeu au Tournoi
-                this.jeux.add(Jeu.getJeuFromName(Objects.requireNonNull(this.vue.getComboJeux().getSelectedItem()).toString()));// Stockage du jeu selectionné
-                this.vue.getPanelJeuxAjoutes().setLayout(new GridLayout(this.jeux.size(), 1, 0, 0));
+                this.nomJeux.add(Objects.requireNonNull(this.vue.getComboJeux().getSelectedItem()).toString());// Stockage du jeu selectionné
+                this.vue.getPanelJeuxAjoutes().setLayout(new GridLayout(this.nomJeux.size(), 1, 0, 0));
                 JLabel lblNomJeu = new JLabel(this.vue.getComboJeux().getSelectedItem().toString()); // Créer le label concernant le jeu selectionné dans le combo
                 this.vue.getPanelJeuxAjoutes().add(lblNomJeu);              // Ajout du label dans le pannel
                 this.vue.getPanelJeuxAjoutes().updateUI();                  // Maj du panel
@@ -101,7 +101,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
 
     public boolean testerJeux() {
         //Si le champs Jeux est vide, alors mettre le label du champs en rouge + l'initulé vide.
-        if (this.jeux.isEmpty() && !isLabelJeuxOnWarning()) {
+        if (this.nomJeux.isEmpty() && !isLabelJeuxOnWarning()) {
             vue.setLabelOnWarning(vue.getLabelJeuxAjoutes(), "Jeux Ajoutés :");
             return false;
         }
