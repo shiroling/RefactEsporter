@@ -19,7 +19,7 @@ public class ControleurPanelEquipePourInscription implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        popupContenant.setEquipeSelectionee(this.vue.getEquipe());
+        popupContenant.setEquipeSelectionee(this.vue.getNomEquipe());
     }
 
     @Override

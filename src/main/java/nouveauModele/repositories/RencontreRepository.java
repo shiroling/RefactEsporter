@@ -1,8 +1,10 @@
 package nouveauModele.repositories;
 
+import application.Application;
 import modele.ConnexionBase;
 import nouveauModele.HibernateUtil;
 import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.dataRepresentation.Jouer;
 import nouveauModele.dataRepresentation.Poule;
 import nouveauModele.dataRepresentation.Rencontre;
 import org.hibernate.Session;
@@ -28,14 +30,14 @@ public class RencontreRepository {
         return instance;
     }
 
-    public List<Equipe> getEquipes(int idRencontre) {
+    public List<Equipe> getEquipes(Rencontre rencontre) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         List<Equipe> equipes = null;
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("SELECT j.id.equipe FROM Jouer j WHERE j.id.rencontre.idRencontre = :idRencontre");
-            query.setParameter("idRencontre", idRencontre);
+            query.setParameter("idRencontre", rencontre.getIdRencontre());
             equipes = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -46,6 +48,7 @@ public class RencontreRepository {
         } finally {
             session.close();
         }
+
         if (equipes.size() >2 || equipes.isEmpty()) {
             throw new RuntimeException("Il deverais y avoir des équipes la dedans, pabon...");
         }
@@ -168,5 +171,26 @@ public class RencontreRepository {
             session.close();
         }
         return rencontres;
+    }
+
+    public void setVainqueur(Equipe equipeGagnante, Rencontre rencontre) {
+        Equipe equipe1 = this.getEquipes(rencontre).get(0);
+        Equipe equipe2 = this.getEquipes(rencontre).get(1);
+
+        Jouer tupleJouerEquipe1 = JouerRepository.getInstance().findByIdRencontreIdEquipe(rencontre.getIdRencontre(), equipe1.getIdEquipe());
+        Jouer tupleJouerEquipe2 = JouerRepository.getInstance().findByIdRencontreIdEquipe(rencontre.getIdRencontre(), equipe2.getIdEquipe());
+        if(equipe1.equals(equipeGagnante)) {
+            tupleJouerEquipe1.setAGagne(true);
+            tupleJouerEquipe2.setAGagne(false);
+        } else {
+            tupleJouerEquipe1.setAGagne(false);
+            tupleJouerEquipe2.setAGagne(true);
+        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(tupleJouerEquipe1);
+        session.saveOrUpdate(tupleJouerEquipe2);
+        session.getTransaction().commit();
+        session.close();
     }
 }

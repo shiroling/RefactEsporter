@@ -3,6 +3,9 @@ import application.donneesPersistantes.Portee;
 import application.services.PouleService;
 import application.services.TournoiService;
 import nouveauModele.*;
+import nouveauModele.dataRepresentation.Poule;
+import nouveauModele.dataRepresentation.Tournoi;
+import nouveauModele.repositories.TournoiRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,12 +40,13 @@ public class TestTournoi {
         for (Poule p : listePoulesAll ) {
             System.out.println(p + " # " + PouleService.estPouleFinale.test(p));
         }
-
-        List<Poule> listePoulesSimples = TournoiService.getInstance().getPoulesSimples(263);
+*/
+        Tournoi t = TournoiRepository.getInstance().findById(262);
+        List<Poule> listePoulesSimples = TournoiRepository.getInstance().getPoulesClassiques(t);
         for (Poule p : listePoulesSimples ) {
             System.out.println(p + " ## " + PouleService.estPouleFinale.test(p));
         }
-
+/*
         Poule poulesFinale = TournoiService.getInstance().getPouleFinale(263);
         System.out.println(poulesFinale);
 

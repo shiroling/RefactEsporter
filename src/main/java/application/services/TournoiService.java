@@ -3,7 +3,6 @@ package application.services;
 import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
 import modele.BDPredicats;
-import modele.Ecurie;
 
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.*;
@@ -49,7 +48,7 @@ public class TournoiService {
         System.out.print("Creation des poules...");
         PouleRepository.getInstance().creerPoules(tournoiHote.getId());
         System.out.println("OK");
-        List<Poule> poulesCreationRencontres = getPoulesSimples(tournoiHote.getId());
+        List<Poule> poulesCreationRencontres = repository.getPoulesClassiques(tournoiHote);
         System.out.println("Creation et peuplage des poules : ");
         for (Poule p : poulesCreationRencontres) {
             System.out.print(p + " ...");
@@ -75,11 +74,18 @@ public class TournoiService {
         return true;
     }
 
+    public int getIdTournoiFromNom(String nomTournoi) {
+        return repository.findByNom(nomTournoi).getId();
+    }
     public boolean isFull(Tournoi tournoiHote) {
         return TournoiRepository.getInstance().getEquipesInscrites(tournoiHote).size() >= 16;
     }
-    public void procedureInitierInscrireEquipe(modele.Tournoi tournoi) {
-        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
+
+    public void afficherPopupInscrireEquipe(int idTournoi, int idEcurie) {
+        Tournoi tournoi = repository.findById(idTournoi);
+        Ecurie ecurie = EcurieRepository.getInstance().findById(idEcurie);
+        List<String> nomsEquipesPouvantSInscrire = EcurieRepository.getInstance().getEquipes(ecurie).stream().filter(e -> e.getJeu().getIdJeu() == tournoi.getJeu().getIdJeu()).filter(e -> !repository.estEquipeInscrite(e, tournoi)).map(Equipe::getNomEquipe).toList();
+        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(nomsEquipesPouvantSInscrire, tournoi.getNom());
         popupInscrireEquipe.setVisible(true);
     }
 
@@ -89,10 +95,21 @@ public class TournoiService {
         return repository.getEquipesInscrites(tournoi);
     }
 
-    public void afficherPopupTournoi(int id_tournoi) {
-        //PopupTournoi popupTournoi = new PopupTournoi(repository.getTournoiById(id_tournoi));
-        PopupTournoi popupTournoi = new PopupTournoi(new modele.Tournoi(id_tournoi));
+    public void afficherPopupTournoi(int idTournoi) {
+        Tournoi tournoi = repository.findById(idTournoi);
+        String nomTournoi = tournoi.getNom();
+        String dateDebut = tournoi.getDateDebutTournoi().toString();
+        String dateFin = tournoi.getDateFinTournoi().toString();
+        String dateFinIscription = tournoi.getDateFinInscriptions().toString();
+        boolean isFini = this.getEtatTournoi(tournoi).equals(EtatTournoi.FINI);
+        boolean isPlein = this.isFull(tournoi);
+        List<String> nomsEquipesParticipantes = repository.getEquipesInscrites(tournoi).stream().map(Equipe::getNomEquipe).toList();
+        PopupTournoi popupTournoi = new PopupTournoi(nomTournoi, dateDebut, dateFin, dateFinIscription, isFini, isPlein, nomsEquipesParticipantes);
         popupTournoi.setVisible(true);
+    }
+    public void afficherPopupTournoi(String nomTournoi) {
+        int idTournoi = repository.findByNom(nomTournoi).getId();
+        afficherPopupTournoi(idTournoi);
     }
 
     public int getNbParticipants(int idTournoi) {
@@ -178,12 +195,6 @@ public class TournoiService {
         return TournoiRepository.getInstance().getAllPoules(tournoiAvecPoules);
     }
 
-    public List<Poule> getPoulesSimples(int idTournoi) {
-        Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
-
-        return TournoiRepository.getInstance().getPoulesClassiques(tournoiAvecPoules);
-    }
-
     private static Tournoi getTournoiExistant(int idTournoi) {
         Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
         if (tournoiAvecPoules == null) {
@@ -215,7 +226,11 @@ public class TournoiService {
     }
 
     private EtatTournoi getPhase(Tournoi tournoi) {
-        for (Poule p : repository.getPoulesClassiques(tournoi)) {
+        List<Poule> lp = repository.getPoulesClassiques(tournoi);
+        if (lp == null) {
+            throw new RuntimeException("tournoi non généré");
+        }
+        for (Poule p : lp) {
             if(PouleService.getInstance().getResultat(p) == null)
                 return EtatTournoi.PHASE_POULES;
         }

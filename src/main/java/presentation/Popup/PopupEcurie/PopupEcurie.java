@@ -1,5 +1,8 @@
 package presentation.Popup.PopupEcurie;
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,21 +17,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import application.services.EcurieService;
-import nouveauModele.dataRepresentation.Equipe;
-
 public class PopupEcurie extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-
     /**
      * Create the dialog.
      */
-    public PopupEcurie(int idEcurie) {
-        String nomEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomEcurie();
-        String nomManagerEcurie = EcurieService.getInstance().getEcurieFromId(idEcurie).getNomManager();
-        List<Equipe> listEquipes = EcurieService.getInstance().getEquipes(idEcurie);
-
+    public PopupEcurie(String nomEcurie, String nomManagerEcurie, List<String> nomsEquipe) {
         setTitle("Ecurie : "+ nomEcurie);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -56,18 +51,20 @@ public class PopupEcurie extends JDialog {
         JPanel panelListeEquipe = new JPanel();
         JLabel lblEquipe = new JLabel();
         JPanel panelEquipe = new JPanel();
-        if (listEquipes.size() == 0) {
+        if (nomsEquipe.size() == 0) {
             panelEquipe = new JPanel();
             lblEquipe = new JLabel("Cette écurie n'a pas encore enregistré d'équipe.");
             lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
             panelEquipe.add(lblEquipe);
             panelListeEquipe.add(panelEquipe);
         } else {
-            for (Equipe equipe : listEquipes) {
+            ControleurLabelsPopups controleurLabelEquipe = new ControleurLabelsPopups(TypeLabel.EQUIPE);
+            for (String nomEquipe : nomsEquipe) {
                 panelEquipe = new JPanel();
                 JPanel panelNomEquipe = new JPanel();
-                lblEquipe = new JLabel(equipe.getNomEquipe());
+                lblEquipe = new JLabel(nomEquipe);
                 lblEquipe.setName("Equipe");
+                lblEquipe.addMouseListener(controleurLabelEquipe);
                 lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
                 lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
                 panelNomEquipe.add(lblEquipe);
@@ -91,7 +88,7 @@ public class PopupEcurie extends JDialog {
 
         setVisible(true);
         this.setMinimumSize(new Dimension(contentPanel.getWidth(),
-                (listEquipes.size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
+                (nomsEquipe.size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
     }
 
 }

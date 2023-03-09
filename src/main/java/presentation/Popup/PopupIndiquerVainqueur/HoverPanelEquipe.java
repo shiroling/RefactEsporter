@@ -29,7 +29,7 @@ public class HoverPanelEquipe implements MouseListener{
 
         switch (panelClic.getName()) {
             case "panelEquipe1" :
-                this.vue.setVainqueur(this.vue.getEquipe1());
+                this.vue.setNomEquipeVainqueur(this.vue.getNomEquipe1());
                 this.vue.getPanelEquipe1().setBackground(HoverPanelEquipe.COULEUR_VAINQUEUR_HOVER);
                 this.vue.getPanelEquipe2().setBackground(HoverPanelEquipe.COULEUR_PERDANT);
                 this.vue.getPanelEquipe1().updateUI();
@@ -40,7 +40,7 @@ public class HoverPanelEquipe implements MouseListener{
                 this.vue.getPanelEquipe2().repaint();
                 break;
             case "panelEquipe2" :
-                this.vue.setVainqueur(this.vue.getEquipe2());
+                this.vue.setNomEquipeVainqueur(this.vue.getNomEquipe2());
                 this.vue.getPanelEquipe2().setBackground(HoverPanelEquipe.COULEUR_VAINQUEUR_HOVER);
                 this.vue.getPanelEquipe1().setBackground(HoverPanelEquipe.COULEUR_PERDANT);
                 this.vue.getPanelEquipe1().updateUI();

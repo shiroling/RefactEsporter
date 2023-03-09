@@ -1,16 +1,18 @@
 package presentation.Popup.PopupEquipe;
 
+
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-
-import modele.Equipe;
-import modele.Joueur;
 
 public class PopupEquipe extends JDialog {
 
@@ -20,8 +22,8 @@ public class PopupEquipe extends JDialog {
     /**
      * Create the dialog.
      */
-    public PopupEquipe(Equipe e) {
-        setTitle("Equipe : "+e.getNom());
+    public PopupEquipe(String nomEquipe, int nbPoints, List<String> pseudosJoueurs) {
+        setTitle("Equipe : "+ nomEquipe);
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -35,13 +37,13 @@ public class PopupEquipe extends JDialog {
         JPanel panelNom = new JPanel();
         panelHead.add(panelNom);
 
-        JLabel lblNom = new JLabel(e.getNom());
+        JLabel lblNom = new JLabel(nomEquipe);
         panelNom.add(lblNom);
 
         JPanel panelPoints = new JPanel();
         panelHead.add(panelPoints);
 
-        JLabel lblPoints = new JLabel("Nombre de points :"+e.getPoints());
+        JLabel lblPoints = new JLabel("Nombre de points :"+ nbPoints);
         panelPoints.add(lblPoints);
 
         JPanel panelCorp = new JPanel();
@@ -55,9 +57,11 @@ public class PopupEquipe extends JDialog {
         scrollPaneJoueurs.setViewportView(panelJoueurs);
         panelJoueurs.setLayout(new GridLayout(5, 0, 0, 0));
 
-        for (Joueur j : e.getListJoueur()) {
-            JLabel lblJoueur = new JLabel(j.getPseudo());
+        ControleurLabelsPopups controleurLblPseudo = new ControleurLabelsPopups(TypeLabel.JOUEUR);
+        for (String pseudo : pseudosJoueurs) {
+            JLabel lblJoueur = new JLabel(pseudo);
             lblJoueur.setName("Joueur");
+            lblJoueur.addMouseListener(controleurLblPseudo);
             panelJoueurs.add(lblJoueur);
         }
     }

@@ -1,8 +1,11 @@
 package presentation.Popup.PopupRencontre;
 
+import presentation.Popup.ControleurLabelsPopups;
+import presentation.Popup.TypeLabel;
+
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,25 +14,32 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import modele.Equipe;
-import modele.Rencontre;
 
 public class PopupRencontre extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-    private Rencontre rencontre;
+    private int idRencontre;
+
+    public int getIdRencontre() {
+        return this.idRencontre;
+    }
 
     /**
-     * Create the dialog.
+     *
+     * @param idRencontre
+     * @param nomEquipe1
+     * @param nomEquipe2
+     * @param nomTournoi
+     * @param dateRencontre
+     * @param statutRencontre 0 pour résultat non-renseigné, 1 pour Equipe1 vainqueur, 2 pour Equipe2 vainqueur
+     * @param pseudosJoueursEquipe1
+     * @param pseudosJoueursEquipe2
      */
-    public PopupRencontre(Rencontre r) {
-        this.rencontre = r;
-        Equipe equipe1 = r.getEquipes().get(0);
-        Equipe equipe2 = r.getEquipes().get(1);
-
+    public PopupRencontre(int idRencontre, String nomEquipe1, String nomEquipe2, String nomTournoi, String dateRencontre, int statutRencontre, List<String> pseudosJoueursEquipe1, List<String> pseudosJoueursEquipe2) {
+        this.idRencontre = idRencontre;
         ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
 
-        setTitle("Match : " + equipe1.getNom() + " - " + equipe2.getNom());
+        setTitle("Match : " + nomEquipe1 + " - " + nomEquipe2);
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -43,39 +53,47 @@ public class PopupRencontre extends JDialog {
         JPanel panelTournoisRencontre = new JPanel();
         panelHead.add(panelTournoisRencontre);
 
-        JLabel lblNomTournoi = new JLabel(r.getTournoi().getNom());
+        JLabel lblNomTournoi = new JLabel(nomTournoi);
         panelTournoisRencontre.add(lblNomTournoi);
 
         JPanel panelEquipes = new JPanel();
         panelHead.add(panelEquipes);
 
-
-
-        JLabel lblEquipe1 = new JLabel(r.getEquipes().get(0).getNom());
+        JLabel lblEquipe1 = new JLabel(nomEquipe1);
         lblEquipe1.setName("Equipe");
         panelEquipes.add(lblEquipe1);
 
         JLabel lblseparateur = new JLabel(" - ");
         panelEquipes.add(lblseparateur);
 
-        JLabel lblEquipe2 = new JLabel(r.getEquipes().get(1).getNom());
+        JLabel lblEquipe2 = new JLabel(nomEquipe2);
         lblEquipe2.setName("Equipe");
         panelEquipes.add(lblEquipe2);
 
         JPanel panelDate = new JPanel();
         panelHead.add(panelDate);
 
-        JLabel lblDate = new JLabel(r.getDate().toString());
+        JLabel lblDate = new JLabel(dateRencontre);
         panelDate.add(lblDate);
 
         JPanel panelVainqueur = new JPanel();
         panelHead.add(panelVainqueur);
 
-        if (r.estResultatRenseigne()) {
+        String vainqueur = null;
+        switch (statutRencontre) {
+            case 1:
+                vainqueur = nomEquipe1;
+                break;
+            case 2:
+                vainqueur = nomEquipe2;
+                break;
+        }
+
+        if (statutRencontre != 0) {
             JLabel lblResultat = new JLabel("Vainqueur : ");
             panelVainqueur.add(lblResultat);
 
-            JLabel lblResultatNom = new JLabel(r.getVainqueur().getNom());
+            JLabel lblResultatNom = new JLabel(vainqueur);
             panelVainqueur.add(lblResultatNom);
         }
         else {
@@ -97,60 +115,34 @@ public class PopupRencontre extends JDialog {
         scrollPaneEq1.setViewportView(panelEq1);
         panelEq1.setLayout(new GridLayout(6, 1, 0, 0));
 
-        JLabel panelNomEq1 = new JLabel(equipe1.getNom()+" : ");
-        panelEq1.add(panelNomEq1);
+        JLabel lblNomEq1 = new JLabel(nomEquipe1+" : ");
+        panelEq1.add(lblNomEq1);
 
-        JLabel panelEQ1J1 = new JLabel(equipe1.getListJoueur().get(0).getPseudo());
-        panelEQ1J1.setName("Joueur");
-        panelEq1.add(panelEQ1J1);
-
-        JLabel panelEQ1J2 = new JLabel(equipe1.getListJoueur().get(1).getPseudo());
-        panelEQ1J2.setName("Joueur");
-        panelEq1.add(panelEQ1J2);
-
-        JLabel panelEQ1J3 = new JLabel(equipe1.getListJoueur().get(2).getPseudo());
-        panelEQ1J3.setName("Joueur");
-        panelEq1.add(panelEQ1J3);
-
-        JLabel panelEQ1J4 = new JLabel(equipe1.getListJoueur().get(3).getPseudo());
-        panelEQ1J4.setName("Joueur");
-        panelEq1.add(panelEQ1J4);
+        ControleurLabelsPopups controleurLblPseudo = new ControleurLabelsPopups(TypeLabel.JOUEUR);
+        for(String pseudoJoueur : pseudosJoueursEquipe1) {
+            JLabel lblPseudoJoeur = new JLabel(pseudoJoueur);
+            lblPseudoJoeur.setName("Joueur");
+            lblPseudoJoeur.addMouseListener(controleurLblPseudo);
+            panelEq1.add(lblPseudoJoeur);
+        }
 
         JScrollPane scrollPaneEq2 = new JScrollPane();
         panelCorp.add(scrollPaneEq2);
-
-        for (Component c : panelEq1.getComponents()) {
-            JLabel panel = (JLabel)c;
-            panel.setName("Joueur");
-        }
 
         JPanel panelEq2 = new JPanel();
         scrollPaneEq2.setViewportView(panelEq2);
         panelEq2.setLayout(new GridLayout(6, 1, 0, 0));
 
-        JLabel panelNomEq2 = new JLabel(equipe2.getNom()+" : ");
-        panelEq2.add(panelNomEq2);
+        JLabel lblNomEq2 = new JLabel(nomEquipe2 + " : ");
+        panelEq2.add(lblNomEq2);
 
-        JLabel panelEQ2J1 = new JLabel(equipe2.getListJoueur().get(0).getPseudo());
-        panelEQ2J1.setName("Joueur");
-        panelEq2.add(panelEQ2J1);
+        for(String pseudoJoueur : pseudosJoueursEquipe2) {
+            JLabel lblPseudoJoeur = new JLabel(pseudoJoueur);
+            lblPseudoJoeur.setName("Joueur");
+            lblPseudoJoeur.addMouseListener(controleurLblPseudo);
+            panelEq2.add(lblPseudoJoeur);
+        }
 
-        JLabel panelEQ2J2 = new JLabel(equipe2.getListJoueur().get(1).getPseudo());
-        panelEQ2J2.setName("Joueur");
-        panelEq2.add(panelEQ2J2);
-
-        JLabel panelEQ2J3 = new JLabel(equipe2.getListJoueur().get(2).getPseudo());
-        panelEQ2J3.setName("Joueur");
-        panelEq2.add(panelEQ2J3);
-
-        JLabel panelEQ2J4 = new JLabel(equipe2.getListJoueur().get(3).getPseudo());
-        panelEQ2J4.setName("Joueur");
-        panelEq2.add(panelEQ2J4);
-
-    }
-
-    public Rencontre getRencontre() {
-        return this.rencontre;
     }
 
 }

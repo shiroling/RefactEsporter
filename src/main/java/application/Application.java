@@ -1,10 +1,14 @@
 package application;
 
 import application.donneesPersistantes.ListeCourante;
+import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import application.services.EcurieService;
 import application.services.TournoiService;
+import application.services.*;
+import nouveauModele.repositories.EcurieRepository;
+import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
@@ -14,6 +18,7 @@ import modele.Equipe;
 import modele.Rencontre;
 import modele.Tournoi;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.connexion.VueConnexion;
 
 public class Application {
 
@@ -37,7 +42,6 @@ public class Application {
         vueAccueil =  new VueAccueil();
         vueAccueil.updateToState(Selection.TOURNOI);
         vueAccueil.setVisible(true);
-
     }
 
     public void changerEtatAffichage(Selection select) {
@@ -45,18 +49,32 @@ public class Application {
         this.vueAccueil.updateToState(select);
     }
 
-    public static void procedureInitierInscrireEquipe(Tournoi tournoi) {
-        PopupInscrireEquipe popupInscrireEquipe = new PopupInscrireEquipe(new Ecurie(UtilisateurCourant.getInstance().getIdLog()), tournoi);
-        popupInscrireEquipe.setVisible(true);
+    public void afficherFenetreConnexion() {
+        VueConnexion fenetreConnexion = new VueConnexion();
+        fenetreConnexion.setVisible(true);
     }
 
+    public void procedureInitierInscrireEquipeAuTournoi(String nomTournoi) throws RuntimeException{
+        if(!UtilisateurCourant.getInstance().getEtatConnexion().equals(ConnexionCourante.MANAGER)) {
+            throw new RuntimeException("Utilisateur non connecté en tant que manager");
+        }
+        int idEcurie = UtilisateurCourant.getInstance().getIdLog();
+        int idTournoi = TournoiService.getInstance().getIdTournoiFromNom(nomTournoi);
+        TournoiService.getInstance().afficherPopupInscrireEquipe(idTournoi, idEcurie);
+    }
     public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
         //AppTournoi.getInstance().inscrireEquipe();
         tournoi.inscrireEquipe(equipeAInscrire);
         TournoiService.getInstance().afficherPopupTournoi(tournoi.getId());
     }
 
-    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
+    public void inscrireEquipeAuTournoi(String nomEquipeSelectionee, String nomTournoi) {
+        int idTournoi = TournoiRepository.getInstance().findByNom(nomTournoi).getId();
+        int idEquipe = EquipeRepository.getInstance().findByNom(nomEquipeSelectionee).getIdEquipe();
+        TournoiService.getInstance().inscrireEquipe(idEquipe, idTournoi);
+        TournoiService.getInstance().afficherPopupTournoi(idTournoi);
+    }
+        public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
         PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
         indiquerVainqueur.setVisible(true);
     }

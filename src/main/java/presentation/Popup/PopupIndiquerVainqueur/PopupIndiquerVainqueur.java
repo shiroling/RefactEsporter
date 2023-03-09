@@ -6,49 +6,53 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.lang.invoke.StringConcatFactory;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modele.Equipe;
-import modele.Rencontre;
 import presentation.style.btnStyle.BtnStyle;
 import presentation.style.panelDegrade.PanelDegrade;
 
 public class PopupIndiquerVainqueur extends JDialog {
 
-    private Equipe equipe1;
-    private Equipe equipe2;
-    private Rencontre rencontre;
-    private Equipe equipeVainqueur;
+    private String nomEquipeVainqueur;
+    private int idRencontre;
+    private String nomEquipe1;
+    private String nomEquipe2;
     private JPanel panelEquipe1;
     private JPanel panelEquipe2;
 
     private final PanelDegrade contentPanel = new PanelDegrade(new Color[] {new Color(163, 218, 255), BtnStyle.COLOR_BASE_BLEU});
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        try {
-            PopupIndiquerVainqueur dialog = new PopupIndiquerVainqueur(new Rencontre(1));
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public String getNomEquipeVainqueur() {
+        return this.nomEquipeVainqueur;
     }
 
+    public void setNomEquipeVainqueur(String nomEquipeVainqueur) {
+        this.nomEquipeVainqueur = nomEquipeVainqueur;
+    }
+
+    public String getNomEquipe1() {
+        return this.nomEquipe1;
+    }
+
+    public String getNomEquipe2() {
+        return this.nomEquipe2;
+    }
+
+    public int getIdRencontre() {
+        return this.idRencontre;
+    }
     /**
      * Create the dialog.
      */
-    public PopupIndiquerVainqueur(Rencontre rencontre) {
-        this.rencontre = rencontre;
-        this.equipe1 = rencontre.getEquipes().get(0);
-        this.equipe2 = rencontre.getEquipes().get(1);
-
+    public PopupIndiquerVainqueur(String nomEquipe1, String nomEquipe2, int idRencontre) {
+        this.idRencontre = idRencontre;
+        this.nomEquipe1 = nomEquipe1;
+        this.nomEquipe2 = nomEquipe2;
         HoverPanelEquipe hover = new HoverPanelEquipe(this);
         ControleurPopupIndiquerVainqueur controleur = new ControleurPopupIndiquerVainqueur(this);
 
@@ -73,7 +77,6 @@ public class PopupIndiquerVainqueur extends JDialog {
                 panelEquipe1.setPreferredSize(new Dimension(150, 150));
                 panelEquipe1.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 67));
                 {
-                    String nomEquipe1 = equipe1.getNom();
                     JLabel lblNomEquipe1 = new JLabel(nomEquipe1);
                     lblNomEquipe1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
                     panelEquipe1.add(lblNomEquipe1);
@@ -95,7 +98,6 @@ public class PopupIndiquerVainqueur extends JDialog {
                 panelEquipe2.setPreferredSize(new Dimension(150, 150));
                 panelEquipe2.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 67));
                 {
-                    String nomEquipe2 = equipe2.getNom();
                     JLabel lblNomEquipe1 = new JLabel(nomEquipe2);
                     lblNomEquipe1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
                     panelEquipe2.add(lblNomEquipe1);
@@ -131,25 +133,10 @@ public class PopupIndiquerVainqueur extends JDialog {
         }
     }
 
-    public Equipe getEquipe1() {
-        return this.equipe1;
+    public String getNomVainqueur() {
+        return nomEquipeVainqueur;
     }
 
-    public Equipe getEquipe2() {
-        return this.equipe2;
-    }
-
-    public void setVainqueur(Equipe equipeVainqueur) {
-        this.equipeVainqueur = equipeVainqueur;
-    }
-
-    public Equipe getVainqueur() {
-        return equipeVainqueur;
-    }
-
-    public Rencontre getRencontre() {
-        return rencontre;
-    }
 
     public JPanel getPanelEquipe1() {
         return panelEquipe1;
