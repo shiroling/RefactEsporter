@@ -3,21 +3,20 @@ package application.donneesPersistantes;
 import application.filtres.Filtre;
 import nouveauModele.repositories.*;
 
-import java.util.LinkedList;
 import java.util.List;
 
-public class NouvelleListeCourante {
+public class ListeCourante {
 
-    private static NouvelleListeCourante instance;
+    private static ListeCourante instance;
     private List<?> listeCourante;
 
-    private NouvelleListeCourante() {
+    private ListeCourante() {
         this.listeCourante = TournoiRepository.getInstance().getTournois();
     }
 
-    public static NouvelleListeCourante getInstance() {
+    public static ListeCourante getInstance() {
         if (instance == null) {
-            instance = new NouvelleListeCourante();
+            instance = new ListeCourante();
         }
         return instance;
     }

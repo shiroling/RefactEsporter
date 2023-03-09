@@ -2,6 +2,7 @@ package application.testeurs;
 
 import java.time.LocalDate;
 
+@Deprecated
 public class PreJoueur {
     private String nom;
     private String prenom;

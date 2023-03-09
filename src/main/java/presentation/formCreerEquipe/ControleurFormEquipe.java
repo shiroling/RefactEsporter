@@ -1,7 +1,6 @@
 package presentation.formCreerEquipe;
 
 import application.testeurs.PreJoueur;
-import application.testeurs.TesterJoueur;
 import presentation.formJoueur.VueFormJoueur;
 
 import javax.swing.*;
