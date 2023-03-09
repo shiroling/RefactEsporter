@@ -75,7 +75,7 @@ public class Application {
         TournoiService.getInstance().afficherPopupTournoi(idTournoi);
     }
         public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
-        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
+        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre.getEquipes().get(0).getNom(), rencontre.getEquipes().get(1).getNom(), rencontre.getId());
         indiquerVainqueur.setVisible(true);
     }
 
