@@ -1,7 +1,6 @@
 package presentation.formJoueur;
 
 import application.testeurs.PreJoueur;
-import application.testeurs.TesterJoueur;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

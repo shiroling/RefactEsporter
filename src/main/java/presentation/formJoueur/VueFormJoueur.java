@@ -1,6 +1,7 @@
 package presentation.formJoueur;
 
 import application.testeurs.PreJoueur;
+import nouveauModele.dataRepresentation.Joueur;
 import presentation.style.datePicker.VueDatePicker;
 
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class VueFormJoueur extends JDialog {
     private final JLabel lblPrenom;
     private final VueDatePicker datePickerNaissance;
 
-    public VueFormJoueur(PreJoueur j) {
+    public VueFormJoueur(Joueur j) {
         ControleurFormJoueur controleur = new ControleurFormJoueur(this);
 
         setTitle("Nouveau joueur");
@@ -105,7 +106,7 @@ public class VueFormJoueur extends JDialog {
     }
     public static void main(String[] args) {
         try {
-            PreJoueur j = new PreJoueur();
+            Joueur j = new Joueur();
             VueFormJoueur dialog = new VueFormJoueur(j);
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialog.setVisible(true);

@@ -1,7 +1,8 @@
 package presentation.formCreerEquipe;
 
+import application.services.JoueurService;
 import application.testeurs.PreJoueur;
-import application.testeurs.TesterJoueur;
+import nouveauModele.dataRepresentation.Joueur;
 import presentation.formJoueur.VueFormJoueur;
 
 import javax.swing.*;
@@ -56,18 +57,13 @@ public class ControleurFormEquipe implements ActionListener{
         if(this.joueurs.get(i) == null) {
             creationJoueur(i);
         } else {
-
+            this.joueurs.remove(i);
         }
     }
 
     private void creationJoueur(int i) {
-        PreJoueur j =  new PreJoueur();
-        VueFormJoueur vueForm = new VueFormJoueur(j);
-        vueForm.setVisible(true);
-        if(TesterJoueur.test(j)) {
-            this.joueurs.set(i, j);
-            vue.setJoueur(i, j.getPseudo());
-        }
+
+        throw new UnsupportedOperationException("pas codé");
     }
 
 

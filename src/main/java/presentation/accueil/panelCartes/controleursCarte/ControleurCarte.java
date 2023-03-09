@@ -37,4 +37,8 @@ public abstract class ControleurCarte implements MouseListener {
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
+
+    public Carte getVue() {
+        return vue;
+    }
 }

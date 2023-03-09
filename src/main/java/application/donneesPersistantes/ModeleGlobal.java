@@ -6,6 +6,7 @@ import modele.BDSelect;
 import java.util.LinkedList;
 import java.util.List;
 
+@Deprecated // utilisez, ListeCourante
 public class ModeleGlobal {
     private static ModeleGlobal instance;
     private List<? extends BDEntity> listeGrilleCourante;
@@ -34,15 +35,4 @@ public class ModeleGlobal {
             case TOURNOI -> this.listeGrilleCourante = BDSelect.getListeTournois();
         }
     }
-/*
-    public List<? extends BDEntity> getListeCouranteFiltree(Filtre filtre) {
-        List<BDEntity> listeFiltre = new LinkedList<>();
-        for (BDEntity b : this.listeGrilleCourante) {
-            listeFiltre.add(b);
-        }
-        filtre.filtrer(this.listeGrilleCourante);
-        return listeFiltre;
-    }
-
- */
 }

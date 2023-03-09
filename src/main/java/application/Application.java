@@ -1,8 +1,11 @@
 package application;
 
+import application.donneesPersistantes.ListeCourante;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
+import application.services.EcurieService;
+import application.services.TournoiService;
 import application.services.*;
 import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
@@ -22,8 +25,8 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        //(new  Application()).runApp();
-        TournoiService.getInstance().afficherPopupTournoi(262);
+        Application app = Application.getinstance();
+        app.runApp();
     }
 
     public static Application getinstance() {
@@ -34,7 +37,10 @@ public class Application {
     }
 
     public void runApp() {
+        ListeCourante.getInstance().updateListeCourante(Selection.TOURNOI);
+        UtilisateurCourant.getInstance().deconnexion();
         vueAccueil =  new VueAccueil();
+        vueAccueil.updateToState(Selection.TOURNOI);
         vueAccueil.setVisible(true);
     }
 
@@ -56,12 +62,21 @@ public class Application {
         int idTournoi = TournoiService.getInstance().getIdTournoiFromNom(nomTournoi);
         TournoiService.getInstance().afficherPopupInscrireEquipe(idTournoi, idEcurie);
     }
+    public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
+        //AppTournoi.getInstance().inscrireEquipe();
+        tournoi.inscrireEquipe(equipeAInscrire);
+        TournoiService.getInstance().afficherPopupTournoi(tournoi.getId());
+    }
 
     public void inscrireEquipeAuTournoi(String nomEquipeSelectionee, String nomTournoi) {
         int idTournoi = TournoiRepository.getInstance().findByNom(nomTournoi).getId();
         int idEquipe = EquipeRepository.getInstance().findByNom(nomEquipeSelectionee).getIdEquipe();
         TournoiService.getInstance().inscrireEquipe(idEquipe, idTournoi);
         TournoiService.getInstance().afficherPopupTournoi(idTournoi);
+    }
+        public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
+        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre);
+        indiquerVainqueur.setVisible(true);
     }
 
 

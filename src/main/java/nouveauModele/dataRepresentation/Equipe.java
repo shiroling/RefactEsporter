@@ -1,6 +1,7 @@
 package nouveauModele.dataRepresentation;
 
 import application.services.EquipeService;
+import nouveauModele.repositories.EquipeRepository;
 
 import javax.persistence.*;
 // This stored procedure returns a result set and has one input parameter.
@@ -87,7 +88,7 @@ public class Equipe implements Comparable<Equipe> {
             return 0;
         }
 
-        float diffPoints = service.getPoints() - service.getPoints();
+        float diffPoints = EquipeRepository.getInstance().getPoints(this) - EquipeRepository.getInstance().getPoints(e);
         if(diffPoints != 0) {
             if (diffPoints < 0) {
                 return -1;
