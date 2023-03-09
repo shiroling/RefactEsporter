@@ -32,7 +32,7 @@ public class TestCartes extends JFrame {
         carteRencontre.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
         carteRencontre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         UsineCarte uC = UsineCarte.getInstance();
-        CarteRencontre cr = uC.getCarteRencontre(2,false, "tournoi de con (dreamHack)", LocalDate.now(), "eq1", "eq2", 2);
+        CarteRencontre cr = uC.getCarteRencontre(2,0, "tournoi de con (dreamHack)", LocalDate.now(), "eq1", "eq2", 2);
         carteRencontre.add(cr);
         return carteRencontre;
     }

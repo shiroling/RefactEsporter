@@ -52,7 +52,7 @@ public class UsineCarte {
         return clone;
     }
 
-    public CarteRencontre getCarteRencontre(int idRencontre, boolean estFinale, String nomTournoi, LocalDate dateRencontre, String nomEquipe1, String nomEquipe2, int indexVaincueur) {
+    public CarteRencontre getCarteRencontre(int idRencontre, int estFinale, String nomTournoi, LocalDate dateRencontre, String nomEquipe1, String nomEquipe2, int indexVaincueur) {
         CarteRencontre clone = (CarteRencontre) carteRencontre.clone();
         clone.setId(idRencontre);
         clone.setNomTournoi(estFinale, nomTournoi);

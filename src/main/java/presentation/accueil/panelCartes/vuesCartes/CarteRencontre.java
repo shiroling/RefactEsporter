@@ -70,8 +70,8 @@ public class CarteRencontre extends Carte{
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
     }
 
-    public void setNomTournoi(boolean finale, String nom){
-        if (finale) {
+    public void setNomTournoi(int finale, String nom){
+        if (finale==1) {
             lblNomTournoi.setText("Finale du "+nom);
         }
         else {
