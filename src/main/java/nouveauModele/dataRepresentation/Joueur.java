@@ -28,9 +28,6 @@ public class Joueur {
     @JoinColumn(name = "Id_Equipe", referencedColumnName = "Id_Equipe", nullable = false)
     private Equipe equipe;
 
-    public Joueur() {
-
-    }
     public Joueur(String nom, String prenom, String pseudo, LocalDate dateDeNaissance) {
         this.nom = nom;
         this.prenom = prenom;
