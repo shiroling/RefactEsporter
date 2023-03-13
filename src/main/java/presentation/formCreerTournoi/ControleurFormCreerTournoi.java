@@ -70,8 +70,12 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 //  FAUT PAS QUE CE SOIT ICI !
                 //  la vue deverait retourner les infos mais pas les insérer
                 // ici le truc pour instérer
-
+                estFormulaireValide= testJeux && testNom;
+                if (estFormulaireValide){
                     this.vue.dispose();
+                    
+                }
+
 
             }
             case "btnCancel" -> //Ferme le formulaire de création de tournoi
@@ -101,7 +105,11 @@ public class ControleurFormCreerTournoi implements ActionListener {
 
     public boolean testerJeux() {
         //Si le champs Jeux est vide, alors mettre le label du champs en rouge + l'initulé vide.
-        if (this.nomJeux.isEmpty() && !isLabelJeuxOnWarning()) {
+        if (this.nomJeux.isEmpty()) {
+            vue.setLabelOnWarning(vue.getLabelJeuxAjoutes(), "Jeux Ajoutés :");
+            return false;
+        }
+        if (isLabelJeuxOnWarning()){
             vue.setLabelOnWarning(vue.getLabelJeuxAjoutes(), "Jeux Ajoutés :");
             return false;
         }
@@ -111,7 +119,11 @@ public class ControleurFormCreerTournoi implements ActionListener {
 
     public boolean testerNom() {
         //Si le champs Nom est vide, alors mettre le label du champs en rouge + l'initulé vide.
-        if (isEmptyNom() && !isLabelNomOnWarning()) {
+        if (isEmptyNom()) {
+            vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
+            return false;
+        }
+        if(isLabelNomOnWarning()){
             vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
             return false;
         }

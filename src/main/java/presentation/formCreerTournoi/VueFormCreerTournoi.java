@@ -2,10 +2,12 @@ package presentation.formCreerTournoi;
 
 import application.donneesPersistantes.Mois;
 import application.donneesPersistantes.Portee;
+import presentation.style.JTextFieldLimit;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
 
@@ -204,6 +206,7 @@ public class VueFormCreerTournoi extends JDialog {
                 {
                     textFieldNom = new JTextField();
                     textFieldNom.setText("");
+                    textFieldNom.setDocument(new JTextFieldLimit(15));
                     panel.add(textFieldNom);
                     textFieldNom.setColumns(15);
                 }
@@ -298,7 +301,8 @@ public class VueFormCreerTournoi extends JDialog {
                 PanelChampsSaisie.add(panel);
                 {
                     comboJeux = new JComboBox<>();
-                    comboJeux.setModel(new DefaultComboBoxModel<>((String[]) nomJeuxDisponible.toArray()));
+                    String[] aa = (String[]) nomJeuxDisponible.toArray(new String[nomJeuxDisponible.size()]);
+                    comboJeux.setModel(new DefaultComboBoxModel<>(aa));
                     panel.add(comboJeux);
                 }
             }
@@ -354,6 +358,12 @@ public class VueFormCreerTournoi extends JDialog {
 
     public Portee getPortee() {
         return Portee.stringToPortee(this.getComboPortee().getSelectedItem().toString());
+    }
+
+    public static void main(String[] args) {
+        List<String> a = new ArrayList<>();
+        VueFormCreerTournoi v = new VueFormCreerTournoi(1,a );
+        v.setVisible(true);
     }
 }
 
