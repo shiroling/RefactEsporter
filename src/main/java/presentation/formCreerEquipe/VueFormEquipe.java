@@ -20,7 +20,7 @@ public class VueFormEquipe extends JDialog {
 
 
 
-    public VueFormEquipe() {
+    public VueFormEquipe(List<String> nomsJeuxDisponibles) {
         ControleurFormEquipe controleur = new ControleurFormEquipe(this);
         this.setMinimumSize(new Dimension(400,400));
         this.setLayout(new FlowLayout(1,1000,1));
