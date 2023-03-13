@@ -124,13 +124,6 @@ public class TournoiService {
         return this.getEquipesInscrites(idTournoi).size();
     }
 
-
-/*      In finae ca deverais étre ça !
-    public void afficherPopupTournoi(int id_tournoi) {
-        PopupTournoi popupTournoi = new PopupTournoi(repository.getTournoiById(id_tournoi));
-        popupTournoi.setVisible(true);
-    }
- */
     public void enregistrerNouveauTournoiMultigaming(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Integer> ListeDeJeux, int idGerant) {
         for (Integer idJeu: ListeDeJeux) {
             Jeu jeuJoue = JeuRepository.getInstance().findById(idJeu);
