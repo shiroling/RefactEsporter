@@ -301,8 +301,8 @@ public class VueFormCreerTournoi extends JDialog {
                 PanelChampsSaisie.add(panel);
                 {
                     comboJeux = new JComboBox<>();
-                    String[] aa = (String[]) nomJeuxDisponible.toArray(new String[nomJeuxDisponible.size()]);
-                    comboJeux.setModel(new DefaultComboBoxModel<>(aa));
+                    String[] lesJeux = (String[]) nomJeuxDisponible.toArray(new String[nomJeuxDisponible.size()]);
+                    comboJeux.setModel(new DefaultComboBoxModel<>(lesJeux));
                     panel.add(comboJeux);
                 }
             }

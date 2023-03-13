@@ -1,13 +1,18 @@
 package presentation.formCreerTournoi;
 
+import application.donneesPersistantes.Portee;
 import application.exceptions.BadUserExecption;
 import application.services.TournoiService;
 import modele.Jeu;
+import nouveauModele.repositories.JeuRepository;
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -72,8 +77,15 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 // ici le truc pour instérer
                 estFormulaireValide= testJeux && testNom;
                 if (estFormulaireValide){
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    String nom = vue.getNomTournoi();
+                    Portee portee= vue.getPortee();
+                    LocalDate finInsc = LocalDate.parse(vue.getSelectedValueComboJourFinInscription()+"/"+vue.getSelectedValueComboMoiFinInscription()+"/"+vue.getSelectedValueComboAnneeFinInscription(),formatter);
+                    LocalDate datedebut = LocalDate.parse(vue.getSelectedValueComboJourDebutTournoi()+"/"+vue.getSelectedValueComboMoiDebutTournoi()+"/"+vue.getSelectedValueComboAnneeDebutTournoi(),formatter);
+                    LocalDate datefin = LocalDate.parse(vue.getSelectedValueComboJourFinTournoi()+"/"+vue.getSelectedValueComboMoiFinTournoi()+"/"+vue.getSelectedValueComboAnneeFinTournoi(),formatter);
+                    int idJeu = JeuRepository.getInstance().findByNom(vue.getLabelJeuxAjoutes().getText()).getIdJeu();
+                    TournoiService.getInstance().enregistrerNouveauTournoi(nom,portee,finInsc,datedebut,datefin,idJeu, vue.getIdGerant());
                     this.vue.dispose();
-                    
                 }
 
 
@@ -124,6 +136,10 @@ public class ControleurFormCreerTournoi implements ActionListener {
             return false;
         }
         if(isLabelNomOnWarning()){
+            vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
+            return false;
+        }
+        if (TournoiService.isValidNom(vue.getLabelNom().getText())){
             vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
             return false;
         }
