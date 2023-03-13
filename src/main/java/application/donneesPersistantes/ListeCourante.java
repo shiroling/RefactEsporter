@@ -3,6 +3,7 @@ package application.donneesPersistantes;
 import application.filtres.Filtre;
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.*;
+import presentation.accueil.VueAccueil;
 import presentation.accueil.panelCartes.UsineCarte;
 import presentation.accueil.panelCartes.vuesCartes.Carte;
 
@@ -56,7 +57,7 @@ public class ListeCourante {
         switch (selectionCourante) {
             case ECURIE -> {
                 for (Ecurie e : (List<Ecurie>) listeCourante) {
-                    lc.add(uc.getCarteEcurie(e.getIdEcurie(), e.getNomEcurie(), EcurieRepository.getInstance().getPoints(e.getIdEcurie())));
+                    lc.add(uc.getCarteEcurie(e.getIdEcurie(), e.getNomEcurie(), EcurieRepository.getInstance().getPoints(e)));
                 }
                 return lc;
             }
@@ -75,7 +76,7 @@ public class ListeCourante {
             case RENCONTRE -> {
                 RencontreRepository rp = RencontreRepository.getInstance();
                 for (Rencontre r : (List<Rencontre>) listeCourante) {
-                    List<Equipe> equipes = rp.getEquipes(r.getIdRencontre());
+                    List<Equipe> equipes = rp.getEquipes(r);
                     lc.add(uc.getCarteRencontre(r.getIdRencontre(), r.getPoule().getFinale(), r.getPoule().getTournoi().getNom(), r.getDateRencontre(), equipes.get(0).getNomEquipe(), equipes.get(1).getNomEquipe(), equipes.indexOf(rp.getGagnant(r))));
                 }
                 return lc;
