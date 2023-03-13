@@ -9,6 +9,7 @@ import nouveauModele.repositories.*;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import presentation.Popup.PopupTournoi.PopupTournoi;
+import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -111,6 +112,13 @@ public class TournoiService {
     public void afficherPopupTournoi(String nomTournoi) {
         int idTournoi = repository.findByNom(nomTournoi).getId();
         afficherPopupTournoi(idTournoi);
+    }
+
+    public void afficherFormCreerTournoi() {
+        int idGerant = UtilisateurCourant.getInstance().getIdLog();
+        List<String> nomsJeuxDisponible = JeuService.getInstance().getNomsJeuDisponibles();
+        VueFormCreerTournoi fen = new VueFormCreerTournoi(idGerant, nomsJeuxDisponible);
+        fen.setVisible(true);
     }
 
     public int getNbParticipants(int idTournoi) {

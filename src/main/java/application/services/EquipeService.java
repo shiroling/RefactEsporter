@@ -8,6 +8,8 @@ import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.JeuRepository;
 import presentation.Popup.PopupEquipe.PopupEquipe;
+import presentation.formCreerEquipe.VueFormEquipe;
+import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -40,6 +42,12 @@ public class EquipeService {
     public void afficherPopupEquipe(String nomEquipe) {
         int idEquipe = repository.findByNom(nomEquipe).getIdEquipe();
         afficherPopupEquipe(idEquipe);
+    }
+
+    public void afficherFormCreerEquipe() {
+        List<String> nomsJeuxDisponibles = JeuService.getInstance().getNomsJeuDisponibles();
+        VueFormEquipe fen = new VueFormEquipe(nomsJeuxDisponibles);
+        fen.setVisible(true);
     }
 
     public String getNomFromId(int idEquipe) {
