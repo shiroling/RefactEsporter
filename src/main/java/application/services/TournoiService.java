@@ -117,6 +117,7 @@ public class TournoiService {
         int idGerant = UtilisateurCourant.getInstance().getIdLog();
         List<String> nomsJeuxDisponible = JeuService.getInstance().getNomsJeuDisponibles();
         VueFormCreerTournoi fen = new VueFormCreerTournoi(idGerant, nomsJeuxDisponible);
+        fen.setVisible(true);
     }
 
     public int getNbParticipants(int idTournoi) {
