@@ -9,6 +9,7 @@ import nouveauModele.repositories.*;
 import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 
 import presentation.Popup.PopupTournoi.PopupTournoi;
+import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -107,22 +108,23 @@ public class TournoiService {
         PopupTournoi popupTournoi = new PopupTournoi(nomTournoi, dateDebut, dateFin, dateFinIscription, isFini, isPlein, nomsEquipesParticipantes);
         popupTournoi.setVisible(true);
     }
+
     public void afficherPopupTournoi(String nomTournoi) {
         int idTournoi = repository.findByNom(nomTournoi).getId();
         afficherPopupTournoi(idTournoi);
+    }
+
+    public void afficherFormCreerTournoi() {
+        int idGerant = UtilisateurCourant.getInstance().getIdLog();
+        List<String> nomsJeuxDisponible = JeuService.getInstance().getNomsJeuDisponibles();
+        VueFormCreerTournoi fen = new VueFormCreerTournoi(idGerant, nomsJeuxDisponible);
+        fen.setVisible(true);
     }
 
     public int getNbParticipants(int idTournoi) {
         return this.getEquipesInscrites(idTournoi).size();
     }
 
-
-/*      In finae ca deverais étre ça !
-    public void afficherPopupTournoi(int id_tournoi) {
-        PopupTournoi popupTournoi = new PopupTournoi(repository.getTournoiById(id_tournoi));
-        popupTournoi.setVisible(true);
-    }
- */
     public void enregistrerNouveauTournoiMultigaming(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Integer> ListeDeJeux, int idGerant) {
         for (Integer idJeu: ListeDeJeux) {
             Jeu jeuJoue = JeuRepository.getInstance().findById(idJeu);

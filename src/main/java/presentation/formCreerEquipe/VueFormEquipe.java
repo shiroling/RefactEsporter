@@ -20,7 +20,7 @@ public class VueFormEquipe extends JDialog {
 
 
 
-    public VueFormEquipe() {
+    public VueFormEquipe(List<String> nomsJeuxDisponibles) {
         ControleurFormEquipe controleur = new ControleurFormEquipe(this);
         this.setMinimumSize(new Dimension(400,400));
         this.setLayout(new FlowLayout(1,1000,1));
@@ -46,7 +46,7 @@ public class VueFormEquipe extends JDialog {
         contentPanel.add(panelJeu);
         lblJeu =new JLabel("Jeu : ");
         panelJeu.add(lblJeu);
-        comboJeux = new JComboBox<>();
+        comboJeux = new JComboBox<>(new DefaultComboBoxModel<>((String[]) nomsJeuxDisponibles.toArray()));
         panelJeu.add(comboJeux);
 
         joueurs = new LinkedList<>();
@@ -77,8 +77,8 @@ public class VueFormEquipe extends JDialog {
 
 
 
-    public JTextField getTextFieldNomEquipe() {
-        return textFieldNomEquipe;
+    public String getNomNouvelleEquipe() {
+        return textFieldNomEquipe.getText();
     }
 
     public JComboBox getComboJeux() {
@@ -87,16 +87,6 @@ public class VueFormEquipe extends JDialog {
 
     public void setJoueur(int i, String pseudo) {
         (this.joueurs.get(i)).setJoueur(i, pseudo);
-    }
-
-    public static void main(String[] args) {
-        try {
-            VueFormEquipe dialog = new VueFormEquipe();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void setJoueurVide(int i) {

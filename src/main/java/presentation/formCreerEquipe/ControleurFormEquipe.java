@@ -1,9 +1,8 @@
 package presentation.formCreerEquipe;
 
-import application.services.JoueurService;
+import application.services.EquipeService;
+import application.testeurs.JoueurRecord;
 import application.testeurs.PreJoueur;
-import nouveauModele.dataRepresentation.Joueur;
-import presentation.formJoueur.VueFormJoueur;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ import java.util.List;
 public class ControleurFormEquipe implements ActionListener{
 
     private VueFormEquipe vue;
-    private List<PreJoueur> joueurs;
+    private List<JoueurRecord> joueurRecords;
 
     public ControleurFormEquipe(VueFormEquipe vue) {
         super();
@@ -72,12 +71,19 @@ public class ControleurFormEquipe implements ActionListener{
     }
 
     private void ProcedureInsertion() {
-        return;
+
     }
 
     private boolean verifiedAll() {
-        return false;
+        return (!equipeDejaExistante(this.vue.getNomNouvelleEquipe()) && );
     }
 
+    private boolean equipeDejaExistante(String nomEquipe) {
+        return EquipeService.getInstance().isNomDejaPris(nomEquipe);
+    }
+
+    private boolean estJoueurValide() {
+        
+    }
 
 }

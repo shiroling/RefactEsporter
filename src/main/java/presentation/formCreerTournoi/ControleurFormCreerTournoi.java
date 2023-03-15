@@ -1,13 +1,18 @@
 package presentation.formCreerTournoi;
 
+import application.donneesPersistantes.Portee;
 import application.exceptions.BadUserExecption;
 import application.services.TournoiService;
 import modele.Jeu;
+import nouveauModele.repositories.JeuRepository;
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -70,8 +75,19 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 //  FAUT PAS QUE CE SOIT ICI !
                 //  la vue deverait retourner les infos mais pas les insérer
                 // ici le truc pour instérer
-
+                estFormulaireValide= testJeux && testNom;
+                if (estFormulaireValide){
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    String nom = vue.getNomTournoi();
+                    Portee portee= vue.getPortee();
+                    LocalDate finInsc = LocalDate.parse(vue.getSelectedValueComboJourFinInscription()+"/"+vue.getSelectedValueComboMoiFinInscription()+"/"+vue.getSelectedValueComboAnneeFinInscription(),formatter);
+                    LocalDate datedebut = LocalDate.parse(vue.getSelectedValueComboJourDebutTournoi()+"/"+vue.getSelectedValueComboMoiDebutTournoi()+"/"+vue.getSelectedValueComboAnneeDebutTournoi(),formatter);
+                    LocalDate datefin = LocalDate.parse(vue.getSelectedValueComboJourFinTournoi()+"/"+vue.getSelectedValueComboMoiFinTournoi()+"/"+vue.getSelectedValueComboAnneeFinTournoi(),formatter);
+                    int idJeu = JeuRepository.getInstance().findByNom(vue.getLabelJeuxAjoutes().getText()).getIdJeu();
+                    TournoiService.getInstance().enregistrerNouveauTournoi(nom,portee,finInsc,datedebut,datefin,idJeu, vue.getIdGerant());
                     this.vue.dispose();
+                }
+
 
             }
             case "btnCancel" -> //Ferme le formulaire de création de tournoi
@@ -101,7 +117,11 @@ public class ControleurFormCreerTournoi implements ActionListener {
 
     public boolean testerJeux() {
         //Si le champs Jeux est vide, alors mettre le label du champs en rouge + l'initulé vide.
-        if (this.nomJeux.isEmpty() && !isLabelJeuxOnWarning()) {
+        if (this.nomJeux.isEmpty()) {
+            vue.setLabelOnWarning(vue.getLabelJeuxAjoutes(), "Jeux Ajoutés :");
+            return false;
+        }
+        if (isLabelJeuxOnWarning()){
             vue.setLabelOnWarning(vue.getLabelJeuxAjoutes(), "Jeux Ajoutés :");
             return false;
         }
@@ -111,7 +131,15 @@ public class ControleurFormCreerTournoi implements ActionListener {
 
     public boolean testerNom() {
         //Si le champs Nom est vide, alors mettre le label du champs en rouge + l'initulé vide.
-        if (isEmptyNom() && !isLabelNomOnWarning()) {
+        if (isEmptyNom()) {
+            vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
+            return false;
+        }
+        if(isLabelNomOnWarning()){
+            vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
+            return false;
+        }
+        if (TournoiService.isValidNom(vue.getLabelNom().getText())){
             vue.setLabelOnWarning(vue.getLabelNom(), "Nom :");
             return false;
         }

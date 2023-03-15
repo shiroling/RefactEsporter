@@ -1,5 +1,7 @@
 package application.services;
 
+import application.donneesPersistantes.UtilisateurCourant;
+import application.testeurs.JoueurRecord;
 import nouveauModele.dataRepresentation.Ecurie;
 import nouveauModele.dataRepresentation.Equipe;
 import nouveauModele.dataRepresentation.Jeu;
@@ -8,10 +10,11 @@ import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.JeuRepository;
 import presentation.Popup.PopupEquipe.PopupEquipe;
+import presentation.formCreerEquipe.VueFormEquipe;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipeService {
@@ -40,6 +43,23 @@ public class EquipeService {
     public void afficherPopupEquipe(String nomEquipe) {
         int idEquipe = repository.findByNom(nomEquipe).getIdEquipe();
         afficherPopupEquipe(idEquipe);
+    }
+
+    public void afficherFormCreerEquipe() {
+        List<String> nomsJeuxDisponibles = JeuService.getInstance().getNomsJeuDisponibles();
+        VueFormEquipe fen = new VueFormEquipe(nomsJeuxDisponibles);
+        fen.setVisible(true);
+    }
+
+    public void insererNouvelleEquipe(String nomEquipe, String nomJeu, List<JoueurRecord> listJoueurRecord) {
+        Ecurie ecurieDeLaNouvelleEquipe = EcurieRepository.getInstance().findById(UtilisateurCourant.getInstance().getIdLog());
+        Jeu jeuDeLaNouvelleEquipe = JeuRepository.getInstance().findByNom(nomJeu);
+        Equipe nouvelleEquipe = new Equipe(nomEquipe, ecurieDeLaNouvelleEquipe, jeuDeLaNouvelleEquipe);
+        List<Joueur> joueursDeLaNouvelleEquipe = new ArrayList<>();
+        for(JoueurRecord joueurRecord : listJoueurRecord) {
+            joueursDeLaNouvelleEquipe.add(new Joueur(joueurRecord.nom(), joueurRecord.prenom(), joueurRecord.pseudo(), joueurRecord.dateDeNaisssance()));
+        }
+        EquipeRepository.getInstance().enregistrerEquipe(nouvelleEquipe, joueursDeLaNouvelleEquipe);
     }
 
     public String getNomFromId(int idEquipe) {
@@ -79,5 +99,14 @@ public class EquipeService {
             ageMoyen += age;
         }
         return ageMoyen/listeJoueurs.size();
+    }
+
+    public boolean isNomDejaPris(String nomEquipe) {
+        try {
+            repository.findByNom(nomEquipe);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
