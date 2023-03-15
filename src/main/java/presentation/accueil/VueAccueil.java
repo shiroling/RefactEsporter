@@ -33,23 +33,13 @@ public class VueAccueil extends JFrame {
         this.getContentPane().add(scrollPaneMain, BorderLayout.CENTER);
     }
 
-    public VueFonctionalite getVueFonctionalite() {
-        return vueFonctionalite;
-    }
-
     public VuePanelCarte getVueCarte() {
         return vueCarte;
     }
 
     public void updateToState(Selection select) {
         updateCartesGrille();
-        switch (select) {
-            case EQUIPE -> this.vueFonctionalite.setAffichageEquipe();
-            case ECURIE -> this.vueFonctionalite.setAffichageEcurie();
-            case JEU -> this.vueFonctionalite.setAffichageJeu();
-            case RENCONTRE -> this.vueFonctionalite.setAffichageRencontre();
-            case TOURNOI -> this.vueFonctionalite.setAffichageTournoi();
-        }
+        vueFonctionalite.setAffichage(select);
     }
     public void updateCartesGrille() {
         getVueCarte().viderCartes();

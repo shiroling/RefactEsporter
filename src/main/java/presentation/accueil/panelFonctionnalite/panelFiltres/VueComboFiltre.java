@@ -7,26 +7,34 @@ import static presentation.style.ElementCommun.getFontPrincipal;
 
 public class VueComboFiltre extends JPanel{
 
-    private final JComboBox<String> comboFiltreAvencementTournoi;
+    private final JComboBox<String> comboBox;
+
+    public void addItemListener(ControleurPanelFiltres controleur) {
+        this.comboBox.addItemListener(controleur);
+    }
 
     public VueComboFiltre(String nom, String[] options) {
-        ContoleurComboFiltre contoleur = new ContoleurComboFiltre(this);
         this.setLayout(new GridLayout(0, 2, 0, 0));
-
         JLabel label = new JLabel( nom+ " : ");
         label.setFont(getFontPrincipal());
         this.add(label);
 
-        comboFiltreAvencementTournoi = new JComboBox<String>();
-        comboFiltreAvencementTournoi.setFont(getFontPrincipal());
-        comboFiltreAvencementTournoi.setPreferredSize(new Dimension(140, 30));
+        comboBox = new JComboBox<String>();
+        comboBox.setFont(getFontPrincipal());
+        comboBox.setPreferredSize(new Dimension(140, 30));
 
-        comboFiltreAvencementTournoi.setModel(new DefaultComboBoxModel<String>(options));
-        comboFiltreAvencementTournoi.addItemListener(contoleur);
-        this.add(comboFiltreAvencementTournoi);
+        comboBox.setModel(new DefaultComboBoxModel<String>(options));
+        this.add(comboBox);
     }
 
     public String getSelectedValue() {
-        return (String) this.comboFiltreAvencementTournoi.getSelectedItem();
+        return (String) this.comboBox.getSelectedItem();
+    }
+
+    @Override
+    public String toString() {
+        return "VueComboFiltre{" +
+                "comboBoxVal=" + comboBox.getSelectedItem().toString() +
+                '}';
     }
 }

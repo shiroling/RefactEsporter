@@ -17,6 +17,12 @@ public class ContoleurPanelSelection implements MouseListener{
         super();
         this.vue = vue;
         this.select = selection;
+        this.estSelectionne = false;
+    }
+
+    public void setEstSelectionne(boolean estSelectionne) {
+        this.estSelectionne = estSelectionne;
+
     }
 
     @Override
@@ -36,14 +42,15 @@ public class ContoleurPanelSelection implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        vue.setPannelLineON();
+        System.out.println("entered state : "+ estSelectionne);
+        vue.setSelectionneLineOn();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (!estSelectionne) {
-            vue.setPannelLineOFF();
+        System.out.println("exited state : " + estSelectionne);
+        if(!estSelectionne) {
+            vue.setDeselectionne();
         }
     }
-
 }

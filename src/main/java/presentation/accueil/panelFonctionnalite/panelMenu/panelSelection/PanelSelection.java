@@ -9,34 +9,21 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class PanelSelection extends JPanel {
-
     private JPanel panelLigneHover;
-    private ContoleurPanelSelection hover;
 
+    private ContoleurPanelSelection controleur;
 
-    public void setPannelLineON() {
-        this.getPanelLigneHover().setPreferredSize(new Dimension(10, 0));
-        this.getPanelLigneHover().repaint();
-        this.revalidate();
-    }
-
-    public void setPannelLineOFF() {
-        this.getPanelLigneHover().setPreferredSize(new Dimension(10, 0));
-        this.getPanelLigneHover().repaint();
-        this.revalidate();
-    }
     public PanelSelection(Selection selection) {
-        ContoleurPanelSelection hover = new ContoleurPanelSelection(this, selection);
-
+        controleur = new ContoleurPanelSelection(this, selection);
         setLayout(new BorderLayout(0, 0));
-        addMouseListener(hover);
+        addMouseListener(controleur);
         setPreferredSize(new Dimension(0, 50));
         setBackground(Color.WHITE);
         setBorder(new LineBorder(Color.GRAY));
 
         panelLigneHover = new JPanel();
         panelLigneHover.setBackground(new Color(0, 153, 255));
-        panelLigneHover.setPreferredSize(new Dimension(10, 0));
+        panelLigneHover.setPreferredSize(new Dimension(0, 0));
         add(panelLigneHover, BorderLayout.EAST);
 
         JPanel panelLbl = new JPanel();
@@ -49,13 +36,26 @@ public class PanelSelection extends JPanel {
         JLabel lblSelection = new JLabel(selection.getLabel());
         lblSelection.setHorizontalAlignment(SwingConstants.LEFT);
         panelLbl.add(lblSelection);
-
     }
+
+
+    public void setSelectionne() {
+        this.controleur.setEstSelectionne(true);
+        setSelectionneLineOn();
+    }
+    public void setSelectionneLineOn() {
+        this.getPanelLigneHover().setPreferredSize(new Dimension(10, 0));
+        this.getPanelLigneHover().repaint();
+        this.updateUI();
+    }
+    public void setDeselectionne() {
+        this.controleur.setEstSelectionne(false);
+        this.getPanelLigneHover().setPreferredSize(new Dimension(0, 0));
+        this.getPanelLigneHover().repaint();
+        this.updateUI();
+    }
+
     public JPanel getPanelLigneHover() {
         return this.panelLigneHover;
     }
-    public ContoleurPanelSelection getHover() {
-        return hover;
-    }
-
 }

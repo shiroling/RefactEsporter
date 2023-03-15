@@ -11,11 +11,9 @@ public class VueMenu extends JPanel {
     private PanelSelection selectEquipe;
     private PanelSelection selectEcurie;
     private PanelSelection selectJeu;
-    private PanelSelection currentSelection;
 
     public VueMenu(){
         this.setLayout(new GridLayout(0, 1, 0, 0));
-
         selectTournoi = new PanelSelection( Selection.TOURNOI);
         selectRencontre = new PanelSelection( Selection.RENCONTRE);
         selectEquipe = new PanelSelection( Selection.EQUIPE);
@@ -27,35 +25,22 @@ public class VueMenu extends JPanel {
         this.add(selectEcurie);
         this.add(selectJeu);
     }
-
-    public void setCurrentSelection(PanelSelection currentSelection) {
-        this.currentSelection = currentSelection;
-        this.currentSelection.setPannelLineON();
-    }
-
     public void setSelected(Selection seclection) {
-        this.currentSelection.setPannelLineOFF();
+        deselectAll();
         switch (seclection) {
-            case ECURIE -> setCurrentSelection(this.selectEcurie);
-            case EQUIPE -> setCurrentSelection(this.selectEquipe);
-            case RENCONTRE -> setCurrentSelection(this.selectRencontre);
-            case JEU -> setCurrentSelection(this.selectJeu);
-            case TOURNOI -> setCurrentSelection(this.selectTournoi);
+            case ECURIE -> selectEcurie.setSelectionne();
+            case EQUIPE -> selectEquipe.setSelectionne();
+            case RENCONTRE -> selectRencontre.setSelectionne();
+            case JEU -> selectJeu.setSelectionne();
+            case TOURNOI -> selectTournoi.setSelectionne();
         }
     }
 
-    public void setCurrentSelectionEquipes() {
-    }
-
-    public void setCurrentSelectionJeux() {
-    }
-
-    public void setCurrentSelectionEcurie() {
-    }
-
-    public void setCurrentSelectionRencontres() {
-    }
-
-    public void setCurrentSelectionTournois() {
+    private void deselectAll() {
+        this.selectTournoi.setDeselectionne();
+        this.selectJeu.setDeselectionne();
+        this.selectEcurie.setDeselectionne();
+        this.selectEquipe.setDeselectionne();
+        this.selectRencontre.setDeselectionne();
     }
 }

@@ -1,19 +1,56 @@
 package presentation.accueil.panelFonctionnalite.panelFiltres;
 
 import application.donneesPersistantes.Portee;
+import application.donneesPersistantes.Selection;
 import modele.*;
 
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 
 public class VuePanelFiltres extends JPanel {
+    ControleurPanelFiltres contoleur;
     public VuePanelFiltres(){
+        contoleur = new ControleurPanelFiltres(this);
+    }
+
+    public static void main(String[] args) {
+        Frame f = new Frame();
+        String[] argsd = {"cot", "côt"};
+        String[] argsv = {"meu", "meuhhh"};
+        List<VueComboFiltre> lcb = new ArrayList<>();
+        lcb.add(new VueComboFiltre("pouet", argsd));
+        lcb.add(new VueComboFiltre("vache", argsv));
+        VuePanelFiltres pan = new VuePanelFiltres();
+        pan.setPanelToFiltres(lcb);
+        f.add(pan);
+        f.setVisible(true);
+        pan.getSelectedValues();
+    }
+
+    public void getSelectedValues() {
+        for (Component c :this.getComponents()) {
+            System.out.println(c);
+        }
+
 
     }
+
+    public void setPanelToFiltres(List<VueComboFiltre> listeFiltres) {
+        this.removeAll();
+        this.setLayout(new GridLayout(listeFiltres.size(), 1, 0, 0));
+        for (VueComboFiltre filtre: listeFiltres) {
+            filtre.addItemListener(contoleur);
+            this.add(filtre);
+        }
+        this.updateUI();
+        this.setVisible(true);
+    }
+
+    /*
     public void setFiltreTournois(){
-        ControleurPanelFiltres itemListner = new ControleurPanelFiltres(this);
         {
             JPanel panelComboAvancement = new JPanel();
             this.add(panelComboAvancement);
@@ -38,7 +75,7 @@ public class VuePanelFiltres extends JPanel {
             comboFiltreAvencementTournoi.setPreferredSize(new Dimension(140, 30));
             comboFiltreAvencementTournoi
                     .setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "En Cours", "A Venir", "Finis" }));
-            comboFiltreAvencementTournoi.addItemListener(itemListner);
+            comboFiltreAvencementTournoi.addItemListener(null);
             panelCombo.add(comboFiltreAvencementTournoi);
         }
         {
@@ -64,7 +101,7 @@ public class VuePanelFiltres extends JPanel {
             comboFiltreInscriptionTournoi.setPreferredSize(new Dimension(140, 30));
             comboFiltreInscriptionTournoi
                     .setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "En Cours", "Finis" }));
-            comboFiltreInscriptionTournoi.addItemListener(itemListner);
+            comboFiltreInscriptionTournoi.addItemListener(null);
             panelCombo.add(comboFiltreInscriptionTournoi);
         }
         {
@@ -90,7 +127,7 @@ public class VuePanelFiltres extends JPanel {
             comboFiltreMultiTournoi.setPreferredSize(new Dimension(140, 30));
             comboFiltreMultiTournoi
                     .setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "Multigaming", "Jeu unique" }));
-            comboFiltreMultiTournoi.addItemListener(itemListner);
+            comboFiltreMultiTournoi.addItemListener(null);
             panelCombo.add(comboFiltreMultiTournoi);
         }
         {
@@ -121,7 +158,7 @@ public class VuePanelFiltres extends JPanel {
                 nomJeux[i + 1] = jeux.get(i).getNom();
             }
             comboFiltreJeuTournoi.setModel(new DefaultComboBoxModel<String>(nomJeux));
-            comboFiltreJeuTournoi.addItemListener(itemListner);
+            comboFiltreJeuTournoi.addItemListener(null);
             panelCombo.add(comboFiltreJeuTournoi);
         }
         {
@@ -158,15 +195,17 @@ public class VuePanelFiltres extends JPanel {
         }
         this.updateUI();
     }
+    */
+    /*
     public void setPanelFiltresRencontres() {
         this.setVisible(true);
         this.removeAll();
         this.setLayout(new GridLayout(6, 1, 0, 0));
 
-        ControleurPanelFiltres itemListner = new ControleurPanelFiltres(this);
-        /*
-        panelComboAvancement
-         */
+        ControleurPanelFiltres itemListner = new ControleurPanelFiltres();
+
+        //panelComboAvancement
+
         JPanel panelComboAvancement = new JPanel();
         this.add(panelComboAvancement);
         panelComboAvancement.setLayout(new GridLayout(0, 2, 0, 0));
@@ -191,9 +230,9 @@ public class VuePanelFiltres extends JPanel {
                 .setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "A Venir", "Finis" }));
         comboFiltreAvencementRencontre.addItemListener(itemListner);
         panelCombo.add(comboFiltreAvencementRencontre);
-        /*
-        panelComboJeu
-         */
+
+        //panelComboJeu
+
         JPanel panelComboJeu = new JPanel();
         this.add(panelComboJeu);
         panelComboJeu.setLayout(new GridLayout(0, 2, 0, 0));
@@ -223,9 +262,9 @@ public class VuePanelFiltres extends JPanel {
         comboFiltreJeuRencontre.setModel(new DefaultComboBoxModel<String>(nomJeux));
         comboFiltreJeuRencontre.addItemListener(itemListner);
         panelCombo.add(comboFiltreJeuRencontre);
-        /*
-        panelComboTournoi
-        */
+
+        //panelComboTournoi
+
         JPanel panelComboTournoi = new JPanel();
         this.add(panelComboTournoi);
         panelComboTournoi.setLayout(new GridLayout(0, 2, 0, 0));
@@ -256,9 +295,9 @@ public class VuePanelFiltres extends JPanel {
         comboFiltreTournoiRencontre.addItemListener(itemListner);
         panelCombo.add(comboFiltreTournoiRencontre);
 
-        /*
-        panelComboEquipe
-         */
+
+        //panelComboEquipe
+
         JPanel panelComboEquipe = new JPanel();
         this.add(panelComboEquipe);
         panelComboEquipe.setLayout(new GridLayout(0, 2, 0, 0));
@@ -291,12 +330,12 @@ public class VuePanelFiltres extends JPanel {
 
         this.updateUI();
     }
-    public void setPanelFiltresEquipes() {
-        this.setVisible(true);
-        this.removeAll();
-        this.setLayout(new GridLayout(6, 1, 0, 0));
 
-        ControleurPanelFiltres itemListner = new ControleurPanelFiltres(this);
+    */
+
+    /*
+    public void setPanelFiltresEquipes() {
+
         //panelComboEcuries
         JPanel panelComboEcuries = new JPanel();
         this.add(panelComboEcuries);
@@ -325,11 +364,11 @@ public class VuePanelFiltres extends JPanel {
             nomEcuries[i + 1] = ecuries.get(i).getNom();
         }
         comboFiltreEcuriesEquipe.setModel(new DefaultComboBoxModel<String>(nomEcuries));
-        comboFiltreEcuriesEquipe.addItemListener(itemListner);
+        comboFiltreEcuriesEquipe.addItemListener(null);
         panelCombo.add(comboFiltreEcuriesEquipe);
-        /*
-        panelComboJeu
-        */
+
+        //panelComboJeu
+
         JPanel panelComboJeu = new JPanel();
         this.add(panelComboJeu);
         panelComboJeu.setLayout(new GridLayout(0, 2, 0, 0));
@@ -357,17 +396,20 @@ public class VuePanelFiltres extends JPanel {
             nomJeux[i + 1] = jeux.get(i).getNom();
         }
         comboFiltreJeuEquipe.setModel(new DefaultComboBoxModel<String>(nomJeux));
-        comboFiltreJeuEquipe.addItemListener(itemListner);
+        comboFiltreJeuEquipe.addItemListener(null);
         panelCombo.add(comboFiltreJeuEquipe);
 
 
-        
+
         this.updateUI();
 
-    }
+    }*/
+
+
     public void setPanelVide() {
         this.removeAll();
     }
+    public void setFiltres(Selection ecurie) {
 
-
+    }
 }

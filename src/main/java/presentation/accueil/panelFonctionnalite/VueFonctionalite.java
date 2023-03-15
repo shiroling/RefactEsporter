@@ -24,27 +24,8 @@ public class VueFonctionalite extends JPanel {
 
     }
 
-    public void setAffichageEcurie() {
-        this.panelFiltres.setPanelVide();
-        this.panelMenu.setCurrentSelectionEcurie();
-    }
-
-    public void setAffichageEquipe() {
-        this.panelFiltres.setPanelFiltresEquipes();
-        this.panelMenu.setCurrentSelectionEquipes();
-    }
-    public void setAffichageJeu() {
-        this.panelFiltres.setPanelVide();
-        this.panelMenu.setCurrentSelectionJeux();
-    }
-
-    public void setAffichageRencontre() {
-        this.panelFiltres.setPanelFiltresRencontres();
-        this.panelMenu.setCurrentSelectionRencontres();
-    }
-
-    public void setAffichageTournoi() {
-        this.panelFiltres.setFiltreTournois();
-        this.panelMenu.setCurrentSelectionTournois();
+    public void setAffichage(Selection s) {
+        this.panelMenu.setSelected(s);
+        this.panelFiltres.setFiltres(s);
     }
 }
