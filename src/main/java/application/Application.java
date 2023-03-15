@@ -2,22 +2,16 @@ package application;
 
 import application.donneesPersistantes.ListeCourante;
 import application.donneesPersistantes.ConnexionCourante;
-import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
-import application.services.EcurieService;
 import application.services.TournoiService;
-import application.services.*;
-import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
 import application.donneesPersistantes.UtilisateurCourant;
 import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
-import modele.Ecurie;
 import modele.Equipe;
 import modele.Rencontre;
 import modele.Tournoi;
-import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
 import presentation.connexion.VueConnexion;
 
 public class Application {
@@ -45,7 +39,7 @@ public class Application {
     }
 
     public void changerEtatAffichage(Selection select) {
-        ModeleGlobal.getInstance().updateListeCourante(select);
+        ListeCourante.getInstance().updateListeCourante(select);
         this.vueAccueil.updateToState(select);
     }
 

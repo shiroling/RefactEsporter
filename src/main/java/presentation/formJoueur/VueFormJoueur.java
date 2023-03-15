@@ -1,6 +1,6 @@
 package presentation.formJoueur;
 
-import application.testeurs.PreJoueur;
+//import application.testeurs.PreJoueur;
 import nouveauModele.dataRepresentation.Joueur;
 import presentation.style.datePicker.VueDatePicker;
 
@@ -106,7 +106,7 @@ public class VueFormJoueur extends JDialog {
     }
     public static void main(String[] args) {
         try {
-            Joueur j = new Joueur();
+            Joueur j = null;
             VueFormJoueur dialog = new VueFormJoueur(j);
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialog.setVisible(true);
@@ -116,6 +116,7 @@ public class VueFormJoueur extends JDialog {
         }
     }
 
+    /*
     public PreJoueur getPreJoueur() {
         PreJoueur pj = new PreJoueur();
         pj.setNom(this.textFieldNom.getText());
@@ -124,4 +125,6 @@ public class VueFormJoueur extends JDialog {
         pj.setDateDeNaissance(datePickerNaissance.getLocalDate());
         return pj;
     }
+
+     */
 }

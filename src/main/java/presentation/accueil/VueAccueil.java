@@ -2,7 +2,6 @@ package presentation.accueil;
 
 
 import application.donneesPersistantes.ListeCourante;
-import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
 import presentation.accueil.panelCartes.VuePanelCarte;
 import presentation.accueil.panelCartes.vuesCartes.Carte;

@@ -1,5 +1,7 @@
 package presentation.accueil.panelFonctionnalite.panelFiltres;
 
+import presentation.style.ElementCommun;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +24,7 @@ public class VueComboFiltre extends JPanel{
         comboBox = new JComboBox<String>();
         comboBox.setFont(getFontPrincipal());
         comboBox.setPreferredSize(new Dimension(140, 30));
+        comboBox.setFont(ElementCommun.getFontPrincipal());
 
         comboBox.setModel(new DefaultComboBoxModel<String>(options));
         this.add(comboBox);

@@ -1,6 +1,6 @@
 package presentation.formJoueur;
 
-import application.testeurs.PreJoueur;
+//import application.testeurs.PreJoueur;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ControleurFormJoueur implements ActionListener{
 
     private VueFormJoueur vue;
-    private List<PreJoueur> joueurs;
+    private List<Object> joueurs;
 
     public ControleurFormJoueur(VueFormJoueur vue) {
         super();
@@ -23,8 +23,8 @@ public class ControleurFormJoueur implements ActionListener{
         JButton source = (JButton) e.getSource();
         switch (source.getName()) {
             case "Creer" :
-                vue.getPreJoueur();
-                break;
+                throw new UnsupportedOperationException("Unimplemented");
+                //break;
             case "Annuler" :
                 this.vue.dispose();
                 break;

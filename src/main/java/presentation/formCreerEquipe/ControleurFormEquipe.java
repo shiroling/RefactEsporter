@@ -2,7 +2,7 @@ package presentation.formCreerEquipe;
 
 import application.services.EquipeService;
 import application.testeurs.JoueurRecord;
-import application.testeurs.PreJoueur;
+//import application.testeurs.PreJoueur;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ControleurFormEquipe implements ActionListener{
 
+    private final LinkedList<Object> joueurs; // Temporaire
     private VueFormEquipe vue;
     private List<JoueurRecord> joueurRecords;
 
@@ -75,7 +76,7 @@ public class ControleurFormEquipe implements ActionListener{
     }
 
     private boolean verifiedAll() {
-        return (!equipeDejaExistante(this.vue.getNomNouvelleEquipe()) && );
+        return (!equipeDejaExistante(this.vue.getNomNouvelleEquipe()) /*&&*/ );
     }
 
     private boolean equipeDejaExistante(String nomEquipe) {
@@ -83,7 +84,7 @@ public class ControleurFormEquipe implements ActionListener{
     }
 
     private boolean estJoueurValide() {
-        
+        throw new UnsupportedOperationException("unimplemented");
     }
 
 }

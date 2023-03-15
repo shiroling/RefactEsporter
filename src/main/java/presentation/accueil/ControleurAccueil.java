@@ -1,13 +1,6 @@
 package presentation.accueil;
 
-import application.donneesPersistantes.ListeCourante;
-import application.donneesPersistantes.ModeleGlobal;
 import application.donneesPersistantes.Selection;
-import application.filtres.Filtre;
-import presentation.accueil.panelCartes.vuesCartes.Carte;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ControleurAccueil {
     private Selection etat;
