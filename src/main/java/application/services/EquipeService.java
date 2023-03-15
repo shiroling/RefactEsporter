@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EquipeService {
     private static EquipeService instance;
@@ -109,4 +110,11 @@ public class EquipeService {
             return false;
         }
     }
+
+    public String[] getNomsEquipes() {
+        List<String> nomsEquipes = repository.getEquipes().stream().map(tournoi -> tournoi.getNomEquipe()).collect(Collectors.toList());
+        nomsEquipes.add(0, "Toutes");
+        return nomsEquipes.toArray(new String[nomsEquipes.size()]);
+    }
+
 }

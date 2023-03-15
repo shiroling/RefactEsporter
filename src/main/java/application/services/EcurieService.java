@@ -3,9 +3,11 @@ package application.services;
 import nouveauModele.dataRepresentation.Ecurie;
 import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.dataRepresentation.Equipe;
+import nouveauModele.repositories.EquipeRepository;
 import presentation.Popup.PopupEcurie.PopupEcurie;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EcurieService {
 
@@ -37,5 +39,12 @@ public class EcurieService {
 
     public List<Equipe> getEquipes(int idEcurie) {
         return   repository.getEquipes(repository.findById(idEcurie));
+    }
+
+    public String[] getNomsEcuries() {
+
+        List<String> nomsEquipes = repository.getEcuries().stream().map(tournoi -> tournoi.getNomEcurie()).collect(Collectors.toList());
+        nomsEquipes.add(0, "Toutes");
+        return nomsEquipes.toArray(new String[nomsEquipes.size()]);
     }
 }

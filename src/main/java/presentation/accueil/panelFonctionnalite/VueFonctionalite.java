@@ -1,12 +1,14 @@
 package presentation.accueil.panelFonctionnalite;
 
 import application.donneesPersistantes.Selection;
+import application.filtres.RepresentationFiltre;
 import presentation.accueil.panelFonctionnalite.panelConnexion.VuePanelConnexion;
 import presentation.accueil.panelFonctionnalite.panelFiltres.VuePanelFiltres;
 import presentation.accueil.panelFonctionnalite.panelMenu.VueMenu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class VueFonctionalite extends JPanel {
     private final VuePanelFiltres panelFiltres;
@@ -24,8 +26,8 @@ public class VueFonctionalite extends JPanel {
 
     }
 
-    public void setAffichage(Selection s) {
+    public void setAffichage(Selection s, List<RepresentationFiltre> filtresAAfficher) {
+        this.panelFiltres.setToFiltres(filtresAAfficher);
         this.panelMenu.setSelected(s);
-        this.panelFiltres.setFiltres(s);
     }
 }

@@ -5,6 +5,7 @@ import nouveauModele.repositories.JeuRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JeuService {
 
@@ -24,4 +25,10 @@ public class JeuService {
     public List<String> getNomsJeuDisponibles() {
         return repository.getJeux().stream().map(Jeu::getNomJeu).toList();
     }
+    public String[] getNomsJeux() {
+        List<String> nomsJeux = repository.getJeux().stream().map(tournoi -> tournoi.getNomJeu()).collect(Collectors.toList());
+        nomsJeux.add(0, "Tous");
+        return nomsJeux.toArray(new String[nomsJeux.size()]);
+    }
+
 }

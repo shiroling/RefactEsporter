@@ -1,18 +1,23 @@
 package application;
 
-import application.donneesPersistantes.ListeCourante;
-import application.donneesPersistantes.ConnexionCourante;
-import application.donneesPersistantes.Selection;
+import application.donneesPersistantes.*;
+import application.filtres.RepresentationFiltre;
+import application.services.EcurieService;
+import application.services.EquipeService;
+import application.services.JeuService;
 import application.services.TournoiService;
 import nouveauModele.repositories.EquipeRepository;
+import nouveauModele.repositories.JeuRepository;
 import nouveauModele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
-import application.donneesPersistantes.UtilisateurCourant;
 import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
 import modele.Equipe;
 import modele.Rencontre;
 import modele.Tournoi;
 import presentation.connexion.VueConnexion;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
@@ -34,13 +39,49 @@ public class Application {
         ListeCourante.getInstance().updateListeCourante(Selection.TOURNOI);
         UtilisateurCourant.getInstance().deconnexion();
         vueAccueil =  new VueAccueil();
-        vueAccueil.updateToState(Selection.TOURNOI);
+        vueAccueil.updateToState(Selection.TOURNOI, getFiltres(Selection.TOURNOI));
         vueAccueil.setVisible(true);
     }
 
     public void changerEtatAffichage(Selection select) {
         ListeCourante.getInstance().updateListeCourante(select);
-        this.vueAccueil.updateToState(select);
+        this.vueAccueil.updateToState(select, getFiltres(select));
+    }
+
+    private List<RepresentationFiltre> getFiltres(Selection s) {
+        switch (s) {
+            case TOURNOI : return getFiltresTournois();
+            case RENCONTRE : return getFiltresRencontres();
+            case EQUIPE : return getFiltresEquipes();
+            default : return null;
+        }
+    }
+
+    private List<RepresentationFiltre> getFiltresRencontres() {
+        List<RepresentationFiltre> listeFiltres = new ArrayList<>();
+        listeFiltres.add(new RepresentationFiltre("Avancement", new String[]{"Tous", "A Venir", "Finis"}));
+        listeFiltres.add(new RepresentationFiltre("Jeu", JeuService.getInstance().getNomsJeux()));
+        listeFiltres.add(new RepresentationFiltre("Tournoi", TournoiService.getInstance().getNomsTournois()));
+        listeFiltres.add(new RepresentationFiltre("Equipe", EquipeService.getInstance().getNomsEquipes()));
+        return listeFiltres;
+    }
+
+
+    private List<RepresentationFiltre> getFiltresEquipes() {
+        List<RepresentationFiltre> listeFiltres = new ArrayList<>();
+        listeFiltres.add(new RepresentationFiltre("Ecurie", EcurieService.getInstance().getNomsEcuries()));
+        listeFiltres.add(new RepresentationFiltre("Jeu", JeuService.getInstance().getNomsJeux()));
+        return listeFiltres;
+    }
+
+    private List<RepresentationFiltre> getFiltresTournois() {
+        List<RepresentationFiltre> listeFiltres = new ArrayList<>();
+        listeFiltres.add(new RepresentationFiltre("Avancement", new String[]{"Tous", "En Cours", "A Venir", "Finis"}));
+        listeFiltres.add(new RepresentationFiltre("Inscription", new String[]{"Tous", "En Cours", "Finis"}));
+        listeFiltres.add(new RepresentationFiltre("Multigaming", new String[]{"Tous", "Multigaming", "Jeu unique"}));
+        listeFiltres.add(new RepresentationFiltre("Jeu", JeuService.getInstance().getNomsJeux()));
+        listeFiltres.add(new RepresentationFiltre("Portée", Portee.toStrings()));
+        return listeFiltres;
     }
 
     public void afficherFenetreConnexion() {
@@ -68,17 +109,17 @@ public class Application {
         TournoiService.getInstance().inscrireEquipe(idEquipe, idTournoi);
         TournoiService.getInstance().afficherPopupTournoi(idTournoi);
     }
-        public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
+
+    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
         PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre.getEquipes().get(0).getNom(), rencontre.getEquipes().get(1).getNom(), rencontre.getId());
         indiquerVainqueur.setVisible(true);
     }
 
-
     // Regarder si votre truc a mettre ici ne convient pas déjà à FonctionUtilisateurs
     // si il sagit d'un validateur (priére de le mettre dans le paquer du méme nom)
     // si il sagit d'un Filtre (priére de le mettre dans le paquer du méme nom)
-    // si il sagit d'un truc en rapport avec la connexion checkez dans donneesPersistantes
 
+    // si il sagit d'un truc en rapport avec la connexion checkez dans donneesPersistantes
 
     // sinon
     // fourrez tout ici, je ferais le tri

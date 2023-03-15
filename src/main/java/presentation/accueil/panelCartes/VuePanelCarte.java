@@ -11,8 +11,7 @@ public class VuePanelCarte extends JPanel {
     private int tailleCarte;
 
     public void addCarte(Carte c ) {
-
-        add(c);
+        this.add(c);
         ajusterGrilleQuandAjout();
     }
 

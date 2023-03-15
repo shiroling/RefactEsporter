@@ -42,13 +42,11 @@ public class ContoleurPanelSelection implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("entered state : "+ estSelectionne);
         vue.setSelectionneLineOn();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        System.out.println("exited state : " + estSelectionne);
         if(!estSelectionne) {
             vue.setDeselectionne();
         }

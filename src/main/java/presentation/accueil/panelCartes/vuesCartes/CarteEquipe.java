@@ -19,7 +19,7 @@ public class CarteEquipe extends Carte{
         JPanel panelNom = new JPanel();
         add(panelNom);
         lblNomEquipe = new JLabel("nomEquipe");
-        lblNomEquipe.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblNomEquipe.setFont(ElementCommun.getFontPrincipal());
         panelNom.add(lblNomEquipe);
 
         super.addHoverPannels(this);

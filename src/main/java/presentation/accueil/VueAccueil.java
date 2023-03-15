@@ -3,6 +3,7 @@ package presentation.accueil;
 
 import application.donneesPersistantes.ListeCourante;
 import application.donneesPersistantes.Selection;
+import application.filtres.RepresentationFiltre;
 import presentation.accueil.panelCartes.VuePanelCarte;
 import presentation.accueil.panelCartes.vuesCartes.Carte;
 import presentation.accueil.panelFonctionnalite.VueFonctionalite;
@@ -10,6 +11,7 @@ import presentation.accueil.panelFonctionnalite.VueFonctionalite;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.List;
 
 public class VueAccueil extends JFrame {
     private final VueFonctionalite vueFonctionalite;
@@ -36,9 +38,9 @@ public class VueAccueil extends JFrame {
         return vueCarte;
     }
 
-    public void updateToState(Selection select) {
+    public void updateToState(Selection select, List<RepresentationFiltre> filtresAAfficher) {
+        vueFonctionalite.setAffichage(select, filtresAAfficher);
         updateCartesGrille();
-        vueFonctionalite.setAffichage(select);
     }
     public void updateCartesGrille() {
         getVueCarte().viderCartes();

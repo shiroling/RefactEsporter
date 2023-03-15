@@ -1,6 +1,8 @@
 
 package presentation.accueil.panelCartes.vuesCartes;
 
+import presentation.style.ElementCommun;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -23,7 +25,7 @@ public class CarteTournoi extends Carte{
         panelNom.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
 
         lblNomTournoi = new JLabel("nomTournoi");
-        lblNomTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblNomTournoi.setFont(ElementCommun.getFontPrincipal());
         lblNomTournoi.setHorizontalAlignment(SwingConstants.CENTER);
         panelNom.add(lblNomTournoi);
 
@@ -33,7 +35,7 @@ public class CarteTournoi extends Carte{
         panelDate.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
         lblDateDebutFinTournoi = new JLabel("date");
-        lblDateDebutFinTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblDateDebutFinTournoi.setFont(ElementCommun.getFontPrincipal());
         panelDate.add(lblDateDebutFinTournoi);
 
 

@@ -1,6 +1,7 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
 import nouveauModele.dataRepresentation.Ecurie;
+import presentation.accueil.panelCartes.UsineCarte;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;
@@ -8,10 +9,17 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class CarteEcurie extends Carte {
+    public static void main(String[] args) {
+        UsineCarte uc = UsineCarte.getInstance();
+        CarteEcurie c1 = uc.getCarteEcurie(1, "1", 1);
+        System.out.println("c1 ; "+c1);
+        CarteEcurie c2 = uc.getCarteEcurie(2, "2", 2);
+        System.out.println("c1 ; "+c1);
+        System.out.println("c2 : " +c2);
+    }
 
     private JLabel lblNomEcurie;
     private JLabel lblPoint;
-    private int point;
     public CarteEcurie() {
         super();
         setLayout(new GridLayout(2, 1, 0, 0));
@@ -51,4 +59,12 @@ public class CarteEcurie extends Carte {
         return (CarteEcurie) super.clone();
     }
 
+    @Override
+    public String toString() {
+        return "CarteEcurie{" +
+                " id=" + super.getId()+
+                " lblNomEcurie=" + lblNomEcurie +
+                ", lblPoint=" + lblPoint +
+                '}';
+    }
 }

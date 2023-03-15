@@ -33,15 +33,15 @@ public class CarteRencontre extends Carte{
         add(panelNomRencontre);
 
         lblNomEquipe1 = new JLabel("nomEquipe1");
-        lblNomEquipe1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblNomEquipe1.setFont(ElementCommun.getFontPrincipal());
         panelNomRencontre.add(lblNomEquipe1);
 
         JLabel lblSeparationEquipe = new JLabel(" - ");
-        lblSeparationEquipe.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblSeparationEquipe.setFont(ElementCommun.getFontPrincipal());
         panelNomRencontre.add(lblSeparationEquipe);
 
         lblNomEquipe2 = new JLabel("nomEquipe2");
-        lblNomEquipe2.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblNomEquipe2.setFont(ElementCommun.getFontPrincipal());
         panelNomRencontre.add(lblNomEquipe2);
 
         JPanel panelDateRencontre = new JPanel();
@@ -51,7 +51,7 @@ public class CarteRencontre extends Carte{
         add(panelDateRencontre);
 
         lblDateRencontre = new JLabel("date");
-        lblDateRencontre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+        lblDateRencontre.setFont(ElementCommun.getFontPrincipal());
         panelDateRencontre.add(lblDateRencontre);
 
         panelNomTournoi = new JPanel();

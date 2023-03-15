@@ -12,7 +12,7 @@ public enum Portee {
     }
 
     public static String[] toStrings() {
-        return new String[]{LOCAL.getName(), NATIONAL.getName(), INTERNATIONAL.getName()};
+        return new String[]{"Toutes", LOCAL.getName(), NATIONAL.getName(), INTERNATIONAL.getName()};
     }
 
     public static Portee stringToPortee(String str){

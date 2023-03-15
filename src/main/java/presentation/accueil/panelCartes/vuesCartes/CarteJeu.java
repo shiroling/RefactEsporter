@@ -13,10 +13,6 @@ import java.io.InputStream;
 public class CarteJeu extends Carte{
     private JLabel lblNomJeu;
     private JLabel lblLogoJeu;
-    public void setNomJeu(String nom){
-        lblNomJeu.setText(nom);
-    }
-
     @Override
     public Carte clone() {
         return (CarteJeu) super.clone();
@@ -61,22 +57,27 @@ public class CarteJeu extends Carte{
         this.setName("CarteJeu");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
     }
-        public void setLblLogoJeu(String path){
-            // Récupération de l'image à partir du classpath
-            ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("logosJeux/"+path);
 
-            // Chargement de l'image en utilisant la classe ImageIO
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(inputStream);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+    public void setNomJeu(String nom){
+        lblNomJeu.setText(nom);
+    }
+    public void setLblLogoJeu(String path){
+        // Récupération de l'image à partir du classpath
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("logosJeux/"+path);
 
-            // Affichage de l'image dans un JLabel
-            lblLogoJeu.setIcon(new ImageIcon(image));
+        // Chargement de l'image en utilisant la classe ImageIO
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(inputStream);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+
+        // Affichage de l'image dans un JLabel
+
+        lblLogoJeu.setIcon(new ImageIcon(image));
+    }
 
 }

@@ -22,6 +22,8 @@ public class TestCartes extends JFrame {
         UsineCarte uC = UsineCarte.getInstance();
         CarteEcurie ce = uC.getCarteEcurie(12,"bouboule",14);
         carteEcurie.add(ce);
+        System.out.println(ce);
+
         return carteEcurie;
     }
 
@@ -76,8 +78,9 @@ public class TestCartes extends JFrame {
     }
 
     public static void main(String[] args) {
-        TestCartes test = testTournoi();
+        TestCartes test = testEcurie();
         test.setVisible(true);
+
 
     }
 }

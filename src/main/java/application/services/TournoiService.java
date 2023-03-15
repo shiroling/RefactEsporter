@@ -14,6 +14,7 @@ import presentation.formCreerTournoi.VueFormCreerTournoi;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //singleton
 // préssente les Sf de l'application à présentation
@@ -285,5 +286,11 @@ public class TournoiService {
         return classement;
 
 
+    }
+
+    public String[] getNomsTournois() {
+        List<String> nomsTournois = repository.getTournois().stream().map(tournoi -> tournoi.getNom()).collect(Collectors.toList());
+        nomsTournois.add(0, "Tous");
+        return nomsTournois.toArray(new String[nomsTournois.size()]);
     }
 }
