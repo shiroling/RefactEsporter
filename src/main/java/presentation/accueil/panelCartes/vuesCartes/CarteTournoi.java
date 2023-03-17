@@ -1,6 +1,8 @@
 
 package presentation.accueil.panelCartes.vuesCartes;
 
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteEquipe;
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteTournoi;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;
@@ -12,12 +14,13 @@ import java.time.format.DateTimeFormatter;
 public class CarteTournoi extends Carte{
     private JPanel panelDate;
     private JPanel panelNom;
-    ////////////////////////////////////////////////////////////////
     private JLabel lblNomTournoi;
     private JLabel lblDateDebutFinTournoi;
 
-    public CarteTournoi() {
-        super();
+    public CarteTournoi(int idTournoi, String nom, LocalDate dateDebutTournoi, LocalDate dateFinTournoi) {
+        super(idTournoi);
+        this.addMouseListener(new ControleurCarteTournoi(this));
+
         setLayout(new GridLayout(2, 1, 0, 0));
         panelNom = new JPanel();
         panelNom.setBackground(new Color(0,0,0,0));
@@ -43,16 +46,11 @@ public class CarteTournoi extends Carte{
 
         this.setName("CarteTournois");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+        setPanelDate(dateDebutTournoi, dateFinTournoi);
+        setNomTournoi(nom);
     }
 
-
-    public JPanel getPanelNomTournoi() {
-        return this.panelNom;
-    }
-
-    public JPanel getPanelDateTournoi() {
-        return this.panelDate;
-    }
 
     public void setPanelDate(LocalDate dateDebut, LocalDate dateFin){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -63,9 +61,12 @@ public class CarteTournoi extends Carte{
         lblNomTournoi.setText(nom);
     }
 
-
-    @Override
-    public Carte clone() {
-        return (CarteTournoi) super.clone();
+    public JPanel getPanelNomTournoi() {
+        return this.panelNom;
     }
+
+    public JPanel getPanelDateTournoi() {
+        return this.panelDate;
+    }
+
 }

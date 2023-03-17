@@ -3,9 +3,8 @@ package application.donneesPersistantes;
 import application.filtres.Filtre;
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.*;
-import presentation.accueil.VueAccueil;
-import presentation.accueil.panelCartes.UsineCarte;
-import presentation.accueil.panelCartes.vuesCartes.Carte;
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarte;
+import presentation.accueil.panelCartes.vuesCartes.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,23 +52,22 @@ public class ListeCourante {
 
     public List<Carte> getListeEnCartes() {
         List<Carte> lc = new ArrayList<>();
-        UsineCarte uc = UsineCarte.getInstance();
         switch (selectionCourante) {
             case ECURIE -> {
                 for (Ecurie e : (List<Ecurie>) listeCourante) {
-                    lc.add(uc.getCarteEcurie(e.getIdEcurie(), e.getNomEcurie(), EcurieRepository.getInstance().getPoints(e)));
+                    lc.add(new CarteEcurie(e.getIdEcurie(), e.getNomEcurie(), EcurieRepository.getInstance().getPoints(e)));
                 }
                 return lc;
             }
             case EQUIPE -> {
                 for (Equipe e : (List<Equipe>) listeCourante) {
-                    lc.add(uc.getCarteEquipe(e.getIdEquipe(), EquipeRepository.getInstance().getPoints(e), e.getNomEquipe()));
+                    lc.add(new CarteEquipe(e.getIdEquipe(), EquipeRepository.getInstance().getPoints(e), e.getNomEquipe()));
                 }
                 return lc;
             }
             case JEU -> {
                 for (Jeu j : (List<Jeu>) listeCourante) {
-                    lc.add(uc.getCarteJeu(j.getIdJeu(), j.getNomJeu(), j.getLogo()));
+                    lc.add(new CarteJeu(j.getIdJeu(), j.getNomJeu(), j.getLogo()));
                 }
                 return lc;
             }
@@ -77,13 +75,13 @@ public class ListeCourante {
                 RencontreRepository rp = RencontreRepository.getInstance();
                 for (Rencontre r : (List<Rencontre>) listeCourante) {
                     List<Equipe> equipes = rp.getEquipes(r);
-                    lc.add(uc.getCarteRencontre(r.getIdRencontre(), r.getPoule().getFinale(), r.getPoule().getTournoi().getNom(), r.getDateRencontre(), equipes.get(0).getNomEquipe(), equipes.get(1).getNomEquipe(), equipes.indexOf(rp.getGagnant(r))));
+                    lc.add(new CarteRencontre(r.getIdRencontre(), r.getPoule().getFinale(), r.getPoule().getTournoi().getNom(), r.getDateRencontre(), equipes.get(0).getNomEquipe(), equipes.get(1).getNomEquipe(), equipes.indexOf(rp.getGagnant(r))));
                 }
                 return lc;
             }
             case TOURNOI -> {
                 for (Tournoi t : (List<Tournoi>) listeCourante) {
-                    lc.add(uc.getCarteTournoi(t.getId(), t.getNom(), t.getDateDebutTournoi(), t.getDateFinTournoi()));
+                    lc.add(new CarteTournoi(t.getId(), t.getNom(), t.getDateDebutTournoi(), t.getDateFinTournoi()));
                 }
                 return lc;
             }

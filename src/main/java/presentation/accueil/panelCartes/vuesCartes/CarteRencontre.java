@@ -1,5 +1,7 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteEquipe;
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteRencontre;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;
@@ -16,13 +18,11 @@ public class CarteRencontre extends Carte{
     private JPanel panelNomTournoi;
     private JLabel lblFinal;
 
-    @Override
-    public Carte clone() {
-        return (CarteRencontre) super.clone();
-    }
 
-    public CarteRencontre() {
-        super();
+    public CarteRencontre(int idRencontre, int estFinale, String nomTournoi, LocalDate dateRencontre, String nomEquipe1, String nomEquipe2, int indexVaincueur) {
+        super(idRencontre);
+        this.addMouseListener(new ControleurCarteRencontre(this));
+
         setBackground(new Color(255,255,255));
         setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -50,7 +50,7 @@ public class CarteRencontre extends Carte{
         flowLayout_1.setVgap(20);
         add(panelDateRencontre);
 
-        lblDateRencontre = new JLabel("date");
+        lblDateRencontre = new JLabel("dateTournoi");
         lblDateRencontre.setFont(ElementCommun.getFontPrincipal());
         panelDateRencontre.add(lblDateRencontre);
 
@@ -65,8 +65,11 @@ public class CarteRencontre extends Carte{
         panelNomTournoi.add(lblNomTournoi);
         super.addHoverPannels(this);
 
+        setNomEquipes(nomEquipe1, nomEquipe2, indexVaincueur);
+        setNomTournoi(estFinale, nomTournoi);
 
         this.setName("CarteRencontre");
+        this.setDateRencontre(dateRencontre);
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
     }
 

@@ -1,5 +1,7 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteEquipe;
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteJeu;
 import presentation.style.ElementCommun;
 
 import javax.imageio.ImageIO;
@@ -13,13 +15,10 @@ import java.io.InputStream;
 public class CarteJeu extends Carte{
     private JLabel lblNomJeu;
     private JLabel lblLogoJeu;
-    @Override
-    public Carte clone() {
-        return (CarteJeu) super.clone();
-    }
 
-    public CarteJeu() {
-        super();
+    public CarteJeu(int idJeu, String nomJeu, String logo) {
+        super(idJeu);
+        this.addMouseListener(new ControleurCarteJeu(this));
         setLayout(new GridLayout(2, 1, 0, 0));
 
         JPanel panelNomJeu = new JPanel();
@@ -56,6 +55,10 @@ public class CarteJeu extends Carte{
 
         this.setName("CarteJeu");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+        setLblLogoJeu(logo);
+        setNomJeu(nomJeu);
+
     }
 
     public void setNomJeu(String nom){
