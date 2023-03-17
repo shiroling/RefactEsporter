@@ -1,5 +1,6 @@
 package presentation.formCreerEquipe;
 
+import application.services.JeuService;
 import presentation.style.JTextFieldLimit;
 
 import java.awt.*;
@@ -46,7 +47,11 @@ public class VueFormEquipe extends JDialog {
         contentPanel.add(panelJeu);
         lblJeu =new JLabel("Jeu : ");
         panelJeu.add(lblJeu);
-        comboJeux = new JComboBox<>(new DefaultComboBoxModel<>((String[]) nomsJeuxDisponibles.toArray()));
+        String[] nomsJeuArray = new String[nomsJeuxDisponibles.size()];
+        for(int i = 0; i < nomsJeuxDisponibles.size(); i++) {
+            nomsJeuArray[i] = nomsJeuxDisponibles.get(i);
+        }
+        comboJeux = new JComboBox<>(new DefaultComboBoxModel<>(nomsJeuArray));
         panelJeu.add(comboJeux);
 
         joueurs = new LinkedList<>();
@@ -72,6 +77,11 @@ public class VueFormEquipe extends JDialog {
         cancelButton.addActionListener(controleur);
         cancelButton.setActionCommand("Cancel");
         buttonPane.add(cancelButton);
+    }
+
+    public static void main(String[] args) {
+        VueFormEquipe fen = new VueFormEquipe(JeuService.getInstance().getNomsJeuDisponibles());
+        fen.setVisible(true);
     }
 
 
