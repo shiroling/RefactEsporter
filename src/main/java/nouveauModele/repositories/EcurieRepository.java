@@ -112,4 +112,32 @@ public class EcurieRepository {
         }
         return ecuries;
     }
+
+    public Ecurie findByLogs(String username, String password) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Ecurie> ecuries = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("FROM Ecurie e WHERE e.nom_manager = :nomManager AND e.mdp_manager = :mdpManager");
+            query.setParameter("nomManager", username);
+            query.setParameter("mdpManager", password);
+            ecuries = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        if (ecuries.size() > 1 ) {
+            throw new RuntimeException("Doublon de manager pour ecurie alors que le manager est unique");
+        } else if (ecuries.size() == 0)  {
+            return null;
+        }
+        return ecuries.get(0);
+    }
+
 }
