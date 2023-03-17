@@ -9,6 +9,16 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class GerantRepository {
+
+    private static GerantRepository instance;
+
+    public static GerantRepository getInstance() {
+        if(instance == null) {
+            instance = new GerantRepository();
+        }
+        return instance;
+    }
+
     public Gerant findById(int idGerant) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
