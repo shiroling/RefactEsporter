@@ -24,4 +24,8 @@ public class GerantRepository {
         }
         return gerant;
     }
+
+    public static int findByLogs(String username, String password) {
+        throw new UnsupportedOperationException("unimplemented");
+    }
 }

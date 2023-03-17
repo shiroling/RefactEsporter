@@ -1,7 +1,6 @@
 package nouveauModele.repositories;
 
-import application.Application;
-import modele.ConnexionBase;
+import nouveauModele.ConnexionBase;
 import nouveauModele.HibernateUtil;
 import nouveauModele.dataRepresentation.Equipe;
 import nouveauModele.dataRepresentation.Jouer;

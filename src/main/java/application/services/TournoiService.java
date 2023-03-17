@@ -2,7 +2,6 @@ package application.services;
 
 import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
-import modele.BDPredicats;
 
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.*;
@@ -12,7 +11,6 @@ import presentation.popup.popupTournoi.PopupTournoi;
 import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +29,10 @@ public class TournoiService {
             instance = new TournoiService();
         }
         return instance;
+    }
+
+    public static boolean isValidNom(String text) {
+        return TournoiRepository.getInstance().findByNom(text) != null;
     }
 
     public void inscrireEquipe(int idEquipeAInscrire, int idTournoi) {
@@ -115,23 +117,11 @@ public class TournoiService {
         afficherPopupTournoi(idTournoi);
     }
 
-    public void afficherFormCreerTournoi() {
-        int idGerant = UtilisateurCourant.getInstance().getIdLog();
-        List<String> nomsJeuxDisponible = JeuService.getInstance().getNomsJeuDisponibles();
-        VueFormCreerTournoi fen = new VueFormCreerTournoi(idGerant, nomsJeuxDisponible);
-        fen.setVisible(true);
-    }
 
     public int getNbParticipants(int idTournoi) {
         return this.getEquipesInscrites(idTournoi).size();
     }
 
-    public void enregistrerNouveauTournoiMultigaming(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, List<Integer> ListeDeJeux, int idGerant) {
-        for (Integer idJeu: ListeDeJeux) {
-            Jeu jeuJoue = JeuRepository.getInstance().findById(idJeu);
-            enregistrerNouveauTournoi(nomTounoi + " - " + jeuJoue.getNomJeu(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, idJeu.intValue(), idGerant);
-        }
-    }
 
     public void enregistrerNouveauTournoi(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
         if (dateFinInscription == null ||dateDebutTournoi == null || dateFinTournoi ==  null) {
@@ -150,66 +140,6 @@ public class TournoiService {
         }
         Tournoi tournoiAEnregistrer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
         repository.enregistrerNouveauTournoi(tournoiAEnregistrer);
-    }
-
-    public void enregistrerNouveauTournoi2(String nomTounoi, Portee porteeTournoi, LocalDate dateFinInscription, LocalDate dateDebutTournoi, LocalDate dateFinTournoi, int idJeu, int idGerant) {
-        if (dateFinInscription == null || dateDebutTournoi == null || dateFinTournoi == null) {
-            throw new IllegalArgumentException("une date est nulle :" + dateFinInscription + dateDebutTournoi + dateFinTournoi);
-        }
-        Jeu jeuDuTournoiACreer = JeuRepository.getInstance().findById(idJeu);
-        if (jeuDuTournoiACreer == null) {
-            throw new RuntimeException("le jeu n'existe pas");
-        }
-        Gerant gerantCreateurDuTournoi = GerantRepository.findById(idGerant);
-        if (gerantCreateurDuTournoi == null) {
-            throw new RuntimeException("le gérant n'existe pas");
-        }
-        if (TournoiRepository.getInstance().findByNom(nomTounoi) != null) {
-            throw new IllegalArgumentException("le tournoi existe déjà");
-        }
-        Tournoi tournoiAEnregistrer = new Tournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, jeuDuTournoiACreer, gerantCreateurDuTournoi);
-        repository.enregistrerNouveauTournoi(tournoiAEnregistrer);
-    }
-
-
-    private static boolean estTournoiValide(Tournoi nouveauTournoi) {
-        return nouveauTournoi.getDateFinInscriptions().isBefore(LocalDate.now())
-                && nouveauTournoi.getDateDebutTournoi().isBefore(LocalDate.now())
-                && nouveauTournoi.getDateFinTournoi().isBefore(LocalDate.now())
-                && isValidNom(nouveauTournoi.getNom());
-    }
-
-    public static boolean isValidNom(String nomTounoi) {
-        return BDPredicats.estLibreNomTournoi(nomTounoi);
-    }
-
-    public boolean estTournoiMultigaming(int idTournoi) {
-        Tournoi tournoiATester = repository.findById(idTournoi);
-        return tournoiATester.getNom().contains(" - ");    }
-
-    public boolean verifierJeuTournoi(int idTournoi, int idJeu) {
-        Tournoi tournoiAVerifier = this.repository.findById(idTournoi);
-        return tournoiAVerifier.verifierJeuTournoi(idJeu);
-    }
-
-    public List<Poule> getAllPoules(int idTournoi) {
-        Tournoi tournoiAvecPoules = getTournoiExistant(idTournoi);
-
-        return TournoiRepository.getInstance().getAllPoules(tournoiAvecPoules);
-    }
-
-    private static Tournoi getTournoiExistant(int idTournoi) {
-        Tournoi tournoiAvecPoules = TournoiRepository.getInstance().findById(idTournoi);
-        if (tournoiAvecPoules == null) {
-            throw new IllegalArgumentException("Le tournoi n'existe pas");
-        }
-        return tournoiAvecPoules;
-    }
-
-    public Poule getPouleFinale(int idTournoi) {
-        Tournoi tournoiAvecPoules = TournoiService.getTournoiExistant(idTournoi);
-        return TournoiRepository.getInstance().getPouleFinale(tournoiAvecPoules);
-
     }
 
     public EtatTournoi getEtatTournoi(Tournoi tournoi) {
@@ -244,48 +174,12 @@ public class TournoiService {
         return  EtatTournoi.FINI;
     }
 
-    private boolean estTournoiEnCours(Tournoi tournoi) {
-        return tournoi.getDateFinTournoi().isAfter(LocalDate.now());
-    }
-
     private boolean estTournoiCommence(Tournoi tournoi) {
         return tournoi.getDateDebutTournoi().isBefore(LocalDate.now());
     }
 
     private boolean estPhaseInsciptionPassee(Tournoi tournoi) {
         return tournoi.getDateFinInscriptions().isBefore(LocalDate.now());
-    }
-
-
-    public int getClassementInPoule(Equipe equipe, Tournoi tournoi) {
-        if (equipe ==  null) { throw new IllegalArgumentException("l'equipe n'existe pas ");}
-        if (tournoi ==  null) { throw new IllegalArgumentException("le tournoi n'existe pas ");}
-        HashMap<Equipe, Integer> mapGagnantRencontes = new HashMap<>();
-        for (Equipe e : repository.getEquipesInscrites(tournoi)) {
-            mapGagnantRencontes.put(e, 0);
-        }
-        List<Rencontre> rencontresFinales = PouleRepository.getInstance().getRencontres(TournoiService.getInstance().getPouleFinale(tournoi.getId())); // on obtient les rencontres finales
-        for (Rencontre r : rencontresFinales) {
-            Equipe equipeGagnante = RencontreRepository.getInstance().getGagnant(r);
-            mapGagnantRencontes.put(
-                    equipeGagnante,
-                    mapGagnantRencontes.get(equipeGagnante) + 1
-            );
-        }
-        int classement = 1;
-        int scoreEquipeAClasser = mapGagnantRencontes.get(equipe);
-        for (Equipe e : mapGagnantRencontes.keySet()) {
-            System.out.println("Comparaison entre : " + e.getNomEquipe() + "=" +mapGagnantRencontes.get(e) + "et"+ equipe.getNomEquipe() + "=" +mapGagnantRencontes.get(equipe));
-            if (mapGagnantRencontes.get(e) > scoreEquipeAClasser) {
-                System.out.println("pouet");
-                classement +=1;
-            }
-        }
-        System.out.println("Maps de winners end : " +  mapGagnantRencontes);
-
-        return classement;
-
-
     }
 
     public String[] getNomsTournois() {

@@ -1,11 +1,8 @@
 package presentation.formCreerTournoi;
 
 import application.donneesPersistantes.Portee;
-import application.exceptions.BadUserExecption;
 import application.services.TournoiService;
-import modele.Jeu;
 import nouveauModele.repositories.JeuRepository;
-import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 import javax.swing.*;
 import java.awt.*;
