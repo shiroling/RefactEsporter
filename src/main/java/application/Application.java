@@ -14,6 +14,7 @@ import modele.Equipe;
 import modele.Rencontre;
 import modele.Tournoi;
 import presentation.connexion.VueConnexion;
+import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,10 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        Application app = Application.getinstance();
-        app.runApp();
+        //Application app = Application.getinstance();
+        //app.runApp();
+        VueFormCreerTournoi fen = new VueFormCreerTournoi(UtilisateurCourant.getInstance().getIdLog(), JeuService.getInstance().getNomsJeuDisponibles());
+        fen.setVisible(true);
     }
 
     public static Application getinstance() {
