@@ -1,10 +1,10 @@
 package application.services;
 
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Poule;
-import nouveauModele.dataRepresentation.Rencontre;
-import nouveauModele.repositories.PouleRepository;
-import nouveauModele.repositories.RencontreRepository;
+import modele.dataRepresentation.Equipe;
+import modele.dataRepresentation.Poule;
+import modele.dataRepresentation.Rencontre;
+import modele.repositories.PouleRepository;
+import modele.repositories.RencontreRepository;
 
 import java.util.HashMap;
 import java.util.List;

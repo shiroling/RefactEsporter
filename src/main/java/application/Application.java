@@ -6,10 +6,9 @@ import application.services.EcurieService;
 import application.services.EquipeService;
 import application.services.JeuService;
 import application.services.TournoiService;
-import nouveauModele.repositories.EquipeRepository;
-import nouveauModele.repositories.TournoiRepository;
+import modele.repositories.EquipeRepository;
+import modele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
-import presentation.popup.popupIndiquerVainqueur.PopupIndiquerVainqueur;
 import presentation.connexion.VueConnexion;
 import presentation.formCreerTournoi.VueFormCreerTournoi;
 

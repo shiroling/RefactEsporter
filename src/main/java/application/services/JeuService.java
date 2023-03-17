@@ -1,9 +1,8 @@
 package application.services;
 
-import nouveauModele.dataRepresentation.Jeu;
-import nouveauModele.repositories.JeuRepository;
+import modele.dataRepresentation.Jeu;
+import modele.repositories.JeuRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

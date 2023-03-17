@@ -2,7 +2,7 @@ package presentation.formCreerTournoi;
 
 import application.donneesPersistantes.Portee;
 import application.services.TournoiService;
-import nouveauModele.repositories.JeuRepository;
+import modele.repositories.JeuRepository;
 
 import javax.swing.*;
 import java.awt.*;

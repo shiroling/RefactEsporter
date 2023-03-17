@@ -1,7 +1,6 @@
 package presentation.accueil.panelCartes.controleursCarte;
 
 import application.services.EquipeService;
-import nouveauModele.repositories.EquipeRepository;
 import presentation.accueil.panelCartes.vuesCartes.Carte;
 
 public class ControleurCarteEquipe extends ControleurCarte{

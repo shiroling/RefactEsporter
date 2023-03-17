@@ -1,14 +1,12 @@
 package application.services;
 
 import application.donneesPersistantes.Portee;
-import application.donneesPersistantes.UtilisateurCourant;
 
-import nouveauModele.dataRepresentation.*;
-import nouveauModele.repositories.*;
+import modele.dataRepresentation.*;
+import modele.repositories.*;
 import presentation.popup.popupInscrireEquipe.PopupInscrireEquipe;
 
 import presentation.popup.popupTournoi.PopupTournoi;
-import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.LocalDate;
 import java.util.List;

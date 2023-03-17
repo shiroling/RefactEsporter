@@ -2,13 +2,13 @@ package application.services;
 
 import application.donneesPersistantes.UtilisateurCourant;
 import application.testeurs.JoueurRecord;
-import nouveauModele.dataRepresentation.Ecurie;
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Jeu;
-import nouveauModele.dataRepresentation.Joueur;
-import nouveauModele.repositories.EcurieRepository;
-import nouveauModele.repositories.EquipeRepository;
-import nouveauModele.repositories.JeuRepository;
+import modele.dataRepresentation.Ecurie;
+import modele.dataRepresentation.Equipe;
+import modele.dataRepresentation.Jeu;
+import modele.dataRepresentation.Joueur;
+import modele.repositories.EcurieRepository;
+import modele.repositories.EquipeRepository;
+import modele.repositories.JeuRepository;
 import presentation.popup.PopupEquipe;
 import presentation.formCreerEquipe.VueFormEquipe;
 

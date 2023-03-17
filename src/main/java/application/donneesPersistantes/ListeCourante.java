@@ -1,9 +1,8 @@
 package application.donneesPersistantes;
 
 import application.filtres.Filtre;
-import nouveauModele.dataRepresentation.*;
-import nouveauModele.repositories.*;
-import presentation.accueil.panelCartes.controleursCarte.ControleurCarte;
+import modele.dataRepresentation.*;
+import modele.repositories.*;
 import presentation.accueil.panelCartes.vuesCartes.*;
 
 import java.util.ArrayList;

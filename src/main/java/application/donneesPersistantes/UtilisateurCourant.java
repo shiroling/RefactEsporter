@@ -1,8 +1,8 @@
 package application.donneesPersistantes;
 
-import nouveauModele.repositories.ArbitreRepository;
-import nouveauModele.repositories.EcurieRepository;
-import nouveauModele.repositories.GerantRepository;
+import modele.repositories.ArbitreRepository;
+import modele.repositories.EcurieRepository;
+import modele.repositories.GerantRepository;
 import presentation.connexion.VueConnexion;
 
 public class UtilisateurCourant {

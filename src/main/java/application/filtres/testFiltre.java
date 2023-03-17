@@ -1,11 +1,11 @@
 package application.filtres;
 
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Rencontre;
-import nouveauModele.dataRepresentation.Tournoi;
-import nouveauModele.repositories.EquipeRepository;
-import nouveauModele.repositories.RencontreRepository;
-import nouveauModele.repositories.TournoiRepository;
+import modele.dataRepresentation.Equipe;
+import modele.dataRepresentation.Rencontre;
+import modele.dataRepresentation.Tournoi;
+import modele.repositories.EquipeRepository;
+import modele.repositories.RencontreRepository;
+import modele.repositories.TournoiRepository;
 
 import java.util.List;
 
