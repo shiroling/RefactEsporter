@@ -1,5 +1,7 @@
 package presentation.accueil.panelCartes.vuesCartes;
 
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarte;
+import presentation.accueil.panelCartes.controleursCarte.ControleurCarteEquipe;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;
@@ -11,8 +13,9 @@ public class CarteEquipe extends Carte{
     private JLabel lblNomEquipe;
     private JLabel lblPoint;
 
-    public CarteEquipe() {
-        super();
+    public CarteEquipe(int idEquipe,  int points, String nomEquipe) {
+        super(idEquipe);
+        this.addMouseListener(new ControleurCarteEquipe(this));
         setBackground(new Color(255,255,255));
         setLayout(new GridLayout(2, 1, 0, 0));
 
@@ -37,6 +40,8 @@ public class CarteEquipe extends Carte{
         panelPoint.setBackground(new Color(0,0,0,0));
         panelNom.setBackground(new Color(0,0,0,0));
 
+        setNombrePoint(points);
+        setNomEquipe(nomEquipe);
     }
 
     public void setNomEquipe(String nom) {
@@ -44,10 +49,5 @@ public class CarteEquipe extends Carte{
     }
     public void setNombrePoint(int i){
         lblPoint.setText("Nombre de points: "+i);
-    }
-
-    @Override
-    public Carte clone() {
-        return (CarteEquipe) super.clone();
     }
 }

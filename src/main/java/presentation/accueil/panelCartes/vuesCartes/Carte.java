@@ -6,25 +6,11 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public abstract class Carte extends JPanel implements Cloneable  {
-    private int id;
+public abstract class Carte extends JPanel {
+    private final int id;
 
-    @Override
-    public Carte clone() {
-        Carte cloned = null;
-        try {
-            cloned = (Carte) super.clone();
-        } catch (CloneNotSupportedException e) {
-            // Ne devrait jamais arriver car Carte implémente l'interface Cloneable
-            throw new AssertionError();
-        }
-        cloned.setId(this.getId());
-        return cloned;
-    }
-
-
-
-    public Carte() {
+    public Carte(int id) {
+        this.id= id;
         setBackground(Color.WHITE);
         setBorder(new EmptyBorder(0,0,0,0));
         setLayout(new GridLayout(0, 1, 0, 0));
@@ -34,9 +20,6 @@ public abstract class Carte extends JPanel implements Cloneable  {
     public void addHoverPannels(JPanel panelAHover) {
         HoverCarte hoverCarte = new HoverCarte(this, panelAHover);
         addMouseListener(hoverCarte);
-    }
-    public void setId(int id){
-        this.id=id;
     }
 
     public int getId(){
