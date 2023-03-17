@@ -71,8 +71,4 @@ public class ArbitreRepository {
         }
         return arbitres.get(0);
     }
-
-    public int findbyLogs(String username, String password) {
-        throw new UnsupportedOperationException("Unimplemented");
-    }
 }
