@@ -31,8 +31,9 @@ public class RencontreService {
         String dateRencontre = rencontre.getDateRencontre().toString();
         List<String> pseudosJoueursEquipe1 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe1).stream().map(Joueur::getPseudo).toList();
         List<String> pseudosJoueursEquipe2 = EquipeRepository.getInstance().getJoueursFromNomEquipe(nomEquipe2).stream().map(Joueur::getPseudo).toList();
+        String nomArbitre = rencontre.getArbitre().getNom();
         int statutRencontre = getStatutRencontre(rencontre, nomEquipe1);
-        PopupRencontre popupRencontre = new PopupRencontre(idRencontre, nomEquipe1, nomEquipe2, nomTournoi, dateRencontre, statutRencontre, pseudosJoueursEquipe1, pseudosJoueursEquipe2);
+        PopupRencontre popupRencontre = new PopupRencontre(idRencontre, nomEquipe1, nomEquipe2, nomTournoi, dateRencontre, statutRencontre, pseudosJoueursEquipe1, pseudosJoueursEquipe2, nomArbitre);
         popupRencontre.setVisible(true);
     }
 

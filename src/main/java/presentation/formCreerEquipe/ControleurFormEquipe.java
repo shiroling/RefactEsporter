@@ -1,7 +1,10 @@
 package presentation.formCreerEquipe;
 
 import application.services.EquipeService;
+import application.services.JeuService;
+import application.services.JoueurService;
 import application.testeurs.JoueurRecord;
+import presentation.formJoueur.VueFormJoueur;
 //import application.testeurs.PreJoueur;
 
 import javax.swing.*;
@@ -62,8 +65,8 @@ public class ControleurFormEquipe implements ActionListener{
     }
 
     private void creationJoueur(int i) {
-
-        throw new UnsupportedOperationException("pas codé");
+        VueFormJoueur fen = new VueFormJoueur();
+        fen.setVisible(true);
     }
 
 

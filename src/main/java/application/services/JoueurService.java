@@ -34,6 +34,7 @@ public class JoueurService {
         afficherPopupJoueur(idJoueur);
     }
 
+
     // Ici on admet que la date est dans la passé, ceci est testé dans le controleur du formulaire joueur
     public boolean estValideJoueur(String nom, String prenom, String pseudo, LocalDate dateDeNaissance, int idEquipe) {
         Equipe equipeEnCharge = EquipeRepository.getInstance().findById(idEquipe);
