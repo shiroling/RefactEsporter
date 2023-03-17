@@ -9,8 +9,8 @@ public class VuePanelConnexion extends JPanel {
     private final VueLabelBouton connexionCourante;
     public VuePanelConnexion() {
         this.setLayout(new GridLayout(2,1));
-        fonctionUtilisateur = new VueLabelBouton("Gestionnaire : ", "créer tournoi", "btnFonctionUtilisateur", this.controleur);
-        connexionCourante =  new VueLabelBouton("Déconnecté ", "se connecter", "btnSwitchConnexion", this.controleur);
+        fonctionUtilisateur = new VueLabelBouton("Gestionnaire : ", "Créer tournoi", "btnFonctionUtilisateur", this.controleur);
+        connexionCourante =  new VueLabelBouton("Déconnecté ", "Se connecter", "btnSwitchConnexion", this.controleur);
         fonctionUtilisateur.setName("fonctionCourante");
         connexionCourante.setName("connexionCourante");
         this.add(fonctionUtilisateur);
