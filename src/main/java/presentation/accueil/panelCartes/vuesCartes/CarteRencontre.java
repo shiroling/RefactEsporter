@@ -63,7 +63,6 @@ public class CarteRencontre extends Carte{
         lblFinal=new JLabel();
         panelNomTournoi.add(lblFinal);
         panelNomTournoi.add(lblNomTournoi);
-        super.addHoverPannels(this);
 
         setNomEquipes(nomEquipe1, nomEquipe2, indexVaincueur);
         setNomTournoi(estFinale, nomTournoi);

@@ -1,11 +1,8 @@
 package presentation.formCreerTournoi;
 
 import application.donneesPersistantes.Portee;
-import application.exceptions.BadUserExecption;
 import application.services.TournoiService;
-import modele.Jeu;
-import nouveauModele.repositories.JeuRepository;
-import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
+import modele.repositories.JeuRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -154,7 +151,9 @@ public class ControleurFormCreerTournoi implements ActionListener {
         return true;
     }
 
-
+    public List<String> getListNomJeu() {
+        return this.nomJeux;
+    }
     public boolean isEmptyNom() {
         return this.vue.getTextFieldNom().getText().compareTo("") == 0;
     }

@@ -1,8 +1,6 @@
 package presentation.formJoueur;
 
 //import application.testeurs.PreJoueur;
-import application.testeurs.JoueurRecord;
-import nouveauModele.dataRepresentation.Joueur;
 import presentation.style.JTextFieldLimit;
 import presentation.style.datePicker.VueDatePicker;
 

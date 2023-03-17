@@ -15,26 +15,6 @@ public class VuePanelFiltres extends JPanel {
     public VuePanelFiltres(){
         contoleur = new ControleurPanelFiltres(this);
     }
-    public static void main(String[] args) {
-        // Création de la liste de filtres
-        List<RepresentationFiltre> listeFiltres = new ArrayList<>();
-        listeFiltres.add(new RepresentationFiltre("Avancement", new String[]{"Tous", "En Cours", "A Venir", "Finis"}));
-        listeFiltres.add(new RepresentationFiltre("Inscription", new String[]{"Tous", "En Cours", "Finis"}));
-        listeFiltres.add(new RepresentationFiltre("Multigaming", new String[]{"Tous", "Multigaming", "Jeu unique"}));
-        listeFiltres.add(new RepresentationFiltre("Jeu", new String[]{"Fortnite", "Valorant", "Apex Legends"}));
-        listeFiltres.add(new RepresentationFiltre("Portée", new String[]{"Local", "National", "International"}));
-
-        // Création de la vue des filtres
-        VuePanelFiltres vueFiltres = new VuePanelFiltres();
-        vueFiltres.setToFiltres(listeFiltres);
-
-        // Ajout de la vue des filtres à un JFrame
-        JFrame fenetre = new JFrame("Exemple d'utilisation de setToFiltres");
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.add(vueFiltres);
-        fenetre.pack();
-        fenetre.setVisible(true);
-    }
 
     public List<String> getSelectedValues() {
         List<String> list  = new ArrayList<>();

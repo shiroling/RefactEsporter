@@ -1,10 +1,10 @@
 package application.services;
 
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Joueur;
-import nouveauModele.repositories.EquipeRepository;
-import nouveauModele.repositories.JoueurRepository;
-import presentation.Popup.PopupJoueur.PopupJoueur;
+import modele.dataRepresentation.Equipe;
+import modele.dataRepresentation.Joueur;
+import modele.repositories.EquipeRepository;
+import modele.repositories.JoueurRepository;
+import presentation.popup.PopupJoueur;
 
 import java.time.LocalDate;
 

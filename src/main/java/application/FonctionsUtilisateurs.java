@@ -1,15 +1,6 @@
 package application;
 
-import application.exceptions.BadUserExecption;
-import application.donneesPersistantes.ConnexionCourante;
-import application.donneesPersistantes.Portee;
 import application.donneesPersistantes.UtilisateurCourant;
-import modele.BDInsert;
-import modele.Jeu;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
 
 public class FonctionsUtilisateurs {
 

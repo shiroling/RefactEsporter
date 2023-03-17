@@ -1,10 +1,10 @@
 package application.filtres;
 
 import application.services.RencontreService;
-import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.dataRepresentation.Jeu;
-import nouveauModele.dataRepresentation.Rencontre;
-import nouveauModele.dataRepresentation.Tournoi;
+import modele.dataRepresentation.Equipe;
+import modele.dataRepresentation.Jeu;
+import modele.dataRepresentation.Rencontre;
+import modele.dataRepresentation.Tournoi;
 
 import java.time.LocalDate;
 import java.util.List;

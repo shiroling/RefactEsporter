@@ -6,14 +6,9 @@ import application.services.EcurieService;
 import application.services.EquipeService;
 import application.services.JeuService;
 import application.services.TournoiService;
-import nouveauModele.repositories.EquipeRepository;
-import nouveauModele.repositories.JeuRepository;
-import nouveauModele.repositories.TournoiRepository;
+import modele.repositories.EquipeRepository;
+import modele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
-import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
-import modele.Equipe;
-import modele.Rencontre;
-import modele.Tournoi;
 import presentation.connexion.VueConnexion;
 import presentation.formCreerTournoi.VueFormCreerTournoi;
 
@@ -100,22 +95,12 @@ public class Application {
         int idTournoi = TournoiService.getInstance().getIdTournoiFromNom(nomTournoi);
         TournoiService.getInstance().afficherPopupInscrireEquipe(idTournoi, idEcurie);
     }
-    public static void procedureInscrireEquipe(Equipe equipeAInscrire, Tournoi tournoi) {
-        //AppTournoi.getInstance().inscrireEquipe();
-        tournoi.inscrireEquipe(equipeAInscrire);
-        TournoiService.getInstance().afficherPopupTournoi(tournoi.getId());
-    }
 
     public void inscrireEquipeAuTournoi(String nomEquipeSelectionee, String nomTournoi) {
         int idTournoi = TournoiRepository.getInstance().findByNom(nomTournoi).getId();
         int idEquipe = EquipeRepository.getInstance().findByNom(nomEquipeSelectionee).getIdEquipe();
         TournoiService.getInstance().inscrireEquipe(idEquipe, idTournoi);
         TournoiService.getInstance().afficherPopupTournoi(idTournoi);
-    }
-
-    public static void afficherPopupIndiquerVainqueurRencontre(Rencontre rencontre) {
-        PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(rencontre.getEquipes().get(0).getNom(), rencontre.getEquipes().get(1).getNom(), rencontre.getId());
-        indiquerVainqueur.setVisible(true);
     }
 
     // Regarder si votre truc a mettre ici ne convient pas déjà à FonctionUtilisateurs

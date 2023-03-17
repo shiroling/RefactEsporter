@@ -1,6 +1,8 @@
 package application.donneesPersistantes;
 
-import modele.BDSelect;
+import modele.repositories.ArbitreRepository;
+import modele.repositories.EcurieRepository;
+import modele.repositories.GerantRepository;
 import presentation.connexion.VueConnexion;
 
 public class UtilisateurCourant {
@@ -42,7 +44,7 @@ public class UtilisateurCourant {
 
 
     protected static boolean tryConnectManager(String username, String password) {
-        int id = BDSelect.getIdManagerFromLogs(username, password);
+        int id =  EcurieRepository.findByLogs(username, password);
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
@@ -52,7 +54,7 @@ public class UtilisateurCourant {
         return false;
     }
     protected static boolean tryConnectGestionnaire(String username, String password) {
-        int id = BDSelect.getIdGestionnaireFromLogs(username, password);
+        int id = GerantRepository.findByLogs(username, password);
 
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
@@ -63,7 +65,7 @@ public class UtilisateurCourant {
         return false;
     }
     protected static boolean tryConnectArbitre(String username, String password) {
-        int id = BDSelect.getIdArbitreFromLogs(username, password);
+        int id = ArbitreRepository.getInstance().findbyLogs(username, password);
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;

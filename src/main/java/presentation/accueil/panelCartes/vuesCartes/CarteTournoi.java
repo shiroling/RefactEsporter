@@ -41,9 +41,6 @@ public class CarteTournoi extends Carte{
         lblDateDebutFinTournoi.setFont(ElementCommun.getFontPrincipal());
         panelDate.add(lblDateDebutFinTournoi);
 
-
-        super.addHoverPannels(this);
-
         this.setName("CarteTournois");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
 
