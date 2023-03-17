@@ -35,7 +35,7 @@ public class PopupRencontre extends JDialog {
      * @param pseudosJoueursEquipe1
      * @param pseudosJoueursEquipe2
      */
-    public PopupRencontre(int idRencontre, String nomEquipe1, String nomEquipe2, String nomTournoi, String dateRencontre, int statutRencontre, List<String> pseudosJoueursEquipe1, List<String> pseudosJoueursEquipe2) {
+    public PopupRencontre(int idRencontre, String nomEquipe1, String nomEquipe2, String nomTournoi, String dateRencontre, int statutRencontre, List<String> pseudosJoueursEquipe1, List<String> pseudosJoueursEquipe2, String nomArbitre) {
         this.idRencontre = idRencontre;
         ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
 
@@ -48,7 +48,7 @@ public class PopupRencontre extends JDialog {
 
         JPanel panelHead = new JPanel();
         contentPanel.add(panelHead, BorderLayout.NORTH);
-        panelHead.setLayout(new GridLayout(4, 1, 0, 0));
+        panelHead.setLayout(new GridLayout(5, 1, 0, 0));
 
         JPanel panelTournoisRencontre = new JPanel();
         panelHead.add(panelTournoisRencontre);
@@ -75,6 +75,15 @@ public class PopupRencontre extends JDialog {
 
         JLabel lblDate = new JLabel(dateRencontre);
         panelDate.add(lblDate);
+
+        JPanel panelArbitre = new JPanel();
+        panelHead.add(panelArbitre);
+
+        JLabel lblTexteArbitre = new JLabel("Arbitre en charge : ");
+        panelArbitre.add(lblTexteArbitre);
+
+        JLabel lblArbitre = new JLabel(nomArbitre);
+        panelArbitre.add(lblArbitre);
 
         JPanel panelVainqueur = new JPanel();
         panelHead.add(panelVainqueur);

@@ -36,6 +36,8 @@ public class Joueur {
         this.equipe = equipe;
     }
 
+    public Joueur() {}
+
     public int getIdJoueur() {
         return idJoueur;
     }
