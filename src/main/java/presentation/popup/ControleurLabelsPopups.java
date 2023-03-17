@@ -1,4 +1,4 @@
-package presentation.Popup;
+package presentation.popup;
 
 import application.services.EcurieService;
 import application.services.EquipeService;

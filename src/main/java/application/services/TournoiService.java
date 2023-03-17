@@ -6,9 +6,9 @@ import modele.BDPredicats;
 
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.*;
-import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.popup.popupInscrireEquipe.PopupInscrireEquipe;
 
-import presentation.Popup.PopupTournoi.PopupTournoi;
+import presentation.popup.popupTournoi.PopupTournoi;
 import presentation.formCreerTournoi.VueFormCreerTournoi;
 
 import java.time.LocalDate;

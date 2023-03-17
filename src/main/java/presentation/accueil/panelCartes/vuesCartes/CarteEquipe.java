@@ -25,8 +25,6 @@ public class CarteEquipe extends Carte{
         lblNomEquipe.setFont(ElementCommun.getFontPrincipal());
         panelNom.add(lblNomEquipe);
 
-        super.addHoverPannels(this);
-
         this.setName("CarteEquipe");
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
 

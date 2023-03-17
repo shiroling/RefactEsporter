@@ -1,9 +1,6 @@
-package presentation.Popup.PopupInscrireEquipe;
+package presentation.popup.popupInscrireEquipe;
 
-import modele.Ecurie;
-import modele.Equipe;
-import modele.Tournoi;
-import presentation.Popup.PopupInscrireEquipe.PanelEquipePourInscription.PanelEquipePourInscription;
+import presentation.popup.popupInscrireEquipe.panelEquipePourInscription.PanelEquipePourInscription;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +9,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

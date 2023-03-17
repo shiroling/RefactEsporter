@@ -9,7 +9,7 @@ import nouveauModele.dataRepresentation.Joueur;
 import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.JeuRepository;
-import presentation.Popup.PopupEquipe.PopupEquipe;
+import presentation.popup.PopupEquipe;
 import presentation.formCreerEquipe.VueFormEquipe;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package presentation.Popup.PopupInscrireEquipe.PanelEquipePourInscription;
+package presentation.popup.popupInscrireEquipe.panelEquipePourInscription;
 
-import presentation.Popup.PopupInscrireEquipe.PopupInscrireEquipe;
+import presentation.popup.popupInscrireEquipe.PopupInscrireEquipe;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

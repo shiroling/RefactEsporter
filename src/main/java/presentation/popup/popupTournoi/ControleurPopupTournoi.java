@@ -1,9 +1,8 @@
-package presentation.Popup.PopupTournoi;
+package presentation.popup.popupTournoi;
 
 import application.Application;
 import application.donneesPersistantes.ConnexionCourante;
 import application.donneesPersistantes.UtilisateurCourant;
-import application.services.TournoiService;
 import presentation.connexion.VueConnexion;
 
 import javax.swing.*;

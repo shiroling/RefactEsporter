@@ -1,4 +1,4 @@
-package presentation.Popup.PopupIndiquerVainqueur;
+package presentation.popup.popupIndiquerVainqueur;
 import application.services.RencontreService;
 import presentation.style.btnStyle.BtnStyle;
 

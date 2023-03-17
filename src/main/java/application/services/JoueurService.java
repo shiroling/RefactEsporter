@@ -4,7 +4,7 @@ import nouveauModele.dataRepresentation.Equipe;
 import nouveauModele.dataRepresentation.Joueur;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.JoueurRepository;
-import presentation.Popup.PopupJoueur.PopupJoueur;
+import presentation.popup.PopupJoueur;
 
 import java.time.LocalDate;
 

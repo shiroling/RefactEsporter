@@ -1,4 +1,4 @@
-package presentation.Popup.PopupIndiquerVainqueur;
+package presentation.popup.popupIndiquerVainqueur;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.lang.invoke.StringConcatFactory;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;

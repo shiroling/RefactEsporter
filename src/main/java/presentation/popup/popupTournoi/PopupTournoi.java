@@ -1,7 +1,7 @@
-package presentation.Popup.PopupTournoi;
+package presentation.popup.popupTournoi;
 
-import presentation.Popup.ControleurLabelsPopups;
-import presentation.Popup.TypeLabel;
+import presentation.popup.ControleurLabelsPopups;
+import presentation.popup.TypeLabel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

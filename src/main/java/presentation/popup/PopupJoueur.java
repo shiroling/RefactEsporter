@@ -1,4 +1,4 @@
-package presentation.Popup.PopupJoueur;
+package presentation.popup;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,8 +9,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import modele.Joueur;
 
 public class PopupJoueur extends JDialog {
 

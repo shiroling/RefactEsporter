@@ -3,8 +3,8 @@ package application.services;
 import nouveauModele.dataRepresentation.*;
 import nouveauModele.repositories.EquipeRepository;
 import nouveauModele.repositories.RencontreRepository;
-import presentation.Popup.PopupIndiquerVainqueur.PopupIndiquerVainqueur;
-import presentation.Popup.PopupRencontre.PopupRencontre;
+import presentation.popup.popupIndiquerVainqueur.PopupIndiquerVainqueur;
+import presentation.popup.popupRencontre.PopupRencontre;
 
 import java.util.List;
 

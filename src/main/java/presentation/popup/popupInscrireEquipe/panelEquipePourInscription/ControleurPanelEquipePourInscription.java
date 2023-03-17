@@ -1,36 +1,34 @@
-package presentation.accueil.panelCartes.controleursCarte;
+package presentation.popup.popupInscrireEquipe.panelEquipePourInscription;
 
-import presentation.accueil.panelCartes.vuesCartes.Carte;
+import presentation.popup.popupInscrireEquipe.PopupInscrireEquipe;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HoverCarte implements MouseListener {
+public class ControleurPanelEquipePourInscription implements MouseListener {
 
-    private Carte vue;
+    private PanelEquipePourInscription vue;
+    private PopupInscrireEquipe popupContenant;
 
-    public HoverCarte(Carte vue, JPanel Panel) {
+    public ControleurPanelEquipePourInscription(PanelEquipePourInscription vue, PopupInscrireEquipe popupContenant) {
         super();
         this.vue = vue;
+        this.popupContenant = popupContenant;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        popupContenant.setEquipeSelectionee(this.vue.getNomEquipe());
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -45,4 +43,3 @@ public class HoverCarte implements MouseListener {
     }
 
 }
-

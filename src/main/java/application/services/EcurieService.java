@@ -3,8 +3,7 @@ package application.services;
 import nouveauModele.dataRepresentation.Ecurie;
 import nouveauModele.repositories.EcurieRepository;
 import nouveauModele.dataRepresentation.Equipe;
-import nouveauModele.repositories.EquipeRepository;
-import presentation.Popup.PopupEcurie.PopupEcurie;
+import presentation.popup.PopupEcurie;
 
 import java.util.List;
 import java.util.stream.Collectors;

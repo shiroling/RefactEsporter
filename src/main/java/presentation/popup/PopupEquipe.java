@@ -1,8 +1,8 @@
-package presentation.Popup.PopupEquipe;
+package presentation.popup;
 
 
-import presentation.Popup.ControleurLabelsPopups;
-import presentation.Popup.TypeLabel;
+import presentation.popup.ControleurLabelsPopups;
+import presentation.popup.TypeLabel;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

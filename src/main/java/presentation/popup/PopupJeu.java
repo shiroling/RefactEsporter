@@ -1,4 +1,4 @@
-package presentation.Popup.PopupJeu;
+package presentation.popup;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

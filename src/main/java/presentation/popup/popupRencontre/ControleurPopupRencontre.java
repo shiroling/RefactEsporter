@@ -1,11 +1,6 @@
-package presentation.Popup.PopupRencontre;
+package presentation.popup.popupRencontre;
 
-import application.donneesPersistantes.ConnexionCourante;
-import application.donneesPersistantes.UtilisateurCourant;
-import application.Application;
 import application.services.RencontreService;
-import modele.Rencontre;
-import presentation.connexion.VueConnexion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

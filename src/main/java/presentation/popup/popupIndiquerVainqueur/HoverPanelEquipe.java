@@ -1,4 +1,4 @@
-package presentation.Popup.PopupIndiquerVainqueur;
+package presentation.popup.popupIndiquerVainqueur;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
