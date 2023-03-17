@@ -11,14 +11,13 @@ public class ConnexionBase {
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Impossible d'initialiser le driver");
         }
 
         try {
             return DriverManager.getConnection(Login.getConnectString(), Login.getLogin(), Login.getMdp());
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Impossible de se connecter à la base de données");
         }
     }
 
