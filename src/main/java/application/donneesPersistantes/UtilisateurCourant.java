@@ -44,7 +44,7 @@ public class UtilisateurCourant {
 
 
     protected static boolean tryConnectManager(String username, String password) {
-        int id =  EcurieRepository.findByLogs(username, password);
+        int id =  EcurieRepository.getInstance().findByLogs(username, password).getIdEcurie();
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
@@ -54,7 +54,7 @@ public class UtilisateurCourant {
         return false;
     }
     protected static boolean tryConnectGestionnaire(String username, String password) {
-        int id = GerantRepository.findByLogs(username, password);
+        int id = GerantRepository.getInstance().findByLogs(username, password).getIdGerant();
 
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
@@ -65,7 +65,7 @@ public class UtilisateurCourant {
         return false;
     }
     protected static boolean tryConnectArbitre(String username, String password) {
-        int id = ArbitreRepository.getInstance().findbyLogs(username, password);
+        int id = ArbitreRepository.getInstance().findByLogs(username, password).getIdArbitre();
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;

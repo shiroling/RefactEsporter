@@ -129,7 +129,7 @@ public class TournoiService {
         if (jeuDuTournoiACreer == null) {
             throw new RuntimeException("le jeu n'existe pas");
         }
-        Gerant gerantCreateurDuTournoi = GerantRepository.findById(idGerant);
+        Gerant gerantCreateurDuTournoi = GerantRepository.getInstance().findById(idGerant);
         if (gerantCreateurDuTournoi == null) {
             throw new RuntimeException("le gérant n'existe pas");
         }
