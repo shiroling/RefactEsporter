@@ -15,7 +15,7 @@ public abstract class ControleurCarte implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
+        onClick();
     }
 
     @Override
