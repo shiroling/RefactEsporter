@@ -154,7 +154,9 @@ public class ControleurFormCreerTournoi implements ActionListener {
         return true;
     }
 
-
+    public List<String> getListNomJeu() {
+        return this.nomJeux;
+    }
     public boolean isEmptyNom() {
         return this.vue.getTextFieldNom().getText().compareTo("") == 0;
     }

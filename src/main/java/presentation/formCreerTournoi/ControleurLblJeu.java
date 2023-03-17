@@ -1,9 +1,12 @@
 package presentation.formCreerTournoi;
 
+import application.services.JeuService;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 public class ControleurLblJeu implements MouseListener {
 
@@ -19,9 +22,16 @@ public class ControleurLblJeu implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         JLabel lblJeuAEnlever = ((JLabel) e.getSource());
         String nomJeuxAEnlever = lblJeuAEnlever.getText();
-        this.vue.getComboJeux().addItem(nomJeuxAEnlever);
         this.controleurFormCreerTournoi.enleverJeu(nomJeuxAEnlever);
-        lblJeuAEnlever.getParent().remove(lblJeuAEnlever);
+        List<String> nomsJeuxDisponible = JeuService.getInstance().getNomsJeuDisponibles();
+        for (String nomJeu : this.controleurFormCreerTournoi.getListNomJeu()) {
+           nomsJeuxDisponible =  nomsJeuxDisponible.stream().filter(jeu -> !jeu.equals(nomJeu)).toList();
+        }
+        String[] lesJeux = (String[]) nomsJeuxDisponible.toArray(new String[nomsJeuxDisponible.size()]);
+        this.vue.getComboJeux().setModel(new DefaultComboBoxModel<>(lesJeux));
+        JPanel parent = (JPanel) lblJeuAEnlever.getParent();
+        parent.remove(lblJeuAEnlever);
+        parent.updateUI();
     }
 
     @Override
