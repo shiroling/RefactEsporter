@@ -2,6 +2,7 @@ package presentation.accueil.panelCartes.controleursCarte;
 
 import presentation.accueil.panelCartes.vuesCartes.Carte;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -29,13 +30,13 @@ public abstract class ControleurCarte implements MouseListener {
     }
 
     @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
+    public void mouseEntered(MouseEvent e) {
+        this.vue.setBackground(new Color(220,220,220));
     }
 
     @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
+    public void mouseExited(MouseEvent e) {
+        this.vue.setBackground(Color.WHITE);
     }
 
     public Carte getVue() {
