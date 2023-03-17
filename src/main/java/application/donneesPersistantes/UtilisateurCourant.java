@@ -55,7 +55,6 @@ public class UtilisateurCourant {
     }
     protected static boolean tryConnectGestionnaire(String username, String password) {
         int id = GerantRepository.getInstance().findByLogs(username, password).getIdGerant();
-
         if (id > -1) {
             UtilisateurCourant that = UtilisateurCourant.getInstance();
             that.idLog = id;
