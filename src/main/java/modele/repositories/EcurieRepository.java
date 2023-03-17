@@ -19,10 +19,6 @@ public class EcurieRepository {
         return instance;
     }
 
-    public static int findByLogs(String username, String password) {
-        throw new UnsupportedOperationException("Unimplemented");
-    }
-
     public Ecurie findById(int idEcurie) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
