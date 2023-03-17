@@ -1,6 +1,5 @@
-package presentation.formCreerEquipe;
+package presentation.formulaires.formCreerEquipe;
 
-import presentation.formJoueur.ControleurFormJoueur;
 import presentation.style.ElementCommun;
 
 import javax.swing.*;

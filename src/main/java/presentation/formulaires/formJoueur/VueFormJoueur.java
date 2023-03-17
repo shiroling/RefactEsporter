@@ -1,4 +1,4 @@
-package presentation.formJoueur;
+package presentation.formulaires.formJoueur;
 
 //import application.testeurs.PreJoueur;
 import presentation.style.JTextFieldLimit;

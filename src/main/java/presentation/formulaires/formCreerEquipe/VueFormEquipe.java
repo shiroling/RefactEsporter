@@ -1,10 +1,9 @@
-package presentation.formCreerEquipe;
+package presentation.formulaires.formCreerEquipe;
 
 import application.services.JeuService;
 import presentation.style.JTextFieldLimit;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

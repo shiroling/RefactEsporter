@@ -1,10 +1,8 @@
-package presentation.formCreerEquipe;
+package presentation.formulaires.formCreerEquipe;
 
 import application.services.EquipeService;
-import application.services.JeuService;
-import application.services.JoueurService;
 import application.testeurs.JoueurRecord;
-import presentation.formJoueur.VueFormJoueur;
+import presentation.formulaires.formJoueur.VueFormJoueur;
 //import application.testeurs.PreJoueur;
 
 import javax.swing.*;

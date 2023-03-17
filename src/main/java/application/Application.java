@@ -10,7 +10,7 @@ import modele.repositories.EquipeRepository;
 import modele.repositories.TournoiRepository;
 import presentation.accueil.VueAccueil;
 import presentation.connexion.VueConnexion;
-import presentation.formCreerTournoi.VueFormCreerTournoi;
+import presentation.formulaires.formCreerTournoi.VueFormCreerTournoi;
 
 import java.util.ArrayList;
 import java.util.List;

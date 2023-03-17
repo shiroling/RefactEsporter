@@ -10,7 +10,7 @@ import modele.repositories.EcurieRepository;
 import modele.repositories.EquipeRepository;
 import modele.repositories.JeuRepository;
 import presentation.popup.PopupEquipe;
-import presentation.formCreerEquipe.VueFormEquipe;
+import presentation.formulaires.formCreerEquipe.VueFormEquipe;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

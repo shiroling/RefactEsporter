@@ -1,14 +1,11 @@
-package presentation.formJoueur;
+package presentation.formulaires.formJoueur;
 
 //import application.testeurs.PreJoueur;
-
-import application.services.JoueurService;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class ControleurFormJoueur implements ActionListener{

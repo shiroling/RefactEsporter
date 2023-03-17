@@ -1,4 +1,4 @@
-package presentation.formCreerTournoi;
+package presentation.formulaires.formCreerTournoi;
 
 import application.services.JeuService;
 
