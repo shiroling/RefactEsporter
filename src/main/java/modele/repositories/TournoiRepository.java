@@ -5,6 +5,7 @@ import modele.dataRepresentation.Equipe;
 import modele.dataRepresentation.Inscrit;
 import modele.dataRepresentation.Poule;
 import modele.dataRepresentation.Tournoi;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class TournoiRepository {
     private static TournoiRepository instance;
+    private final String ID_TOURNOI = "idTournoi";
 
     public static TournoiRepository getInstance() {
         if (instance == null) {
@@ -42,7 +44,7 @@ public class TournoiRepository {
             session.close();
         }
         if (tournois.size() > 1 ) {
-            throw new RuntimeException("Doublon de tournois alors qu'il est unique");
+            throw new NonUniqueObjectException(nomTournoi, "Doublon de tournois alors qu'il est unique");
         } else if (tournois.isEmpty())  {
             return null;
         }
@@ -55,7 +57,7 @@ public class TournoiRepository {
         Tournoi tournoi = null;
         try {
             tx = session.beginTransaction();
-            tournoi = (Tournoi) session.get(Tournoi.class, idTournoi);
+            tournoi = session.get(Tournoi.class, idTournoi);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -93,7 +95,7 @@ public class TournoiRepository {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("SELECT i.id.equipe FROM Inscrit i WHERE i.id.tournoi.id = :idTournoi AND i.id.equipe.idEquipe = :idEquipe");
-            query.setParameter("idTournoi", tournoiHote.getId());
+            query.setParameter(ID_TOURNOI, tournoiHote.getId());
             query.setParameter("idEquipe", equipeAInscrire.getIdEquipe());
             equipes = query.list();
             tx.commit();
@@ -136,7 +138,7 @@ public class TournoiRepository {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("SELECT i.id.equipe FROM Inscrit i WHERE i.id.tournoi.id = :idTournoi");
-            query.setParameter("idTournoi", tournoiHote.getId());
+            query.setParameter(ID_TOURNOI, tournoiHote.getId());
             equipes = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -176,7 +178,7 @@ public class TournoiRepository {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("FROM Poule p  WHERE p.idTournoi = :idTournoi");
-            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            query.setParameter(ID_TOURNOI, tournoiAvecPoules.getId());
             poules = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -197,7 +199,7 @@ public class TournoiRepository {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("FROM Poule p WHERE p.tournoi.id = :idTournoi AND p.finale = 0");
-            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            query.setParameter(ID_TOURNOI, tournoiAvecPoules.getId());
             poules = query.list();
             tx.commit();
         } catch (Exception e) {
@@ -218,7 +220,7 @@ public class TournoiRepository {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("FROM Poule p  WHERE p.tournoi.id = :idTournoi AND p.finale = 1");
-            query.setParameter("idTournoi", tournoiAvecPoules.getId());
+            query.setParameter(ID_TOURNOI, tournoiAvecPoules.getId());
             poules = query.list();
             tx.commit();
         } catch (Exception e) {
