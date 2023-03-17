@@ -19,11 +19,14 @@ import java.util.Objects;
 
 public class ControleurFormCreerTournoi implements ActionListener {
     private final VueFormCreerTournoi vue;
-    private final List<String> nomJeux;
+    private List<String> nomJeux;
+
+    private ControleurLblJeu controleurLblJeu;
 
     public ControleurFormCreerTournoi(VueFormCreerTournoi vue) {
         this.vue = vue;
         this.nomJeux = new ArrayList<>();
+        this.controleurLblJeu = new ControleurLblJeu(this.vue, this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -33,6 +36,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
                 this.nomJeux.add(Objects.requireNonNull(this.vue.getComboJeux().getSelectedItem()).toString());// Stockage du jeu selectionné
                 this.vue.getPanelJeuxAjoutes().setLayout(new GridLayout(this.nomJeux.size(), 1, 0, 0));
                 JLabel lblNomJeu = new JLabel(this.vue.getComboJeux().getSelectedItem().toString()); // Créer le label concernant le jeu selectionné dans le combo
+                lblNomJeu.addMouseListener(this.controleurLblJeu);
                 this.vue.getPanelJeuxAjoutes().add(lblNomJeu);              // Ajout du label dans le pannel
                 this.vue.getPanelJeuxAjoutes().updateUI();                  // Maj du panel
                 this.vue.getComboJeux().removeItem(this.vue.getComboJeux().getSelectedItem()); // Enleve le jeu du combo apres l'avoir ajouté
@@ -96,6 +100,9 @@ public class ControleurFormCreerTournoi implements ActionListener {
         }
     }
 
+    public void enleverJeu(String nomJeu) {
+       this.nomJeux = this.nomJeux.stream().filter(str -> !str.equals(nomJeu)).toList();
+    }
 
     public boolean isLabelDateDebutTournoiOnDefault() {
         return !vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0));
