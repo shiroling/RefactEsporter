@@ -20,10 +20,8 @@ public class Application {
     private static Application instance;
     private VueAccueil vueAccueil;
     public static void main(String[] args) {
-        //Application app = Application.getinstance();
-        //app.runApp();
-        VueFormCreerTournoi fen = new VueFormCreerTournoi(UtilisateurCourant.getInstance().getIdLog(), JeuService.getInstance().getNomsJeuDisponibles());
-        fen.setVisible(true);
+        Application app = Application.getinstance();
+        app.runApp();
     }
 
     public static Application getinstance() {
